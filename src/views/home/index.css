@@ -1,0 +1,100 @@
+.home-container .home-banner {
+  height: 500px;
+}
+.home-container .el-carousel__button {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+}
+.home-container .home-main-title {
+  height: 75px;
+  margin: 0 auto;
+  width: 1200px;
+  line-height: 75px;
+}
+.home-container .home-main-title span {
+  font-weight: 900;
+}
+.home-container .home-main-title span.fr {
+  cursor: pointer;
+  color: #868686;
+}
+.home-container .home-main-body {
+  height: 485px;
+  width: 1200px;
+  display: flex;
+  margin: 0 auto;
+}
+.home-container .home-main-body > div:first-child {
+  width: 275px;
+  height: inherit;
+  background: url("../../assets/img/spring-1.png") 0 0;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+}
+.home-container .home-main-body > div:first-child > div:first-child {
+  text-indent: 65px;
+  text-align: center;
+}
+.home-container .home-main-body p:first-child {
+  font-size: 37px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.home-container .home-main-body p:last-child {
+  font-size: 16px;
+  color: #fff;
+}
+.home-container .home-main-body > div:last-child {
+  width: 900px;
+  height: inherit;
+  margin-left: 12px;
+}
+.home-container .home-main-body > div:last-child > div.artisan-card {
+  border: 1px solid #efefef;
+  width: 280px;
+  height: 148px;
+  position: relative;
+  margin: 9px 10px;
+  cursor: pointer;
+}
+.home-container .home-main-body > div:last-child > div.artisan-card div.artisan-card-head {
+  display: flex;
+  line-height: 55px;
+  padding: 0 10px;
+  height: 55px;
+  justify-content: space-between;
+}
+.home-container .home-main-body > div:last-child > div.artisan-card div.artisan-card-head span {
+  font-weight: 900;
+  font-size: 16px;
+}
+.home-container .home-main-body > div:last-child > div.artisan-card div.artisan-card-head span:first-child {
+  color: #1971d5;
+}
+.home-container .home-main-body > div:last-child > div.artisan-card div.artisan-card-body {
+  font-size: 16px;
+  height: 55px;
+  padding: 0 10px;
+}
+.home-container .home-main-body > div:last-child > div.artisan-card div.artisan-card-foot {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+}
+.home-container .home-main-body > div:last-child > div.artisan-card div.artisan-card-foot > span {
+  color: #868686;
+}
+.home-container .home-main-body > div:last-child > div:nth-child(3),
+.home-container .home-main-body > div:last-child > div:nth-child(6),
+.home-container .home-main-body > div:last-child > div:nth-child(9) {
+  margin-right: 0;
+}
+.home-container .home-main-body > div:last-child > div:nth-child(1),
+.home-container .home-main-body > div:last-child > div:nth-child(2),
+.home-container .home-main-body > div:last-child > div:nth-child(3) {
+  margin-top: 0;
+}

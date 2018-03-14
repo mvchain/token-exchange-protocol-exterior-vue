@@ -1,0 +1,54 @@
+@import '../../assets/css/var.styl';
+.home-nav
+  z-index:9999
+  position: fixed;
+  width:100%;
+
+  & > div:last-child a
+    color:#fff;
+
+
+.nav-container-bottom
+  height: 100px;
+
+  & > div:first-child
+    width: 375px;
+    height: 100px;
+    float:left;
+    display: flex;
+    align-items center;
+    justify-content :flex-end;
+
+    & .navBar-logo
+      width: 215px;
+      height: 64px;
+      background: #ddd;
+
+  & > div:last-child
+    height: 100px;
+    line-height: 100px;
+    margin-right:245px;
+    float:right;
+
+    & a
+      margin-left:40px;
+    .login-btn
+      width:120px;
+      height:48px;
+      display:inline-block;
+      text-align:center;
+      line-height :48px;
+      border-radius:30px;
+      border:1px solid #ddd;
+
+    .login-btn:hover{
+      border:1px solid transparent;
+    }
+
+
+.home-nav-other
+  z-index:9999
+  background:#fff;
+  box-shadow: 0 8px 16px 5px rgba(80,35,54,.15);
+  & > div:last-child a
+    color:#000;

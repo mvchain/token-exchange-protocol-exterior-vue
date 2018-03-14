@@ -1,0 +1,147 @@
+.color-btn
+  transition: box-shadow .21s linear
+
+.color-btn:hover
+  transform: scale(1.05);
+  background:linear-gradient(to right, #ff9975,#ff7874);
+  border:0;
+  box-shadow: 0 8px 16px 0 rgba(80,35,54,.15);
+
+
+.color-btn2
+  display :inline-block;
+  width:150px;
+  height:48px;
+  line-height:48px;
+  text-align:center;
+  color:#fff;
+  border-radius:30px;
+  cursor:pointer;
+  background:linear-gradient(to right, #ff9975,#ff7874);
+
+.color-btn:active,
+.color-btn2:active
+  background:linear-gradient(to right, #fb825d,#ff5955);
+
+.el-progress-bar__inner
+  background: linear-gradient(to right, #b88eff, #5e88ff) !important;
+.el-progress-bar
+  width:93% !important;
+.el-progress
+  padding-bottom:20px;
+  border-bottom:2px solid #aaa;
+
+
+div.project-pane
+  display: flex;
+  flex-wrap:wrap;
+
+  & .transition-box
+    position :absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.5);
+    top:0;
+    left:0;
+    z-index:999;
+
+  & > div.project-pane-item:first-child,
+  & > div.project-pane-item:nth-child(3)
+    margin-right:24px;
+
+  & > div.project-pane-item:nth-child(2),
+  & > div.project-pane-item:nth-child(4)
+    margin-left:24px;
+
+  & div.project-pane-item
+    height: 320px;
+    cursor:pointer;
+    border-radius:20px;
+    padding:20px;
+    position :relative;
+    flex: 0 0 686px;
+    box-shadow: 0 8px 16px 5px rgba(80,35,54,.15);
+    overflow:hidden;
+    margin-bottom:48px;
+
+    & .project-selling
+      width:124px;
+      height:48px;
+      font-style:normal;
+      position:absolute;
+      background:#6488ff;
+      border-radius:10px;
+      z-index:100;
+      text-align :center;
+      line-height 48px;
+      font-size:16px;
+      color:#fff;
+      left:0;
+      top:0;
+
+    & .project-participate
+      position absolute;
+      width:69px;
+      height:69px;
+      right:0;
+      top:0;
+      z-index:100;
+
+    & .project-bigImg
+      width:280px;
+      height:280px;
+      background:#ddd;
+      float:left;
+
+    & .project-pane-item-info
+      float:right;
+      width:345px;
+      color:#666;
+
+
+      & .project-coin
+        color:#666;
+        font-size:30px;
+        margin:20px 0;
+
+      & .project-pane-number
+        display :flex;
+        justify-content :space-between;
+        padding-top:10px;
+
+        & span
+          flex:1;
+          font-size:16px;
+
+        & span:last-child
+          text-align :right;
+
+        & span:last-child
+          text-align :right;
+
+
+      & .project-pane-item-day,
+      & .project-pane-item-time
+        position absolute
+        font-size:16px;
+
+      & .project-pane-item-day
+        bottom:40px;
+
+        & span
+          font-size:40px;
+
+      & .project-pane-item-time
+        bottom:20px;
+
+      & .project-pane-item-over
+        position absolute
+        font-size:30px;
+        bottom:100px;
+        right:135px;
+
+      & .project-pane-item-aims
+        font-size:16px;
+        padding-top:10px;
+        & > span:last-child
+          font-size:24px;
