@@ -256,7 +256,14 @@
         <div class="project-contact-txt">联系方式</div>
         <div class="project-contact-icon">
           <ul>
-            <li><img src="../../assets/img/wx.png" alt="微信二维码"></li>
+            <li>
+              <img src="../../assets/img/wx.png" alt="微信二维码"  @mouseleave="ewmFlag=false" @mouseenter="ewmFlag=true">
+              <transition name="el-fade-in-linear">
+                <p v-show="ewmFlag" class="ewm-img">
+                  <img src="../../assets/img/ewm.png" alt="">
+                </p>
+              </transition>
+            </li>
             <li><img src="../../assets/img/fb.png" alt="facebook"></li>
             <li><img src="../../assets/img/tw.png" alt="推特"></li>
             <li><img src="../../assets/img/rb.png" alt="rb"></li>
@@ -274,7 +281,7 @@
   import b1 from '@/assets/img/Big-background1.png';
   import b2 from '@/assets/img/Big-background2.png';
   import b3 from '@/assets/img/Big-background3.png';
-  import footer from '@/components/footer.vue';
+  import footer from '@/components/foot.vue';
   import BackToTop from '@/components/toTop.vue';
   import {mapGetters} from 'vuex';
 
@@ -283,6 +290,7 @@
       return {
         loading: false,
         maskLayer: false,
+        ewmFlag: false,
         layerNum: 0,
         activeNames: ['1'],
         myBackToTopStyle: {
@@ -341,7 +349,6 @@
         this.paneNum = k;
       },
       handleChange(val) {
-        console.log(val);
       },
       itemHandler(k) {
         this.layerNum = k;

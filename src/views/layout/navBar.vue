@@ -1,7 +1,7 @@
 <template>
   <header class="nav-container">
     <nav class="home-banner">
-      <div :class="scrollNum?'home-nav':'home-nav-other'" class="nav-container-bottom home-nav">
+      <div :style="scrollNum&&$route.path==='/home'?'box-shadow: none;':'box-shadow: 0 8px 16px 5px rgba(80,35,54,.15);'" :class="scrollNum?'home-nav':'home-nav-other'" class="nav-container-bottom home-nav">
         <div class="main-size">
           <div class="navBar-logo"></div>
         </div>
