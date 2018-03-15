@@ -79,5 +79,4 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import "./index..styl";
 </style>

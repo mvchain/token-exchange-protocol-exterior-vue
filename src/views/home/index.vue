@@ -16,206 +16,206 @@
         <div class="project-title">
           <div>项目列表</div>
           <div>
-            <span @click="changeHelp('/proList')" style=" width:150px;height:48px;" class="color-btn color-btn2">更多项目</span>
+            <span @click="changeHelp('/proList')" style=" width:150px;height:48px;"
+                  class="color-btn color-btn2">更多项目</span>
           </div>
         </div>
 
-        <transition name="el-fade-in">
-          <div v-if="paneNum==0" class="project-pane">
-            <div @mouseenter="itemHandler(1)" @mouseleave="itemLeave" @click="changeInfo('1')"
-                 class="project-pane-item">
-              <transition name="el-zoom-in-top">
-                <div v-show="layerNum === 1 && maskLayer" class="transition-box"></div>
-              </transition>
-              <i class="project-selling">正在进行</i>
-              <b class="project-participate">
-                <img src="../../assets/img/participate.png" alt="">
-              </b>
-              <div class="project-bigImg">大图</div>
-              <div class="project-pane-item-info">
-                <p class="project-coin">
-                  <span>ETHBTC</span>
-                </p>
-                <el-progress :percentage="100" :stroke-width="20"></el-progress>
-                <div class="project-pane-number">
-                  <span>20人投</span>
-                  <span>400/500ETH</span>
-                </div>
-                <p class="project-pane-item-over">圆满完成</p>
-                <p class="project-pane-item-aims">
-                  <span>目标：</span>
-                  <span>500ETH</span>
-                </p>
-                <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-                <p class="project-pane-item-time">项目起止：01/08~02/07</p>
+
+        <div v-if="paneNum==0" class="project-pane">
+          <div @mouseenter="itemHandler(1)" @mouseleave="itemLeave" @click="changeInfo('1')"
+               class="project-pane-item">
+            <transition name="el-zoom-in-top">
+              <div v-show="layerNum === 1 && maskLayer" class="transition-box"></div>
+            </transition>
+            <i class="project-selling">正在进行</i>
+            <b class="project-participate">
+              <img src="../../assets/img/participate.png" alt="">
+            </b>
+            <div class="project-bigImg">大图</div>
+            <div class="project-pane-item-info">
+              <p class="project-coin">
+                <span>ETHBTC</span>
+              </p>
+              <el-progress :percentage="100" :stroke-width="20"></el-progress>
+              <div class="project-pane-number">
+                <span>20人投</span>
+                <span>400/500ETH</span>
               </div>
-            </div>
-            <div @mouseenter="itemHandler(2)" @mouseleave="itemLeave" class="project-pane-item">
-              <transition name="el-zoom-in-top">
-                <div v-show="layerNum === 2 && maskLayer" class="transition-box"></div>
-              </transition>
-              <i class="project-selling">正在进行</i>
-              <b class="project-participate">
-                <img src="../../assets/img/participate.png" alt="">
-              </b>
-              <div class="project-bigImg">大图</div>
-              <div class="project-pane-item-info">
-                <p class="project-coin">
-                  <span>ETHBTC</span>
-                </p>
-                <el-progress :percentage="100" :stroke-width="20"></el-progress>
-                <div class="project-pane-number">
-                  <span>20人投</span>
-                  <span>400/500ETH</span>
-                </div>
-                <p class="project-pane-item-over">圆满完成</p>
-                <p class="project-pane-item-aims">
-                  <span>目标：</span>
-                  <span>500ETH</span>
-                </p>
-                <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-                <p class="project-pane-item-time">项目起止：01/08~02/07</p>
-              </div>
-            </div>
-            <div @mouseenter="itemHandler(3)" @mouseleave="itemLeave" class="project-pane-item">
-              <transition name="el-zoom-in-top">
-                <div v-show="layerNum === 3 && maskLayer" class="transition-box"></div>
-              </transition>
-              <i class="project-selling">正在进行</i>
-              <b class="project-participate">
-                <img src="../../assets/img/participate.png" alt="">
-              </b>
-              <div class="project-bigImg">大图</div>
-              <div class="project-pane-item-info">
-                <p class="project-coin">
-                  <span>ETHBTC</span>
-                </p>
-                <el-progress :percentage="100" :stroke-width="20"></el-progress>
-                <div class="project-pane-number">
-                  <span>20人投</span>
-                  <span>400/500ETH</span>
-                </div>
-                <p class="project-pane-item-over">圆满完成</p>
-                <p class="project-pane-item-aims">
-                  <span>目标：</span>
-                  <span>500ETH</span>
-                </p>
-                <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-                <p class="project-pane-item-time">项目起止：01/08~02/07</p>
-              </div>
-            </div>
-            <div @mouseenter="itemHandler(4)" @mouseleave="itemLeave" class="project-pane-item">
-              <transition name="el-zoom-in-top">
-                <div v-show="layerNum === 4 && maskLayer" class="transition-box"></div>
-              </transition>
-              <i class="project-selling">正在进行</i>
-              <b class="project-participate">
-                <img src="../../assets/img/participate.png" alt="">
-              </b>
-              <div class="project-bigImg">大图</div>
-              <div class="project-pane-item-info">
-                <p class="project-coin">
-                  <span>ETHBTC</span>
-                </p>
-                <el-progress :percentage="100" :stroke-width="20"></el-progress>
-                <div class="project-pane-number">
-                  <span>20人投</span>
-                  <span>400/500ETH</span>
-                </div>
-                <p class="project-pane-item-over">圆满完成</p>
-                <p class="project-pane-item-aims">
-                  <span>目标：</span>
-                  <span>500ETH</span>
-                </p>
-                <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-                <p class="project-pane-item-time">项目起止：01/08~02/07</p>
-              </div>
+              <p class="project-pane-item-over">圆满完成</p>
+              <p class="project-pane-item-aims">
+                <span>目标：</span>
+                <span>500ETH</span>
+              </p>
+              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
+              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
             </div>
           </div>
-          <div v-if="paneNum==1" class="project-pane">
-            <div @mouseenter="itemHandler(1)" @mouseleave="itemLeave" class="project-pane-item">
-              <transition name="el-zoom-in-top">
-                <div v-show="layerNum === 1 && maskLayer" class="transition-box"></div>
-              </transition>
-              <i class="project-selling">正在进行</i>
-              <b class="project-participate">
-                <img src="../../assets/img/participate.png" alt="">
-              </b>
-              <div class="project-bigImg">大图</div>
-              <div class="project-pane-item-info">
-                <p class="project-coin">
-                  <span>ETHBTC</span>
-                </p>
-                <el-progress :percentage="100" :stroke-width="20"></el-progress>
-                <div class="project-pane-number">
-                  <span>20人投</span>
-                  <span>400/500ETH</span>
-                </div>
-                <p class="project-pane-item-over">圆满完成</p>
-                <p class="project-pane-item-aims">
-                  <span>目标：</span>
-                  <span>500ETH</span>
-                </p>
-                <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-                <p class="project-pane-item-time">项目起止：01/08~02/07</p>
+          <div @mouseenter="itemHandler(2)" @mouseleave="itemLeave" class="project-pane-item">
+            <transition name="el-zoom-in-top">
+              <div v-show="layerNum === 2 && maskLayer" class="transition-box"></div>
+            </transition>
+            <i class="project-selling">正在进行</i>
+            <b class="project-participate">
+              <img src="../../assets/img/participate.png" alt="">
+            </b>
+            <div class="project-bigImg">大图</div>
+            <div class="project-pane-item-info">
+              <p class="project-coin">
+                <span>ETHBTC</span>
+              </p>
+              <el-progress :percentage="100" :stroke-width="20"></el-progress>
+              <div class="project-pane-number">
+                <span>20人投</span>
+                <span>400/500ETH</span>
               </div>
-            </div>
-            <div @mouseenter="itemHandler(2)" @mouseleave="itemLeave" class="project-pane-item">
-              <transition name="el-zoom-in-top">
-                <div v-show="layerNum === 2 && maskLayer" class="transition-box"></div>
-              </transition>
-              <i class="project-selling">正在进行</i>
-              <b class="project-participate">
-                <img src="../../assets/img/participate.png" alt="">
-              </b>
-              <div class="project-bigImg">大图</div>
-              <div class="project-pane-item-info">
-                <p class="project-coin">
-                  <span>ETHBTC</span>
-                </p>
-                <el-progress :percentage="100" :stroke-width="20"></el-progress>
-                <div class="project-pane-number">
-                  <span>20人投</span>
-                  <span>400/500ETH</span>
-                </div>
-                <p class="project-pane-item-over">圆满完成</p>
-                <p class="project-pane-item-aims">
-                  <span>目标：</span>
-                  <span>500ETH</span>
-                </p>
-                <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-                <p class="project-pane-item-time">项目起止：01/08~02/07</p>
-              </div>
-            </div>
-            <div @mouseenter="itemHandler(3)" @mouseleave="itemLeave" class="project-pane-item">
-              <transition name="el-zoom-in-top">
-                <div v-show="layerNum === 3 && maskLayer" class="transition-box"></div>
-              </transition>
-              <i class="project-selling">正在进行</i>
-              <b class="project-participate">
-                <img src="../../assets/img/participate.png" alt="">
-              </b>
-              <div class="project-bigImg">大图</div>
-              <div class="project-pane-item-info">
-                <p class="project-coin">
-                  <span>ETHBTC</span>
-                </p>
-                <el-progress :percentage="100" :stroke-width="20"></el-progress>
-                <div class="project-pane-number">
-                  <span>20人投</span>
-                  <span>400/500ETH</span>
-                </div>
-                <p class="project-pane-item-over">圆满完成</p>
-                <p class="project-pane-item-aims">
-                  <span>目标：</span>
-                  <span>500ETH</span>
-                </p>
-                <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-                <p class="project-pane-item-time">项目起止：01/08~02/07</p>
-              </div>
+              <p class="project-pane-item-over">圆满完成</p>
+              <p class="project-pane-item-aims">
+                <span>目标：</span>
+                <span>500ETH</span>
+              </p>
+              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
+              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
             </div>
           </div>
-        </transition>
+          <div @mouseenter="itemHandler(3)" @mouseleave="itemLeave" class="project-pane-item">
+            <transition name="el-zoom-in-top">
+              <div v-show="layerNum === 3 && maskLayer" class="transition-box"></div>
+            </transition>
+            <i class="project-selling">正在进行</i>
+            <b class="project-participate">
+              <img src="../../assets/img/participate.png" alt="">
+            </b>
+            <div class="project-bigImg">大图</div>
+            <div class="project-pane-item-info">
+              <p class="project-coin">
+                <span>ETHBTC</span>
+              </p>
+              <el-progress :percentage="100" :stroke-width="20"></el-progress>
+              <div class="project-pane-number">
+                <span>20人投</span>
+                <span>400/500ETH</span>
+              </div>
+              <p class="project-pane-item-over">圆满完成</p>
+              <p class="project-pane-item-aims">
+                <span>目标：</span>
+                <span>500ETH</span>
+              </p>
+              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
+              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
+            </div>
+          </div>
+          <div @mouseenter="itemHandler(4)" @mouseleave="itemLeave" class="project-pane-item">
+            <transition name="el-zoom-in-top">
+              <div v-show="layerNum === 4 && maskLayer" class="transition-box"></div>
+            </transition>
+            <i class="project-selling">正在进行</i>
+            <b class="project-participate">
+              <img src="../../assets/img/participate.png" alt="">
+            </b>
+            <div class="project-bigImg">大图</div>
+            <div class="project-pane-item-info">
+              <p class="project-coin">
+                <span>ETHBTC</span>
+              </p>
+              <el-progress :percentage="100" :stroke-width="20"></el-progress>
+              <div class="project-pane-number">
+                <span>20人投</span>
+                <span>400/500ETH</span>
+              </div>
+              <p class="project-pane-item-over">圆满完成</p>
+              <p class="project-pane-item-aims">
+                <span>目标：</span>
+                <span>500ETH</span>
+              </p>
+              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
+              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
+            </div>
+          </div>
+        </div>
+        <div v-if="paneNum==1" class="project-pane">
+          <div @mouseenter="itemHandler(1)" @mouseleave="itemLeave" class="project-pane-item">
+            <transition name="el-zoom-in-top">
+              <div v-show="layerNum === 1 && maskLayer" class="transition-box"></div>
+            </transition>
+            <i class="project-selling">正在进行</i>
+            <b class="project-participate">
+              <img src="../../assets/img/participate.png" alt="">
+            </b>
+            <div class="project-bigImg">大图</div>
+            <div class="project-pane-item-info">
+              <p class="project-coin">
+                <span>ETHBTC</span>
+              </p>
+              <el-progress :percentage="100" :stroke-width="20"></el-progress>
+              <div class="project-pane-number">
+                <span>20人投</span>
+                <span>400/500ETH</span>
+              </div>
+              <p class="project-pane-item-over">圆满完成</p>
+              <p class="project-pane-item-aims">
+                <span>目标：</span>
+                <span>500ETH</span>
+              </p>
+              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
+              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
+            </div>
+          </div>
+          <div @mouseenter="itemHandler(2)" @mouseleave="itemLeave" class="project-pane-item">
+            <transition name="el-zoom-in-top">
+              <div v-show="layerNum === 2 && maskLayer" class="transition-box"></div>
+            </transition>
+            <i class="project-selling">正在进行</i>
+            <b class="project-participate">
+              <img src="../../assets/img/participate.png" alt="">
+            </b>
+            <div class="project-bigImg">大图</div>
+            <div class="project-pane-item-info">
+              <p class="project-coin">
+                <span>ETHBTC</span>
+              </p>
+              <el-progress :percentage="100" :stroke-width="20"></el-progress>
+              <div class="project-pane-number">
+                <span>20人投</span>
+                <span>400/500ETH</span>
+              </div>
+              <p class="project-pane-item-over">圆满完成</p>
+              <p class="project-pane-item-aims">
+                <span>目标：</span>
+                <span>500ETH</span>
+              </p>
+              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
+              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
+            </div>
+          </div>
+          <div @mouseenter="itemHandler(3)" @mouseleave="itemLeave" class="project-pane-item">
+            <transition name="el-zoom-in-top">
+              <div v-show="layerNum === 3 && maskLayer" class="transition-box"></div>
+            </transition>
+            <i class="project-selling">正在进行</i>
+            <b class="project-participate">
+              <img src="../../assets/img/participate.png" alt="">
+            </b>
+            <div class="project-bigImg">大图</div>
+            <div class="project-pane-item-info">
+              <p class="project-coin">
+                <span>ETHBTC</span>
+              </p>
+              <el-progress :percentage="100" :stroke-width="20"></el-progress>
+              <div class="project-pane-number">
+                <span>20人投</span>
+                <span>400/500ETH</span>
+              </div>
+              <p class="project-pane-item-over">圆满完成</p>
+              <p class="project-pane-item-aims">
+                <span>目标：</span>
+                <span>500ETH</span>
+              </p>
+              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
+              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
+            </div>
+          </div>
+        </div>
         <div class="project-pane-icon">
           <ul>
             <li :class="paneNum==k?'banner-hover-icon':''" v-for="(v, k) in 2" @click="paneHandler(k)" :key="k"></li>
@@ -249,7 +249,8 @@
             </el-collapse>
           </div>
           <div class="project-common-problem-more">
-            <span @click="changeHelp('/help')" class="color-btn color-btn2"  style=" width:150px;height:48px;">了解更多</span>
+            <span @click="changeHelp('/help')" class="color-btn color-btn2"
+                  style=" width:150px;height:48px;">了解更多</span>
           </div>
         </div>
       </div>

@@ -7,7 +7,6 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
-    {path: '/login', component: _import('login/index')},
     {path: '/404', component: _import('errorPage/404')},
     {
       path: '/',
@@ -30,6 +29,16 @@ export default new Router({
           path: 'info',
           component: _import('info/index'),
           name: '项目详情'
+        },
+        {
+          path: 'login',
+          component: _import('login/index'),
+          name: '登录'
+        },
+        {
+          path: 'safety',
+          component: _import('safety/index'),
+          name: '账户安全'
         }
       ]
     }

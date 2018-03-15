@@ -122,6 +122,7 @@ div.project-pane
       & .project-pane-item-day,
       & .project-pane-item-time
         position absolute
+        font-size:16px;
 
       & .project-pane-item-day
         bottom:40px;
@@ -139,6 +140,73 @@ div.project-pane
         right:135px;
 
       & .project-pane-item-aims
+        font-size:16px;
         padding-top:10px;
         & > span:last-child
           font-size:24px;
+
+
+.help-con
+  padding-top:100px;
+  overflow-x:hidden;
+
+  .help-circle-con
+    height :380px;
+    overflow :hidden;
+    & .help-circle
+      height:560px;
+      width:105%;
+      background:#8a8bff;
+      border-radius:50%;
+      position :relative;
+      top:-205px;
+      left:-34px;
+      font-size:30px;
+      font-weight:900;
+      line-height :650px;
+      text-align center;
+      color:#fff;
+
+  & .help-rectangle
+    width:1420px;
+    height:553px;
+    background:#fff;
+    box-shadow: 0 8px 16px 5px rgba(80,35,54,.15);
+    margin:0 auto;
+    position absolute;
+    left:0;
+    right:0;
+    bottom:0
+    top:300px;
+    border-radius:40px;
+    padding:60px;
+    display :flex;
+    font-size:16px;
+    overflow:auto;
+
+
+    & > div:first-child
+      flex:2;
+      text-align :right;
+      & > p
+        margin-bottom:20px;
+        cursor:pointer;
+      & > p.help-title
+        color:red;
+
+    & > div:nth-child(2)
+      height:150px;
+      width:1px;
+      background:#333333;
+      margin:0 20px;
+
+    & > div:last-child
+      flex:5;
+
+      & h2
+        margin-bottom:25px;
+        font-weight:900;
+
+      & p
+        margin-bottom:45px;
+        line-height:20px;

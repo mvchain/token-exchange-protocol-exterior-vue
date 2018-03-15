@@ -42,7 +42,7 @@
 
     .footer-contact
       margin-top:100px;
-      padding-top:120px;
+      padding-top:140px;
 
     .footer-contact-txt
       text-align center;
