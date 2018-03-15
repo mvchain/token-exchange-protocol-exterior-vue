@@ -25,6 +25,11 @@ export default new Router({
           path: 'help',
           component: _import('help/index'),
           name: '帮助与支持'
+        },
+        {
+          path: 'info',
+          component: _import('info/index'),
+          name: '项目详情'
         }
       ]
     }

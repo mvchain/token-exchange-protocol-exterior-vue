@@ -16,13 +16,14 @@
         <div class="project-title">
           <div>项目列表</div>
           <div>
-            <span class="color-btn color-btn2">更多项目</span>
+            <span @click="changeHelp('/proList')" style=" width:150px;height:48px;" class="color-btn color-btn2">更多项目</span>
           </div>
         </div>
 
         <transition name="el-fade-in">
           <div v-if="paneNum==0" class="project-pane">
-            <div @mouseenter="itemHandler(1)" @mouseleave="itemLeave" class="project-pane-item">
+            <div @mouseenter="itemHandler(1)" @mouseleave="itemLeave" @click="changeInfo('1')"
+                 class="project-pane-item">
               <transition name="el-zoom-in-top">
                 <div v-show="layerNum === 1 && maskLayer" class="transition-box"></div>
               </transition>
@@ -248,7 +249,7 @@
             </el-collapse>
           </div>
           <div class="project-common-problem-more">
-            <span class="color-btn color-btn2">了解更多</span>
+            <span @click="changeHelp('/help')" class="color-btn color-btn2"  style=" width:150px;height:48px;">了解更多</span>
           </div>
         </div>
       </div>
@@ -257,7 +258,7 @@
         <div class="project-contact-icon">
           <ul>
             <li>
-              <img src="../../assets/img/wx.png" alt="微信二维码"  @mouseleave="ewmFlag=false" @mouseenter="ewmFlag=true">
+              <img src="../../assets/img/wx.png" alt="微信二维码" @mouseleave="ewmFlag=false" @mouseenter="ewmFlag=true">
               <transition name="el-fade-in-linear">
                 <p v-show="ewmFlag" class="ewm-img">
                   <img src="../../assets/img/ewm.png" alt="">
@@ -356,6 +357,12 @@
       },
       itemLeave() {
         this.maskLayer = false;
+      },
+      changeHelp(path) {
+        this.$router.push({path: path});
+      },
+      changeInfo(id) {
+        this.$router.push({path: 'info', query: {id: id}});
       }
     }
   };

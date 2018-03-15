@@ -3,15 +3,15 @@
 
 .color-btn:hover
   transform: scale(1.05);
-  background:linear-gradient(to right, #ff9975,#ff7874);
+  background:linear-gradient(to right, #ff9975,#ff7874) !important;
   border:0;
+  color:#fff !important;
   box-shadow: 0 8px 16px 0 rgba(80,35,54,.15);
 
 
 .color-btn2
   display :inline-block;
-  width:150px;
-  height:48px;
+
   line-height:48px;
   text-align:center;
   color:#fff;
@@ -75,7 +75,6 @@ div.project-pane
       z-index:100;
       text-align :center;
       line-height 48px;
-      font-size:16px;
       color:#fff;
       left:0;
       top:0;
@@ -112,7 +111,6 @@ div.project-pane
 
         & span
           flex:1;
-          font-size:16px;
 
         & span:last-child
           text-align :right;
@@ -124,7 +122,6 @@ div.project-pane
       & .project-pane-item-day,
       & .project-pane-item-time
         position absolute
-        font-size:16px;
 
       & .project-pane-item-day
         bottom:40px;
@@ -142,7 +139,6 @@ div.project-pane
         right:135px;
 
       & .project-pane-item-aims
-        font-size:16px;
         padding-top:10px;
         & > span:last-child
           font-size:24px;
