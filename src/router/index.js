@@ -38,7 +38,24 @@ export default new Router({
         {
           path: 'safety',
           component: _import('safety/index'),
-          name: '账户安全'
+          redirect: '/safety/fundsTable',
+          children: [
+            {
+              path: 'fundsTable',
+              component: _import('fundsTable/index'),
+              name: '表格'
+            },
+            {
+              path: 'recharge',
+              component: _import('recharge/index'),
+              name: '充值'
+            },
+            {
+              path: 'withdraw',
+              component: _import('withdraw/index'),
+              name: '提现'
+            }
+          ]
         }
       ]
     }

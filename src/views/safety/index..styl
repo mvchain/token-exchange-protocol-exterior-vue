@@ -38,3 +38,71 @@
     margin:0 auto;
     margin-top:20px;
     box-shadow: 0 8px 16px 5px rgba(80,35,54,.15);
+
+    & div.safety-pane-item
+      padding:30px;
+      overflow :auto;
+
+    & div.safety-pane-item
+
+      & .safety-pane-item-left
+        float:left;
+        display :flex;
+        flex-direction :column;
+        text-align :center;
+        align-items :center;
+        width:215px;
+
+        & span
+          width:150px;
+          height:48px;
+          text-align :center;
+          line-height 48px;
+          border-radius :25px;
+          border:1px solid #ff7974;
+          margin-bottom:30px;
+          color:#ff7974;
+          cursor:pointer;
+
+      & .safety-pane-item-right
+        float:right;
+        width:1145px;
+
+
+
+      & .safety-pane-item-modify
+          float:right;
+          width:1145px;
+          height:493px;
+          display :flex;
+          justify-content :center;
+          align-items :center;
+
+          & .safety-pane-item-modify-con
+            width:330px;
+            height:350px;
+
+            & .safety-pane-item-modify-input
+              margin-bottom:20px;
+              & input
+                width:100%;
+                height:48px;
+                border:1px solid #ff7974;
+                padding-left:20px;
+                outline none;
+                border-radius 10px;
+
+            & .safety-pane-item-modify-btn
+              text-align :center;
+              margin-top:60px;
+            & span
+                display :inline-block;
+                width:150px;
+                height:48px;
+
+.selected-btn
+  transform: scale(1.05);
+  background:linear-gradient(to right, #ff9975,#ff7874) !important;
+  border:0;
+  color:#fff !important;
+  box-shadow: 0 8px 16px 0 rgba(80,35,54,.15);
