@@ -31,116 +31,24 @@ export function timeFilter(time, cFormat) {
   return timeStr;
 }
 
-export function statusFilter(n) {
-  switch (n) {
-    case 0:
-      return '在建';
-    case 1:
-      return '完工';
-    case 2:
-      return '未开工';
-  }
-}
-export function typeFilter(n) {
-  switch (n) {
-    case 0:
-      return '测试';
-    case 1:
-      return '预决算';
-  }
-}
-export function nameFilter(n) {
-  if (n.length > 33) {
-    return n.slice(0, 32) + '...';
-  }
-  return n;
-}
+export function changeTimeStamp(timeStamp) {
+  if (timeStamp > 0) {
+    let day = Math.floor((timeStamp / 1000 / 3600) / 24);
+    let hour = Math.floor((timeStamp / 1000 / 3600) % 24);
+    let min = Math.floor((timeStamp / 1000 / 60) % 60);
 
-export function tableNameFilter(n) {
-  if (n.length > 13) {
-    return n.slice(0, 12) + '...';
-  }
-  return n;
-}
-export function formatCurrency(num) {
-  let cents;
-  if (isNaN(num)) {
-    return '0.00';
-  }
-  num = num.toString().replace(/\$|,/g, '');
-  num = Math.floor(num * 100 + 0.50000000001);
-  cents = num % 100;
-  num = Math.floor(num / 100).toString();
-  if (cents < 10) {
-    cents = '0' + cents;
-  }
-  for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++) {
-    num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
-  }
-  return (num + '.' + cents);
-}
-export function approvalFilter(n) {
-  switch (n) {
-    case 1:
-      return '未提交';
-    case 2:
-      return '待验收';
-    case 3:
-      return '驳回';
-    case 4:
-      return '通过';
-  }
-}
-export function workTypeFilter(n) {
-  switch (n) {
-    case 10:
-      return '审核未通过';
-    case 20:
-      return '审核中';
-    case 30:
-      return '待支付';
-    case 40:
-      return '待指派';
-    case 50:
-      return '待作业';
-    case 60:
-      return '作业中';
-    case 70:
-      return '待验收';
-    case 80:
-      return '已完成';
-    case 90:
-      return '已关闭';
-  }
-}
+    if (day < 10) {
+      day = '0' + day;
+    }
+    if (min < 10) {
+      min = '0' + min;
+    }
+    if (hour < 10) {
+      hour = '0' + hour;
+    }
 
-export function bitFilter(n) {
-  if (!n) return '0Kb';
-  if (n <= 1024000) {
-    return (n / 1024).toFixed(2) + 'Kb';
+    return day + '天' + hour + '小时' + min + '分';
   } else {
-    return (n / 1024 / 1024).toFixed(2) + 'Mb';
-  }
-}
-export function idCardFilter(n) {
-  if (!n) return '****************';
-  if (n <= 1024000) {
-    return (n / 1024).toFixed(2) + 'Kb';
-  } else {
-    return (n / 1024 / 1024).toFixed(2) + 'Mb';
-  }
-}
-export function titleFilter(n) {
-  switch (n) {
-    case 'prejudgment':
-      return '预决算任务';
-  }
-}
-export function phoneNumFilter(p) {
-  if (!p) return;
-  if (p.indexOf('-') === -1) {
-    return p.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
-  } else {
-    return p.substring(0, 9) + '****';
+    return '已截止！';
   }
 }

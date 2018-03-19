@@ -65,7 +65,7 @@
       width:1136px;
       border-top:1px solid #ddd;
       margin:0 auto;
-      margin-top:40px;
+      margin-top:60px;
       padding:100px 0 80px 0;
       line-height :72px;
 

@@ -22,201 +22,77 @@
         </div>
 
 
-        <div v-if="paneNum==0" class="project-pane">
-          <div @mouseenter="itemHandler(1)" @mouseleave="itemLeave" @click="changeInfo('1')"
+        <div v-loading="listLoading" v-if="paneNum==0" class="project-pane">
+          <div v-if="k<4" :class="k%2==0?'project-pane-item-d':''" @mouseenter="itemHandler(k+1)"
+               v-for="(v, k) in projectList.list" :key="k" @mouseleave="itemLeave" @click="changeInfo(v.id)"
                class="project-pane-item">
             <transition name="el-zoom-in-top">
-              <div v-show="layerNum === 1 && maskLayer" class="transition-box"></div>
+              <div v-show="layerNum === k+1 && maskLayer" class="transition-box"></div>
             </transition>
-            <i class="project-selling">正在进行</i>
+            <i class="project-selling">{{v.status === 0 ? '即将开始' : v.status === 1?'进行中':'已结束'}}</i>
             <b class="project-participate">
               <img src="../../assets/img/participate.png" alt="">
             </b>
-            <div class="project-bigImg">大图</div>
-            <div class="project-pane-item-info">
-              <p class="project-coin">
-                <span>ETHBTC</span>
-              </p>
-              <el-progress :percentage="100" :stroke-width="20"></el-progress>
-              <div class="project-pane-number">
-                <span>20人投</span>
-                <span>400/500ETH</span>
-              </div>
-              <p class="project-pane-item-over">圆满完成</p>
-              <p class="project-pane-item-aims">
-                <span>目标：</span>
-                <span>500ETH</span>
-              </p>
-              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
+            <div class="project-bigImg">
+              <img :src="v.projectImageAddress" :alt="v.tokenName">
             </div>
-          </div>
-          <div @mouseenter="itemHandler(2)" @mouseleave="itemLeave" class="project-pane-item">
-            <transition name="el-zoom-in-top">
-              <div v-show="layerNum === 2 && maskLayer" class="transition-box"></div>
-            </transition>
-            <i class="project-selling">正在进行</i>
-            <b class="project-participate">
-              <img src="../../assets/img/participate.png" alt="">
-            </b>
-            <div class="project-bigImg">大图</div>
             <div class="project-pane-item-info">
               <p class="project-coin">
-                <span>ETHBTC</span>
+                <span>{{v.tokenName}}</span>
               </p>
-              <el-progress :percentage="100" :stroke-width="20"></el-progress>
-              <div class="project-pane-number">
-                <span>20人投</span>
-                <span>400/500ETH</span>
+              <el-progress :percentage="v.soldEth/v.ethNumber * 100" :stroke-width="20"></el-progress>
+              <div class="project-pane-number" v-show="v.status === 1">
+                <span>{{v.buyerNum}}人投</span>
+                <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
               </div>
-              <p class="project-pane-item-over">圆满完成</p>
-              <p class="project-pane-item-aims">
+              <p v-show="v.status===2&&Date.parse(v.stopTime) < Date.now()" class="project-pane-item-over">{{v.soldEth >=
+                v.ethNumber? '圆满结束':'未完成'}}</p>
+              <p v-show="v.status===0" class="project-pane-item-over">{{Date.parse(v.startTime)-Date.now() | changeTimeStamp}}</p>
+              <p class="project-pane-item-aims" v-show="v.status===0">
                 <span>目标：</span>
-                <span>500ETH</span>
+                <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
-            </div>
-          </div>
-          <div @mouseenter="itemHandler(3)" @mouseleave="itemLeave" class="project-pane-item">
-            <transition name="el-zoom-in-top">
-              <div v-show="layerNum === 3 && maskLayer" class="transition-box"></div>
-            </transition>
-            <i class="project-selling">正在进行</i>
-            <b class="project-participate">
-              <img src="../../assets/img/participate.png" alt="">
-            </b>
-            <div class="project-bigImg">大图</div>
-            <div class="project-pane-item-info">
-              <p class="project-coin">
-                <span>ETHBTC</span>
-              </p>
-              <el-progress :percentage="100" :stroke-width="20"></el-progress>
-              <div class="project-pane-number">
-                <span>20人投</span>
-                <span>400/500ETH</span>
-              </div>
-              <p class="project-pane-item-over">圆满完成</p>
-              <p class="project-pane-item-aims">
-                <span>目标：</span>
-                <span>500ETH</span>
-              </p>
-              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
-            </div>
-          </div>
-          <div @mouseenter="itemHandler(4)" @mouseleave="itemLeave" class="project-pane-item">
-            <transition name="el-zoom-in-top">
-              <div v-show="layerNum === 4 && maskLayer" class="transition-box"></div>
-            </transition>
-            <i class="project-selling">正在进行</i>
-            <b class="project-participate">
-              <img src="../../assets/img/participate.png" alt="">
-            </b>
-            <div class="project-bigImg">大图</div>
-            <div class="project-pane-item-info">
-              <p class="project-coin">
-                <span>ETHBTC</span>
-              </p>
-              <el-progress :percentage="100" :stroke-width="20"></el-progress>
-              <div class="project-pane-number">
-                <span>20人投</span>
-                <span>400/500ETH</span>
-              </div>
-              <p class="project-pane-item-over">圆满完成</p>
-              <p class="project-pane-item-aims">
-                <span>目标：</span>
-                <span>500ETH</span>
-              </p>
-              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
+              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>16</span> 天</p>
+              <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
             </div>
           </div>
         </div>
-        <div v-if="paneNum==1" class="project-pane">
-          <div @mouseenter="itemHandler(1)" @mouseleave="itemLeave" class="project-pane-item">
+        <div v-loading="listLoading" v-if="paneNum==1" class="project-pane">
+          <div v-if="k>=4" :class="k%2==0?'project-pane-item-d':''" @mouseenter="itemHandler(k+1)"
+               v-for="(v, k) in projectList.list" :key="k" @mouseleave="itemLeave" @click="changeInfo(v.id)"
+               class="project-pane-item">
             <transition name="el-zoom-in-top">
-              <div v-show="layerNum === 1 && maskLayer" class="transition-box"></div>
+              <div v-show="layerNum === k+1 && maskLayer" class="transition-box"></div>
             </transition>
-            <i class="project-selling">正在进行</i>
+            <i class="project-selling">{{v.status === 0 ? '即将开始' : v.status === 1?'进行中':'已结束'}}</i>
             <b class="project-participate">
               <img src="../../assets/img/participate.png" alt="">
             </b>
-            <div class="project-bigImg">大图</div>
-            <div class="project-pane-item-info">
-              <p class="project-coin">
-                <span>ETHBTC</span>
-              </p>
-              <el-progress :percentage="100" :stroke-width="20"></el-progress>
-              <div class="project-pane-number">
-                <span>20人投</span>
-                <span>400/500ETH</span>
-              </div>
-              <p class="project-pane-item-over">圆满完成</p>
-              <p class="project-pane-item-aims">
-                <span>目标：</span>
-                <span>500ETH</span>
-              </p>
-              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
+            <div class="project-bigImg">
+              <img :src="v.projectImageAddress" :alt="v.tokenName">
             </div>
-          </div>
-          <div @mouseenter="itemHandler(2)" @mouseleave="itemLeave" class="project-pane-item">
-            <transition name="el-zoom-in-top">
-              <div v-show="layerNum === 2 && maskLayer" class="transition-box"></div>
-            </transition>
-            <i class="project-selling">正在进行</i>
-            <b class="project-participate">
-              <img src="../../assets/img/participate.png" alt="">
-            </b>
-            <div class="project-bigImg">大图</div>
             <div class="project-pane-item-info">
               <p class="project-coin">
-                <span>ETHBTC</span>
+                <span>{{v.tokenName}}</span>
               </p>
-              <el-progress :percentage="100" :stroke-width="20"></el-progress>
-              <div class="project-pane-number">
-                <span>20人投</span>
-                <span>400/500ETH</span>
+              <el-progress :percentage="v.soldEth/v.ethNumber * 100" :stroke-width="20"></el-progress>
+              <div class="project-pane-number" v-show="v.status === 1">
+                <span>{{v.buyerNum}}人投</span>
+                <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
               </div>
-              <p class="project-pane-item-over">圆满完成</p>
-              <p class="project-pane-item-aims">
+              <p v-show="v.status===2&&Date.parse(v.stopTime) < Date.now()" class="project-pane-item-over">{{v.soldEth >=
+                v.ethNumber? '圆满结束':'未完成'}}</p>
+              <p v-show="v.status===0" class="project-pane-item-over">{{Date.parse(v.startTime)-Date.now() | changeTimeStamp}}</p>
+              <p class="project-pane-item-aims" v-show="v.status===0">
                 <span>目标：</span>
-                <span>500ETH</span>
+                <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
-            </div>
-          </div>
-          <div @mouseenter="itemHandler(3)" @mouseleave="itemLeave" class="project-pane-item">
-            <transition name="el-zoom-in-top">
-              <div v-show="layerNum === 3 && maskLayer" class="transition-box"></div>
-            </transition>
-            <i class="project-selling">正在进行</i>
-            <b class="project-participate">
-              <img src="../../assets/img/participate.png" alt="">
-            </b>
-            <div class="project-bigImg">大图</div>
-            <div class="project-pane-item-info">
-              <p class="project-coin">
-                <span>ETHBTC</span>
-              </p>
-              <el-progress :percentage="100" :stroke-width="20"></el-progress>
-              <div class="project-pane-number">
-                <span>20人投</span>
-                <span>400/500ETH</span>
-              </div>
-              <p class="project-pane-item-over">圆满完成</p>
-              <p class="project-pane-item-aims">
-                <span>目标：</span>
-                <span>500ETH</span>
-              </p>
-              <p class="project-pane-item-day">剩余时间：<span>16</span>天</p>
-              <p class="project-pane-item-time">项目起止：01/08~02/07</p>
+              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>16</span> 天</p>
+              <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
             </div>
           </div>
         </div>
-        <div class="project-pane-icon">
+        <div v-show="projectList.list&&projectList.list.length>3" class="project-pane-icon">
           <ul>
             <li :class="paneNum==k?'banner-hover-icon':''" v-for="(v, k) in 2" @click="paneHandler(k)" :key="k"></li>
           </ul>
@@ -290,7 +166,7 @@
   export default {
     data() {
       return {
-        loading: false,
+        listLoading: false,
         maskLayer: false,
         ewmFlag: false,
         layerNum: 0,
@@ -324,8 +200,7 @@
       };
     },
     mounted: function () {
-      this.loading = true;
-
+      this.getProList(`pageNum=1&pageSize=8&orderBy=created_at`);
       this.carouselInterval = setInterval(() => {
         if (this.enterFlag) {
           this.carouselNum++;
@@ -340,7 +215,9 @@
       'back-to-top': BackToTop
     },
     computed: {
-      ...mapGetters({})
+      ...mapGetters({
+        projectList: 'projectList'
+      })
     },
     methods: {
       bannerHandler(k) {
@@ -364,6 +241,15 @@
       },
       changeInfo(id) {
         this.$router.push({path: 'info', query: {id: id}});
+      },
+      getProList(str) {
+        this.listLoading = true;
+        this.$store.dispatch('getProjectList', str).then(() => {
+          this.listLoading = false;
+        }).catch((err) => {
+          this.$message.error(err);
+          this.listLoading = false;
+        });
       }
     }
   };

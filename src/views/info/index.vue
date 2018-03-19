@@ -43,7 +43,8 @@
             </div>
             <p class="info-people">创始人</p>
             <p class="info-people">CEO</p>
-            <p>loremLorem ipsum dolor sit amet, consectque, cum dolorem iure labore optio sapiente tempora. At dolore dolorum ducimus expedita fugiat incidunt laborum minima, numquam pariatur sed sunt, voluptatem.</p>
+            <p>loremLorem ipsum dolor sit amet, consectque, cum dolorem iure labore optio sapiente tempora. At dolore
+              dolorum ducimus expedita fugiat incidunt laborum minima, numquam pariatur sed sunt, voluptatem.</p>
           </div>
         </div>
         <div class="info-container-bottom">
@@ -64,13 +65,13 @@
     </div>
     <foot-view></foot-view>
     <el-dialog
-               width="543px"
-               height="418px"
-               top="25vh"
-               custom-class="info-dialog"
-               :close-on-click-modal="false"
-               center
-               :visible.sync="dialogTableVisible">
+      width="543px"
+      height="418px"
+      top="25vh"
+      custom-class="info-dialog"
+      :close-on-click-modal="false"
+      center
+      :visible.sync="dialogTableVisible">
       <div class="dialog-title">参与购买</div>
       <div class="dialog-label">
         <ul>
@@ -101,11 +102,13 @@
       top="35vh"
       custom-class="dialog-confirm"
       center
-      >
+    >
       <p class="dialog-confirm-title">确认是否支付2ETH</p>
       <span slot="footer" class="dialog-footer">
-        <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn" @click="dialogVisible = false">是</el-button>
-        <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn"  @click="dialogVisible = false">否</el-button>
+        <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn"
+                   @click="dialogVisible = false">是</el-button>
+        <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn"
+                   @click="dialogVisible = false">否</el-button>
       </span>
     </el-dialog>
   </div>
@@ -113,6 +116,7 @@
 
 <script>
   import foot from '../../components/foot';
+  import {mapGetters} from 'vuex';
   export default {
     name: 'info',
     components: {
@@ -120,9 +124,25 @@
     },
     data() {
       return {
-        dialogTableVisible: true,
+        dialogTableVisible: false,
         dialogVisible: false
       };
+    },
+    mounted() {
+      this.getProjectInfo(this.$route.query.id);
+    },
+    computed: {
+      ...mapGetters({
+        projectInfo: 'projectInfo'
+      })
+    },
+    methods: {
+      getProjectInfo(id) {
+        this.$store.dispatch('getProjectInfo', id).then(() => {
+        }).catch((err) => {
+          this.$message.error(err);
+        });
+      }
     }
   };
 </script>
