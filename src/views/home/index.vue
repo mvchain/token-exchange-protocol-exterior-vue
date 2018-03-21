@@ -24,13 +24,13 @@
 
         <div v-loading="listLoading" v-if="paneNum==0" class="project-pane">
           <div v-if="k<4" :class="k%2==0?'project-pane-item-d':''" @mouseenter="itemHandler(k+1)"
-               v-for="(v, k) in projectList.list" :key="k" @mouseleave="itemLeave" @click="changeInfo(v.id)"
+               v-for="(v, k) in projectList.list" :key="k" @mouseleave="itemLeave" @click="changeInfo(v.id, k)"
                class="project-pane-item">
             <transition name="el-zoom-in-top">
               <div v-show="layerNum === k+1 && maskLayer" class="transition-box"></div>
             </transition>
             <i class="project-selling">{{v.status === 0 ? '即将开始' : v.status === 1?'进行中':'已结束'}}</i>
-            <b class="project-participate">
+            <b class="project-participate" v-show="v.partake">
               <img src="../../assets/img/participate.png" alt="">
             </b>
             <div class="project-bigImg">
@@ -52,14 +52,15 @@
                 <span>目标：</span>
                 <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>16</span> 天</p>
+              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.startTime)-Date.now() |
+                changeTimeStamp}}</span></p>
               <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
             </div>
           </div>
         </div>
         <div v-loading="listLoading" v-if="paneNum==1" class="project-pane">
           <div v-if="k>=4" :class="k%2==0?'project-pane-item-d':''" @mouseenter="itemHandler(k+1)"
-               v-for="(v, k) in projectList.list" :key="k" @mouseleave="itemLeave" @click="changeInfo(v.id)"
+               v-for="(v, k) in projectList.list" :key="k" @mouseleave="itemLeave" @click="changeInfo(v.id, k)"
                class="project-pane-item">
             <transition name="el-zoom-in-top">
               <div v-show="layerNum === k+1 && maskLayer" class="transition-box"></div>
@@ -239,8 +240,8 @@
       changeHelp(path) {
         this.$router.push({path: path});
       },
-      changeInfo(id) {
-        this.$router.push({path: 'info', query: {id: id}});
+      changeInfo(id, k) {
+        this.$router.push({path: 'info', query: {id: id, idx: k}});
       },
       getProList(str) {
         this.listLoading = true;

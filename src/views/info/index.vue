@@ -1,63 +1,70 @@
 <template>
   <div class="info-con">
-    <div class="info-container">
+    <div class="info-container" v-loading="infoLoading">
       <div class="info-container-body">
         <div class="info-container-title">
           <div>
-            <span class="color-btn color-btn2"><i class="el-icon-arrow-left"></i>返回上一级</span>
+            <span class="color-btn color-btn2" @click="$router.back()"><i class="el-icon-arrow-left"></i>返回上一级</span>
           </div>
           <div>
-            <span class="color-btn">上一个</span>
-            <span class="color-btn">下一个</span>
+            <span class="color-btn" @click="getOtherInfo($route.query.idx, true)">上一个</span>
+            <span class="color-btn" @click="getOtherInfo($route.query.idx, false)">下一个</span>
           </div>
         </div>
         <div class="info-container-middle">
           <div>
-            <i class="info-working">正在进行</i>
-            <b class="info-participate">
-              <img src="../../assets/img/participate.png" alt="">
+            <i class="info-working">{{projectInfo.status === 0 ? '即将开始' : projectInfo.status === 1?'进行中':'已结束'}}</i>
+            <b class="info-participate" v-show="projectInfo.partake">
+              <img src="../../assets/img/participate.png">
             </b>
-            <div class="info-big-img"></div>
+            <div class="info-big-img">
+              <img :src="projectInfo.projectImageAddress">
+            </div>
             <div class="info-right">
               <div>
-                <span>ETHBTC</span>
-                <span>项目开始：2018/03/08 13:00</span>
+                <span>{{projectInfo.tokenName}}</span>
+                <span>项目开始：{{projectInfo.startTime}}</span>
               </div>
-              <el-progress :percentage="100" :stroke-width="20"></el-progress>
+              <el-progress :percentage="projectInfo.soldEth ? projectInfo.soldEth/projectInfo.ethNumber * 100 : 0"
+                           :stroke-width="20"></el-progress>
               <ul>
                 <li>目标</li>
-                <li><span>400/500ETH</span></li>
+                <li><span>{{projectInfo.soldEth}}/{{projectInfo.ethNumber}}ETH</span></li>
                 <li>支持者</li>
-                <li><span>224</span></li>
+                <li><span>{{projectInfo.buyerNum}}</span></li>
                 <li>剩余时间</li>
-                <li><span>16</span>天</li>
+                <li><span>{{Date.parse(projectInfo.startTime)-Date.now() |
+                changeTimeStamp}}</span></li>
               </ul>
               <div class="info-now">
-                <span class="color-btn color-btn2" @click="dialogTableVisible = true">立即参与</span>
+                <span disabled class="color-btn color-btn2"
+                      @click="participateHandler(projectInfo.status === 1)">立即参与</span>
               </div>
             </div>
           </div>
           <div>
             <div>
-              <img src="../../assets/img/avatar.png" alt="">
+              <img :src="projectInfo.leaderImageAddress" alt="">
             </div>
-            <p class="info-people">创始人</p>
-            <p class="info-people">CEO</p>
-            <p>loremLorem ipsum dolor sit amet, consectque, cum dolorem iure labore optio sapiente tempora. At dolore
-              dolorum ducimus expedita fugiat incidunt laborum minima, numquam pariatur sed sunt, voluptatem.</p>
+            <p class="info-people">{{projectInfo.leaderName}}</p>
+            <p class="info-people">{{projectInfo.position}}</p>
+            <p>{{projectInfo.description}}</p>
           </div>
         </div>
         <div class="info-container-bottom">
           <div>
             <div class="info-container-bottom-title">项目详情</div>
+            <div class="info-container-bottom-des">
+              <img :src="projectInfo.projectCoverAddress" alt="">
+            </div>
           </div>
           <div>
             <ul>
               <li><span>兑换比例</span></li>
-              <li><span>1EHT=2000MVC</span></li>
-              <li><span class="color-btn color-btn2">白皮书下载</span></li>
+              <li><span>1EHT={{projectInfo.ratio}}{{projectInfo.tokenName}}</span></li>
+              <li><a target="_blank" class="color-btn color-btn2" :href="projectInfo.whitePaperAddress">白皮书下载</a></li>
               <li><span>项目官网</span></li>
-              <li><span>www.baidu.com</span></li>
+              <li><a target="_blank" :href="projectInfo.homepage">{{projectInfo.homepage}}</a></li>
             </ul>
           </div>
         </div>
@@ -84,15 +91,15 @@
         <ul>
           <li>200ETH</li>
           <li style="position: relative">
-            <input type="text">
+            <input v-model="purchaseVal" type="text">
             <span>ETH</span>
             <span class="info-prompt">最小购买金额为0.1ETH</span>
           </li>
-          <li>16000.00</li>
+          <li>{{purchaseVal * projectInfo.ratio}}</li>
         </ul>
       </div>
       <div class="dialog-submit">
-        <span class="color-btn2 color-btn" @click="dialogVisible=true">确认购买</span>
+        <span class="color-btn2 color-btn" @click="configPurchase">确认购买</span>
       </div>
     </el-dialog>
     <el-dialog
@@ -103,10 +110,10 @@
       custom-class="dialog-confirm"
       center
     >
-      <p class="dialog-confirm-title">确认是否支付2ETH</p>
+      <p class="dialog-confirm-title">确认是否支付{{purchaseVal}}ETH</p>
       <span slot="footer" class="dialog-footer">
         <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn"
-                   @click="dialogVisible = false">是</el-button>
+                   @click="confirmPay(purchaseVal)">是</el-button>
         <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn"
                    @click="dialogVisible = false">否</el-button>
       </span>
@@ -117,6 +124,7 @@
 <script>
   import foot from '../../components/foot';
   import {mapGetters} from 'vuex';
+
   export default {
     name: 'info',
     components: {
@@ -124,24 +132,67 @@
     },
     data() {
       return {
+        purchaseVal: '',
+        infoLoading: false,
         dialogTableVisible: false,
         dialogVisible: false
       };
     },
     mounted() {
-      this.getProjectInfo(this.$route.query.id);
+      this.getProjectInfo(this.$route.query.id, this.$route.query.idx);
+      this.$store.dispatch('getProjectList', `pageNum=1&pageSize=1000&orderBy=created_at`).then(() => {
+      }).catch((err) => {
+        this.$message.error(err);
+      });
     },
     computed: {
       ...mapGetters({
-        projectInfo: 'projectInfo'
+        projectInfo: 'projectInfo',
+        projectList: 'projectList',
+        balance: 'balance'
       })
     },
     methods: {
-      getProjectInfo(id) {
-        this.$store.dispatch('getProjectInfo', id).then(() => {
+      confirmPay(val) {
+        let payInfo = {
+          ethNumber: val,
+          projectId: this.projectInfo.id
+        };
+        this.$store.dispatch('getTransaction', payInfo).then(() => {
+          this.dialogVisible = false;
         }).catch((err) => {
           this.$message.error(err);
         });
+      },
+      configPurchase() {
+        this.dialogVisible = true;
+      },
+      participateHandler(bool) {
+        if (!bool) return;
+        this.dialogTableVisible = true;
+        this.$store.dispatch('getBalance').then(() => {
+        }).catch((err) => {
+          this.$message.error(err);
+        });
+      },
+      getProjectInfo(id, idx) {
+        this.infoLoading = true;
+        this.$store.dispatch('getProjectInfo', id).then(() => {
+          this.$route.query.id = this.projectInfo.id;
+          this.$route.query.idx = idx;
+          this.infoLoading = false;
+        }).catch((err) => {
+          this.$message.error(err);
+          this.infoLoading = false;
+        });
+      },
+      getOtherInfo(idx, type) {
+        idx = parseInt(idx);
+        if (type) {
+          this.getProjectInfo(this.projectList.list[idx === 0 ? 0 : idx - 1].id, idx === 0 ? 0 : idx - 1);
+        } else {
+          this.getProjectInfo(this.projectList.list[idx >= this.projectList.list.length - 1 ? idx : idx + 1].id, idx >= this.projectList.list.length - 1 ? idx : idx + 1);
+        }
       }
     }
   };

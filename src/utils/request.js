@@ -12,7 +12,7 @@ const service = axios.create({
 
 // request拦截器
 service.interceptors.request.use(config => {
-  if (setToken()) {
+  if (getToken()) {
     config.headers['Authorization'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
   }
   return config
@@ -27,6 +27,7 @@ service.interceptors.response.use(
   /**
   * code为非20000是抛错 可结合自己业务进行修改
   */
+
     const res = response.data
     if (res.status !== 200) {
       Message({
@@ -35,18 +36,7 @@ service.interceptors.response.use(
         duration: 5 * 1000
       });
 
-      //  50014:Token 过期了;50015,长的
-      if (res.status === 403) {
-        MessageBox.confirm('你已被登出，可以取消继续留在该页面，或者重新登录', '确定登出', {
-          confirmButtonText: '重新登录',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('getReferToken').then(() => {
-            location.reload()// 为了重新实例化vue-router对象 避免bug
-          })
-        })
-      }
+
       return Promise.reject('网络错误')
     } else {
       return response.data
@@ -57,7 +47,20 @@ service.interceptors.response.use(
       message: error.response.data.message,
       type: 'error',
       duration: 5 * 1000
-    })
+    });
+    //  50014:Token 过期了;50015,长的
+    if (error.response.data.status === 50014) {
+      store.dispatch('getReferToken');
+    } else if(error.response.data.status === 50015) {
+      store.dispatch('FedLogOut').then(() => {
+        location.reload()// 为了重新实例化vue-router对象 避免bug
+        Message({
+          message: '账号过期，请重新登录',
+          type: 'error',
+          duration: 5 * 1000
+        });
+      })
+    }
     return Promise.reject(error.response.data.message)
   }
 )

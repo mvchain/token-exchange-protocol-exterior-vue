@@ -32,7 +32,10 @@ export function timeFilter(time, cFormat) {
 }
 
 export function changeTimeStamp(timeStamp) {
-  if (timeStamp > 0) {
+  if (!isNaN(timeStamp)) {
+    if (timeStamp < 0) {
+      timeStamp = Number(String(timeStamp).replace('-', ''));
+    }
     let day = Math.floor((timeStamp / 1000 / 3600) / 24);
     let hour = Math.floor((timeStamp / 1000 / 3600) % 24);
     let min = Math.floor((timeStamp / 1000 / 60) % 60);

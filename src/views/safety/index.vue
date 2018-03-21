@@ -83,12 +83,15 @@
           </div>
           <div class="safety-pane-item-modify">
             <div v-show="modifyNum === 0" class="safety-pane-item-modify-con modify-email">
+              <el-form :model="modifyEmailFrom" :rules="rules" ref="modifyEmailFrom" class="demo-ruleForm">
+                <el-form-item  prop="name" class="safety-pane-item-modify-input">
+                  <el-input placeholder="输入新邮箱" v-model="modifyEmailFrom.email"></el-input>
+                </el-form-item>
+              </el-form>
+
               <div class="safety-pane-item-modify-input">
-                <input placeholder="输入新邮箱" type="text">
-              </div>
-              <div class="safety-pane-item-modify-input">
-                <input placeholder="输入验证码" type="text" style="width:200px;margin-right:30px;">
-                <el-button type="text">获取验证码</el-button>
+                <input v-model="modifyEmailFrom.emailCode" placeholder="输入验证码" type="text" style="width:200px;margin-right:30px;">
+                <el-button type="text" @click="modifyEmailHandler">获取验证码</el-button>
               </div>
               <div class="safety-pane-item-modify-btn">
                 <span class="color-btn color-btn2">确认修改</span>
@@ -144,6 +147,7 @@
     },
     data() {
       return {
+        rules: {},
         fundsNum: 0,
         fundsList: [
           {
@@ -253,7 +257,11 @@
             state: '4',
             isIssued: '1'
           }
-        ]
+        ],
+        modifyEmailFrom: {
+          email: '',
+          emailCode: ''
+        }
       };
     },
     mounted() {
@@ -262,6 +270,9 @@
     methods: {
       changeList(t) {
         this.listNum = t;
+      },
+      modifyEmailHandler() {
+        console.log(this.modifyEmailFrom);
       }
     }
   };

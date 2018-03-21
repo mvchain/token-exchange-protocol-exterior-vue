@@ -4,21 +4,21 @@
       <div class="list-container-title">
         <el-row :gutter="20">
           <el-col :span="6" v-for="(v, k) in navList" :key="k">
-            <span :class="navNum===k?'list-select':''" @click="navEnterHandler(v.value)">{{v.title}}</span>
+            <span :class="navNum===k?'list-select':''" @click="navEnterHandler(v.value,k)">{{v.title}}</span>
           </el-col>
         </el-row>
       </div>
       <div class="list-container-con">
         <div class="project-pane" v-loading="listLoading">
           <div :class="k%2==0?'project-pane-item-d':''" @mouseenter="itemHandler(k+1)"
-               v-for="(v, k) in projectList.list" :key="k" @mouseleave="itemLeave" @click="changeInfo(v.id)"
+               v-for="(v, k) in projectList.list" :key="k" @mouseleave="itemLeave" @click="changeInfo(v.id,k)"
                class="project-pane-item">
             <transition name="el-zoom-in-top">
               <div v-show="layerNum === k+1 && maskLayer" class="transition-box"></div>
             </transition>
             <i class="project-selling">{{v.status === 0 ? '即将开始' : v.status === 1?'进行中':'已结束'}}</i>
-            <b class="project-participate">
-              <img src="../../assets/img/participate.png" alt="">
+            <b class="project-participate" v-show="v.partake">
+              <img src="../../assets/img/participate.png">
             </b>
             <div class="project-bigImg">
               <img :src="v.projectImageAddress" :alt="v.tokenName">
@@ -110,8 +110,8 @@
       itemLeave() {
         this.maskLayer = false;
       },
-      navEnterHandler(k) {
-        this.navNum = k;
+      navEnterHandler(k, key) {
+        this.navNum = key;
         this.getProList(`pageNum=${this.pageNum}&pageSize=10&orderBy=created_at&status=${k}`);
       },
       getProList(str) {
@@ -123,8 +123,11 @@
           this.listLoading = false;
         });
       },
-      changeInfo(id) {
-        this.$router.push({path: 'info', query: {id: id}});
+      changeInfo(id, k) {
+        this.$router.push({
+          path: 'info',
+          query: {id: id, idx: k}
+        });
       },
       handleCurrentChange(val) {
         this.getProList();

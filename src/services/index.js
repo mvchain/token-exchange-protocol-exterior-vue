@@ -28,13 +28,26 @@ export function projectList(data) {
 }
 export function refreshToken(data) {
   return request({
-    url: 'getrefreshToken',
-    method: 'get'
+    url: '/account/token/refresh',
+    method: 'post'
   });
 }
 export function projectInfo(data) {
   return request({
     url: '/project/' + data,
     method: 'get'
+  });
+}
+export function balance() {
+  return request({
+    url: '/account/balance',
+    method: 'get'
+  });
+}
+export function transaction(data) {
+  return request({
+    url: '/transaction',
+    method: 'post',
+    data
   });
 }

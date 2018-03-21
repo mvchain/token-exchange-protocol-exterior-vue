@@ -77,6 +77,10 @@
           background:#ddd;
           border-radius :15px;
 
+          & img
+            width:100%;
+            height:100%;
+
         & .info-participate
           position :absolute;
           right:0;
@@ -122,11 +126,15 @@
 
         & > div:first-child
           width:160px;
+          height:160px;
           margin:0 auto;
           margin-top:60px;
+          overflow :hidden;
+          border-radius:50%;
 
           & img
             width:100%;
+            height:100%;
             text-align :center;
 
         & .info-people
@@ -164,7 +172,7 @@
           & > li:nth-child(2)
             margin: 25px 0 75px 0;
 
-          & > li:nth-child(3) span
+          & > li:nth-child(3) a
             display :inline-block;
             width:150px;
             height:48px;
@@ -172,9 +180,18 @@
           & > li:nth-child(4)
             margin: 20px 0;
 
-          & > li:nth-child(5) span
+          & > li:nth-child(5) a
             color:#696dff;
             cursor:pointer;
+
+
+    & .info-container-bottom-des
+      margin-top:20px;
+      height:383px;
+      width:100%;
+      & img
+        width:100%;
+        height:100%;
 
   & .info-dialog
     & .dialog-title
