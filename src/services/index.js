@@ -14,10 +14,31 @@ export function registered(data) {
     data
   });
 }
+export function modifyPwd(data) {
+  return request({
+    url: '/account/pwd',
+    method: 'put',
+    data
+  });
+}
 export function valiEmail(data) {
   return request({
     url: '/account/email?email=' + data,
     method: 'get'
+  });
+}
+export function modifyEmail(data) {
+  return request({
+    url: '/account/email',
+    method: 'put',
+    data
+  });
+}
+export function modifyTx(data) {
+  return request({
+    url: '/account/transaction/pwd',
+    method: 'put',
+    data
   });
 }
 export function projectList(data) {
@@ -49,5 +70,42 @@ export function transaction(data) {
     url: '/transaction',
     method: 'post',
     data
+  });
+}
+export function transactionPro(data) {
+  return request({
+    url: '/transaction/project/' + data,
+    method: 'get'
+  });
+}
+export function tokenList() {
+  return request({
+    url: '/transaction/token',
+    method: 'get'
+  });
+}
+export function withdrawInfo(data) {
+  return request({
+    url: '/transaction?tokenName=' + data,
+    method: 'get'
+  });
+}
+export function withdraw(data) {
+  return request({
+    url: '/transaction/withdraw',
+    method: 'post',
+    data
+  });
+}
+export function getHistory(data) {
+  return request({
+    url: '/account/balance/history?' + data,
+    method: 'get'
+  });
+}
+export function orderServer(data) {
+  return request({
+    url: '/order?' + data,
+    method: 'get'
   });
 }

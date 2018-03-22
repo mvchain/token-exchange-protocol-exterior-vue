@@ -13,8 +13,9 @@
       <div class="safety-pane">
         <div v-show="listNum == 0" class="safety-pane-item">
           <div class="safety-pane-item-left">
-            <span class="color-btn" v-for="(v, k) in fundsList" :key="k" :class="fundsNum === k ? 'selected-btn' : ''"
-                  @click="fundsNum = k">{{v.name}}</span>
+            <span class="color-btn" v-for="(v, k) in fundsList" :key="k"
+                  :class="$route.path === v.route ? 'selected-btn' : ''"
+                  @click="rechargeHandler(k,v.route)">{{v.name}}</span>
           </div>
           <div class="safety-pane-item-right">
             <transition name="el-fade-in-linear" mode="out-in">
@@ -25,7 +26,7 @@
         <div v-show="listNum == 1" class="safety-pane-item">
           <div class="safety-pane-item-left">
             <span class="color-btn" v-for="(v, k) in orderList" :key="k" :class="orderNum === k ? 'selected-btn' : ''"
-                  @click="orderNum = k">{{v.name}}</span>
+                  @click="switchOrder(k, v.value)">{{v.name}}</span>
           </div>
           <div class="safety-pane-item-right">
             <el-table
@@ -83,52 +84,73 @@
           </div>
           <div class="safety-pane-item-modify">
             <div v-show="modifyNum === 0" class="safety-pane-item-modify-con modify-email">
-              <el-form :model="modifyEmailFrom" :rules="rules" ref="modifyEmailFrom" class="demo-ruleForm">
-                <el-form-item  prop="name" class="safety-pane-item-modify-input">
-                  <el-input placeholder="输入新邮箱" v-model="modifyEmailFrom.email"></el-input>
+              <el-form :model="modifyEmailFrom" :rules="rules" ref="modifyEmailFrom">
+                <el-form-item prop="email" class="safety-pane-item-modify-input">
+                  <input placeholder="输入新邮箱" v-model="modifyEmailFrom.email">
+                </el-form-item>
+                <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
+                  <el-col :span="12">
+                    <input placeholder="输入验证码" v-model="modifyEmailFrom.emailCode">
+                  </el-col>
+                  <el-col :span="12" style="text-align: center;line-height: 45px;">
+                    <el-button :disabled="validateCodeInterval" type="text" @click="sendEmail">{{validateCodeTxt}}
+                    </el-button>
+                  </el-col>
+                </el-form-item>
+                <el-form-item prop="name" class="safety-pane-item-modify-btn">
+                  <span class="color-btn color-btn2"
+                        @click="modifyEmailSub('modifyEmailFrom', 'modifyEmail')">确认修改</span>
                 </el-form-item>
               </el-form>
-
-              <div class="safety-pane-item-modify-input">
-                <input v-model="modifyEmailFrom.emailCode" placeholder="输入验证码" type="text" style="width:200px;margin-right:30px;">
-                <el-button type="text" @click="modifyEmailHandler">获取验证码</el-button>
-              </div>
-              <div class="safety-pane-item-modify-btn">
-                <span class="color-btn color-btn2">确认修改</span>
-              </div>
             </div>
             <div v-show="modifyNum === 1" class="safety-pane-item-modify-con modify-login-pwd">
-              <div class="safety-pane-item-modify-input">
-                <input placeholder="输入旧密码" type="password">
-              </div>
-              <div class="safety-pane-item-modify-input">
-                <input placeholder="输入新密码" type="password">
-              </div>
-              <div class="safety-pane-item-modify-input">
-                <input placeholder="再次输入新密码" type="password">
-              </div>
-              <div class="safety-pane-item-modify-input">
-                <input placeholder="输入验证码" type="text" style="width:200px;margin-right:30px;">
-                <el-button type="text">获取验证码</el-button>
-              </div>
-              <div class="safety-pane-item-modify-btn">
-                <span class="color-btn color-btn2">确认修改</span>
-              </div>
+              <el-form :model="modifyLoginPwd" :rules="rules" ref="modifyLoginPwd">
+                <el-form-item prop="password" class="safety-pane-item-modify-input">
+                  <input type="password" placeholder="输入旧密码" v-model="modifyLoginPwd.password">
+                </el-form-item>
+                <el-form-item prop="password" class="safety-pane-item-modify-input">
+                  <input type="password" placeholder="输入新密码" v-model="modifyLoginPwd.newPassword">
+                </el-form-item>
+                <el-form-item prop="password" class="safety-pane-item-modify-input">
+                  <input type="password" placeholder="再次输入新密码" v-model="modifyLoginPwd.newPassword2">
+                </el-form-item>
+                <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
+                  <el-col :span="12">
+                    <input placeholder="输入验证码" v-model="modifyLoginPwd.emailCode">
+                  </el-col>
+                  <el-col :span="12" style="text-align: center;line-height: 45px;">
+                    <el-button :disabled="validateCodeInterval" type="text" @click="sendEmail1">{{validateCodeTxt}}
+                    </el-button>
+                  </el-col>
+                </el-form-item>
+                <el-form-item prop="name" class="safety-pane-item-modify-btn">
+                  <span class="color-btn color-btn2"
+                        @click="modifyEmailSub('modifyLoginPwd', 'modifyPwdHandler')">确认修改</span>
+                </el-form-item>
+              </el-form>
             </div>
             <div v-show="modifyNum === 2" class="safety-pane-item-modify-con modify-tx-pwd">
-              <div class="safety-pane-item-modify-input">
-                <input placeholder="输入新密码" type="password">
-              </div>
-              <div class="safety-pane-item-modify-input">
-                <input placeholder="再次输入新密码" type="password">
-              </div>
-              <div class="safety-pane-item-modify-input">
-                <input placeholder="输入验证码" type="text" style="width:200px;margin-right:30px;">
-                <el-button type="text">获取验证码</el-button>
-              </div>
-              <div class="safety-pane-item-modify-btn">
-                <span class="color-btn color-btn2">确认修改</span>
-              </div>
+              <el-form :model="modifyTxPwd" :rules="rules" ref="modifyTxPwd">
+                <el-form-item prop="transactionPassword" class="safety-pane-item-modify-input">
+                  <input type="password" placeholder="输入新密码" v-model="modifyTxPwd.transactionPassword">
+                </el-form-item>
+                <el-form-item prop="transactionPassword2" class="safety-pane-item-modify-input">
+                  <input type="password" placeholder="再次输入新密码" v-model="modifyTxPwd.transactionPassword2">
+                </el-form-item>
+                <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
+                  <el-col :span="12">
+                    <input placeholder="输入验证码" v-model="modifyTxPwd.emailCode">
+                  </el-col>
+                  <el-col :span="12" style="text-align: center;line-height: 45px;">
+                    <el-button :disabled="validateCodeInterval" type="text" @click="sendEmail1">{{validateCodeTxt}}
+                    </el-button>
+                  </el-col>
+                </el-form-item>
+                <el-form-item prop="name" class="safety-pane-item-modify-btn">
+                  <span class="color-btn color-btn2"
+                        @click="modifyEmailSub('modifyTxPwd', 'modifyTxHandler')">确认修改</span>
+                </el-form-item>
+              </el-form>
             </div>
           </div>
         </div>
@@ -140,33 +162,103 @@
 
 
 <script>
+  import {mapGetters} from 'vuex';
+  import {isEmail, isPassword} from '../../utils/validate.js';
+
   export default {
     name: 'safety',
     watch: {
       '$route.query.type': 'changeList'
     },
     data() {
+      const validateEmail = (rule, value, callback) => {
+        if (!value) {
+          callback(new Error('请输入邮箱！'));
+        } else {
+          if (!isEmail(value)) {
+            callback(new Error('邮箱格式错误'));
+          } else {
+            callback();
+          }
+        }
+      };
+      const validatePassword = (rule, value, callback) => {
+        if (!value) {
+          callback(new Error('请输入登录密码！'));
+        } else {
+          if (!isPassword(value)) {
+            callback(new Error('登录密码需至少6位且包含数字和字母！'));
+          } else {
+            callback();
+          }
+        }
+      };
+      const validatePassword2 = (rule, value, callback) => {
+        if (!value) {
+          callback(new Error('请再次输入登录密码！'));
+        } else {
+          if (value === this.modifyLoginPwd.newPassword2) {
+            callback();
+          } else {
+            callback(new Error('登录密码两次输入不一致！'));
+          }
+        }
+      };
+      const validatePassword3 = (rule, value, callback) => {
+        if (!value) {
+          callback(new Error('请输入交易密码！'));
+        } else {
+          if (value.length < 6) {
+            callback(new Error('交易密码需至少6位！'));
+          } else {
+            callback();
+          }
+        }
+      };
+      const validatePassword4 = (rule, value, callback) => {
+        if (!value) {
+          callback(new Error('请再次输入交易密码！'));
+        } else {
+          if (value === this.modifyTxPwd.transactionPassword) {
+            callback();
+          } else {
+            callback(new Error('交易密码两次输入不一致！'));
+          }
+        }
+      };
       return {
-        rules: {},
+        rules: {
+          email: [{required: true, trigger: 'blur', validator: validateEmail}],
+          emailCode: [{required: true, message: '请输入验证码！', trigger: 'blur'}],
+          password: [{required: true, trigger: 'blur', validator: validatePassword}],
+          password2: [{required: true, trigger: 'blur', validator: validatePassword2}],
+          transactionPassword2: [{required: true, trigger: 'blur', validator: validatePassword4}],
+          transactionPassword: [{required: true, min: 6, trigger: 'blur', validator: validatePassword3}]
+        },
         fundsNum: 0,
         fundsList: [
           {
-            name: '余额'
+            name: '余额',
+            route: '/safety/fundsTable'
           },
           {
-            name: '充提历史'
+            name: '充提历史',
+            route: '/safety/ctHistory'
           }
         ],
         orderNum: 0,
         orderList: [
           {
-            name: '所有'
+            name: '所有',
+            value: ''
           },
           {
-            name: '已结束'
+            name: '已结束',
+            value: '2'
           },
           {
-            name: '正在进行'
+            name: '正在进行',
+            value: '1'
           }
         ],
         modifyNum: 0,
@@ -261,18 +353,105 @@
         modifyEmailFrom: {
           email: '',
           emailCode: ''
-        }
+        },
+        modifyLoginPwd: {
+          password: '',
+          newPassword: '',
+          newPassword2: '',
+          emailCode: ''
+        },
+        modifyTxPwd: {
+          transactionPassword: '',
+          transactionPassword2: '',
+          emailCode: ''
+        },
+        validateCodeInterval: false,
+        validateCodeFlag: null,
+        n: 59,
+        validateCodeTxt: '发送验证码',
+        verificationImg: '',
+        orderLoading: false,
+        pageNum: 1
       };
     },
     mounted() {
       this.listNum = this.$route.query.type;
+      this.orderHandler('pageNum=1&pageSize=10&orderBy=created_at');
+    },
+    computed: {
+      ...mapGetters({
+        orderLists: 'orderList'
+      })
     },
     methods: {
       changeList(t) {
         this.listNum = t;
       },
-      modifyEmailHandler() {
-        console.log(this.modifyEmailFrom);
+      rechargeHandler(idx, name) {
+        this.fundsNum = idx;
+        this.$router.push({path: name, query: {id: '', type: '', code: ''}});
+      },
+      sendEmail() {
+        let username = this.modifyEmailFrom.email;
+        this.emailHandler(username);
+      },
+      sendEmail1() {
+        let username = JSON.parse(window.sessionStorage.getItem('user')).username;
+        this.emailHandler(username);
+      },
+      modifyEmailSub(name, type) {
+        this.$refs[name].validate((valid) => {
+          if (valid) {
+            this.$store.dispatch(type, this[name]).then(() => {
+              this.$message.success('修改成功');
+              this.$refs[name].resetFields();
+            }).catch((err) => {
+              this.$message.error(err);
+            });
+          } else {
+            this.$message.error('请完善表单信息');
+            return false;
+          }
+        });
+      },
+      createCode() {
+        this.verificationImg = window.urlData.url + '/account/validate/image?t=' + Date.parse(new Date());
+      },
+      emailHandler(username) {
+        if (!this.validateCodeInterval) {
+          this.$store.dispatch('getValiEmail', username).then(() => {
+          }).catch((err) => {
+            this.$message.error(err);
+          });
+        }
+        this.validateCodeInterval = true;
+        if (this.n !== 59) return;
+        let that = this;
+        this.validateCodeFlag = setInterval(() => {
+          if (that.n <= 0) {
+            clearInterval(that.validateCodeFlag);
+            that.validateCodeInterval = false;
+            that.validateCodeTxt = '发送验证码';
+            that.n = 59;
+          } else {
+            that.n--;
+            that.validateCodeInterval = true;
+            that.validateCodeTxt = `已发送(${that.n})s`;
+          }
+        }, 1000);
+      },
+      orderHandler(str) {
+        this.orderLoading = true;
+        this.$store.dispatch('getOrderList', str).then(() => {
+          this.orderLoading = false;
+        }).catch((err) => {
+          this.orderLoading = false;
+          this.$message.error(err);
+        });
+      },
+      switchOrder(k, v) {
+        this.orderNum = k;
+        this.orderHandler(`pageNum=${this.pageNum}&pageSize=10&orderBy=created_at&projectStatus=${v}`);
       }
     }
   };

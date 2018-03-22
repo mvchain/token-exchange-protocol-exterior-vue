@@ -41,7 +41,7 @@
               <el-input placeholder="验证码" v-model="registeredData.emailCode" type="text"></el-input>
             </el-col>
             <el-col :span="12" style="text-align: center;line-height: 60px;">
-              <el-button type="text" v-loading="validateCodeInterval" @click="sendEmail('registeredData')">
+              <el-button  :disabled="validateCodeInterval" type="text"  @click="sendEmail('registeredData')">
                 {{validateCodeTxt}}
               </el-button>
             </el-col>
@@ -154,7 +154,7 @@
         registeredFlag: false,
         loginData: {
           username: '375332835@qq.com',
-          password: 'aaa123',
+          password: 'aaa222',
           imageCode: ''
         },
         registeredData: {
@@ -168,7 +168,8 @@
         validateCodeInterval: false,
         validateCodeTxt: '发送验证码',
         validateCodeFlag: null,
-        subFlag: false
+        subFlag: false,
+        n: 59
       };
     },
     mounted() {
@@ -179,27 +180,27 @@
     },
     methods: {
       sendEmail(name) {
+        if (!this.validateCodeInterval) {
+          this.$store.dispatch('getValiEmail', this[name].email).then(() => {
+          }).catch((err) => {
+            this.$message.error(err);
+          });
+        }
         this.validateCodeInterval = true;
-        this.subFlag = true;
-        this.$store.dispatch('getValiEmail', this[name].email).then(() => {
-          let n = 59;
-          let that = this;
-          this.validateCodeFlag = setInterval(() => {
-            if (n <= 0) {
-              clearInterval(that.validateCodeFlag);
-              that.validateCodeInterval = false;
-              that.validateCodeTxt = '发送验证码';
-            } else {
-              n--;
-              that.validateCodeInterval = true;
-              that.validateCodeTxt = n + '秒后再次发送';
-            }
-          }, 1000);
-          this.subFlag = false;
-        }).catch((err) => {
-          this.$message.error(err);
-          this.subFlag = false;
-        });
+        if (this.n !== 59) return;
+        let that = this;
+        this.validateCodeFlag = setInterval(() => {
+          if (that.n <= 0) {
+            clearInterval(that.validateCodeFlag);
+            that.validateCodeInterval = false;
+            that.validateCodeTxt = '发送验证码';
+            that.n = 59;
+          } else {
+            that.n--;
+            that.validateCodeInterval = true;
+            that.validateCodeTxt = `已发送(${that.n})s`;
+          }
+        }, 1000);
       },
       changeModel(v) {
         this.loginFlag = v === 'login';

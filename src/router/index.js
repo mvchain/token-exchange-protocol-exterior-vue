@@ -54,6 +54,11 @@ export default new Router({
               path: 'withdraw',
               component: _import('withdraw/index'),
               name: '提现'
+            },
+            {
+              path: 'ctHistory',
+              component: _import('ctHistory/index'),
+              name: '充提历史'
             }
           ]
         }

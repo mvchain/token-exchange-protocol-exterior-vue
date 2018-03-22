@@ -89,13 +89,13 @@
       </div>
       <div class="dialog-context">
         <ul>
-          <li>200ETH</li>
+          <li>{{transactionProObj.ethBalance||'0'}}ETH</li>
           <li style="position: relative">
             <input v-model="purchaseVal" type="text">
             <span>ETH</span>
             <span class="info-prompt">最小购买金额为0.1ETH</span>
           </li>
-          <li>{{purchaseVal * projectInfo.ratio}}</li>
+          <li>{{purchaseVal * transactionProObj.ratio}}</li>
         </ul>
       </div>
       <div class="dialog-submit">
@@ -149,7 +149,7 @@
       ...mapGetters({
         projectInfo: 'projectInfo',
         projectList: 'projectList',
-        balance: 'balance'
+        transactionProObj: 'transactionProObj'
       })
     },
     methods: {
@@ -158,6 +158,14 @@
           ethNumber: val,
           projectId: this.projectInfo.id
         };
+        let _val = payInfo.ethNumber.replace(/\s/ig, '');
+        if (!_val) {
+          this.$message.error('请输入购买金额');
+          return;
+        } else if (Number(_val) > this.transactionProObj.ethBalance) {
+          this.$message.error('购买金额不能超过项目余额');
+          return;
+        }
         this.$store.dispatch('getTransaction', payInfo).then(() => {
           this.dialogVisible = false;
         }).catch((err) => {
@@ -170,7 +178,7 @@
       participateHandler(bool) {
         if (!bool) return;
         this.dialogTableVisible = true;
-        this.$store.dispatch('getBalance').then(() => {
+        this.$store.dispatch('getTransactionPro', this.projectInfo.id).then(() => {
         }).catch((err) => {
           this.$message.error(err);
         });
