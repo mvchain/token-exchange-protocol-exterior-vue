@@ -30,51 +30,65 @@
           </div>
           <div class="safety-pane-item-right">
             <el-table
-              :data="orderData"
+              :data="orderLists.list"
+              v-loading="orderLoading"
               style="width: 100%">
               <el-table-column
-                prop="order"
+                prop="orderId"
                 label="订单号"
                 align="center"
               >
               </el-table-column>
               <el-table-column
-                prop="time"
+                prop="createdAt"
                 label="时间"
                 align="center"
               >
               </el-table-column>
               <el-table-column
-                prop="name"
+                prop="projectName"
                 label="项目名称"
                 align="center"
               >
               </el-table-column>
               <el-table-column
-                prop="funds"
+                prop="ethNumber"
                 label="购买金额"
                 align="center"
               >
               </el-table-column>
               <el-table-column
-                prop="total"
+                prop="tokenNumber"
                 label="购买数量"
                 align="center"
               >
               </el-table-column>
               <el-table-column
-                prop="state"
+                prop="status"
                 label="项目状态"
                 align="center"
               >
+                <template slot-scope="scope">
+                  <span>{{scope.row.status === 0 ? '即将开始' : scope.row.status === 2 ? '已结束' : '进行中'}}</span>
+                </template>
               </el-table-column>
               <el-table-column
-                prop="isIssued"
                 label="是否发币"
                 align="center"
               >
+                <template slot-scope="scope">
+                  <span>{{scope.row.orderStatus === 0 ? '新币' : scope.row.orderStatus === 2 ? '已发币' : scope.row.orderStatus === 4 ? '清退' : '取消'}}</span>
+                </template>
               </el-table-column>
             </el-table>
+            <div style="text-align: center;margin-top:30px;">
+              <el-pagination
+                @current-change="handleCurrentChange"
+                :page-size="100"
+                layout="prev, pager, next, jumper"
+                :total="orderLists.total">
+              </el-pagination>
+            </div>
           </div>
         </div>
         <div v-show="listNum == 2" class="safety-pane-item">
@@ -285,71 +299,6 @@
           }
         ],
         listNum: 0,
-        orderData: [
-          {
-            order: '1233123123',
-            time: '12314672.00',
-            name: '冬瓜',
-            funds: '6734',
-            total: '56678567',
-            state: '4',
-            isIssued: '1'
-          },
-          {
-            order: '1233123123',
-            time: '12314672.00',
-            name: '冬瓜',
-            funds: '6734',
-            total: '56678567',
-            state: '4',
-            isIssued: '1'
-          },
-          {
-            order: '1233123123',
-            time: '12314672.00',
-            name: '冬瓜',
-            funds: '6734',
-            total: '56678567',
-            state: '4',
-            isIssued: '1'
-          },
-          {
-            order: '1233123123',
-            time: '12314672.00',
-            name: '冬瓜',
-            funds: '6734',
-            total: '56678567',
-            state: '4',
-            isIssued: '1'
-          },
-          {
-            order: '1233123123',
-            time: '12314672.00',
-            name: '冬瓜',
-            funds: '6734',
-            total: '56678567',
-            state: '4',
-            isIssued: '1'
-          },
-          {
-            order: '1233123123',
-            time: '12314672.00',
-            name: '冬瓜',
-            funds: '6734',
-            total: '56678567',
-            state: '4',
-            isIssued: '1'
-          },
-          {
-            order: '1233123123',
-            time: '12314672.00',
-            name: '冬瓜',
-            funds: '6734',
-            total: '56678567',
-            state: '4',
-            isIssued: '1'
-          }
-        ],
         modifyEmailFrom: {
           email: '',
           emailCode: ''
@@ -371,7 +320,8 @@
         validateCodeTxt: '发送验证码',
         verificationImg: '',
         orderLoading: false,
-        pageNum: 1
+        pageNum: 1,
+        orderState: ''
       };
     },
     mounted() {
@@ -451,7 +401,11 @@
       },
       switchOrder(k, v) {
         this.orderNum = k;
-        this.orderHandler(`pageNum=${this.pageNum}&pageSize=10&orderBy=created_at&projectStatus=${v}`);
+        this.orderState = v;
+        this.orderHandler(`pageNum=${this.pageNum}&pageSize=10&orderBy=created_at&status=${v}`);
+      },
+      handleCurrentChange(v) {
+        this.orderHandler(`pageNum=${v}&pageSize=10&orderBy=created_at&status=${this.orderState}`);
       }
     }
   };
