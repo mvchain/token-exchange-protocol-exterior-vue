@@ -1,4 +1,4 @@
-import { login, registered, valiEmail, refreshToken } from '@/services/index.js';
+import { login, registered, valiEmail, refreshToken, forget } from '@/services/index.js';
 import { setToken, getToken, removeToken } from '@/utils/auth';
 const Login = {
   state: {
@@ -48,6 +48,15 @@ const Login = {
         refreshToken(rToken).then(res => {
           window.sessionStorage.setItem('user', JSON.stringify({refreshToken: res.data, username: user.username}));
           setToken(res.data);
+          resolve();
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+    getForget: ({commit, state}, payload) => {
+      return new Promise((resolve, reject) => {
+        forget(payload).then(res => {
           resolve();
         }).catch(error => {
           reject(error);

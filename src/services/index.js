@@ -109,3 +109,10 @@ export function orderServer(data) {
     method: 'get'
   });
 }
+export function forget(data) {
+  return request({
+    url: '/account/forget',
+    method: 'post',
+    data
+  });
+}

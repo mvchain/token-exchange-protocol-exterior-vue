@@ -19,8 +19,8 @@
             </el-col>
           </el-form-item>
           <el-form-item>
-            <span>忘记密码？</span>
-            <span style="float:right;">还没有账户？<el-button type="text" @click="changePage">注册</el-button></span>
+            <span style="cursor:pointer;" @click="changePage('modify')">忘记密码？</span>
+            <span style="float:right;">还没有账户？<el-button type="text" @click="changePage('registered')">注册</el-button></span>
           </el-form-item>
 
           <el-form-item class="login-container-form-sub">
@@ -63,6 +63,36 @@
           </el-form-item>
           <el-form-item class="login-container-form-sub" style="margin-top:-10px;">
             <el-button v-loading="subFlag" @click="registeredSub('registeredData')">注 册</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+    </div>
+    <div v-show="modifyFlag" class="registered-container" style="height:550px;">
+      <div class="registered-container-title">重置密码</div>
+      <div class="registered-container-form" style="margin-top:20px;">
+        <el-form :rules="rules" ref="modifyData" :model="modifyData">
+          <el-form-item prop="email">
+            <el-input placeholder="邮箱" v-model="registeredData.email" type="text"></el-input>
+          </el-form-item>
+          <el-form-item prop="emailCode" class="registered-container-form-validate">
+            <el-col :span="12">
+              <el-input placeholder="验证码" v-model="modifyData.emailCode" type="text"></el-input>
+            </el-col>
+            <el-col :span="12" style="text-align: center;line-height: 60px;">
+              <el-button  :disabled="validateCodeInterval" type="text"  @click="sendEmail('registeredData')">
+                {{validateCodeTxt}}
+              </el-button>
+            </el-col>
+          </el-form-item>
+          <el-form-item prop="password">
+            <el-input placeholder="输入新密码" v-model="modifyData.password" type="password"></el-input>
+          </el-form-item>
+          <el-form-item prop="password5">
+            <el-input placeholder="再次输入新密码" v-model="modifyData.password5" type="password"></el-input>
+          </el-form-item>
+
+          <el-form-item class="login-container-form-sub" style="margin-top:30px;">
+            <el-button v-loading="subFlag" @click="registeredSub('modifyData')">确认重置</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -134,6 +164,17 @@
           }
         }
       };
+      const validatePassword5 = (rule, value, callback) => {
+        if (!value) {
+          callback(new Error('请再次输入登录密码！'));
+        } else {
+          if (value === this.modifyData.password) {
+            callback();
+          } else {
+            callback(new Error('登录密码两次输入不一致！'));
+          }
+        }
+      };
       return {
         rules: {
           email: [{required: true, trigger: 'blur', validator: validateEmail}],
@@ -143,7 +184,8 @@
           password: [{required: true, trigger: 'blur', validator: validatePassword}],
           password2: [{required: true, trigger: 'blur', validator: validatePassword2}],
           transactionPassword: [{required: true, min: 6, trigger: 'blur', validator: validatePassword3}],
-          password4: [{required: true, trigger: 'blur', validator: validatePassword4}]
+          password4: [{required: true, trigger: 'blur', validator: validatePassword4}],
+          password5: [{required: true, trigger: 'blur', validator: validatePassword5}]
         },
         verificationImg: '',
         checked: true,
@@ -165,16 +207,24 @@
           transactionPassword: '',
           password4: ''
         },
+        modifyData: {
+          email: '375332835@qq.com',
+          emailCode: '',
+          password: '',
+          password5: ''
+        },
         validateCodeInterval: false,
         validateCodeTxt: '发送验证码',
         validateCodeFlag: null,
         subFlag: false,
-        n: 59
+        n: 59,
+        modifyFlag: false
       };
     },
     mounted() {
       this.loginFlag = this.$route.query.type === 'login';
       this.registeredFlag = this.$route.query.type === 'registered';
+      this.modifyFlag = this.$route.query.type === 'modify';
       this.loginHeight.height = window.innerHeight + 'px';
       this.createCode();
     },
@@ -205,9 +255,10 @@
       changeModel(v) {
         this.loginFlag = v === 'login';
         this.registeredFlag = v === 'registered';
+        this.modifyFlag = v === 'modify';
       },
-      changePage() {
-        this.$router.push({path: '/login', query: {type: 'registered'}});
+      changePage(v) {
+        this.$router.push({path: '/login', query: {type: v}});
       },
       createCode() {
         this.verificationImg = window.urlData.url + '/account/validate/image?t=' + Date.parse(new Date());
@@ -217,9 +268,18 @@
         this.$refs[name].validate((valid) => {
           if (valid) {
             if (name === 'loginData') {
-              this.$store.dispatch('getLogin', this[name]).then((res) => {
+              this.$store.dispatch('getLogin', this[name]).then(() => {
                 this.$message.success('登录成功');
                 this.$router.push({path: '/home'});
+              }).catch((err) => {
+                this.$message.error(err);
+                this.createCode();
+              });
+            } else if (name === 'modifyData') {
+              this.$store.dispatch('getForget', this[name]).then(() => {
+                this.$message.success('重置成功');
+                this.$refs[name].resetFields();
+                this.$router.replace({path: '/login', query: {type: 'login'}});
               }).catch((err) => {
                 this.$message.error(err);
                 this.createCode();
