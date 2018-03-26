@@ -41,6 +41,7 @@
         let Url2 = window.document.getElementById('codeID');
         Url2.select();
         document.execCommand('Copy');
+        this.$message.success('复制成功');
       }
     }
   };

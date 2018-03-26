@@ -88,7 +88,8 @@
                 <span>目标：</span>
                 <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>16</span> 天</p>
+              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.startTime)-Date.now() |
+                changeTimeStamp}}</span> 天</p>
               <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
             </div>
           </div>
