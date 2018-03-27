@@ -34,7 +34,7 @@ export function timeFilter(time, cFormat) {
 export function changeTimeStamp(timeStamp) {
   if (!isNaN(timeStamp)) {
     if (timeStamp < 0) {
-      timeStamp = Number(String(timeStamp).replace('-', ''));
+      return '已截止！';
     }
     let day = Math.floor((timeStamp / 1000 / 3600) / 24);
     let hour = Math.floor((timeStamp / 1000 / 3600) % 24);
@@ -54,4 +54,11 @@ export function changeTimeStamp(timeStamp) {
   } else {
     return '已截止！';
   }
+}
+
+export function percentageFilter(v) {
+  if (parseFloat(v.soldEth / v.ethNumber * 100) > 100) {
+    return 100;
+  }
+  return parseFloat(v.soldEth / v.ethNumber * 100);
 }

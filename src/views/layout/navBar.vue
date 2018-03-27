@@ -12,7 +12,7 @@
           <router-link class="nav-container-link" to="/proList">项目列表</router-link>
           <router-link class="nav-container-link" to="/help">帮助支持</router-link>
           <a v-show="!uTxt" class="nav-container-link login-btn color-btn" @click="loginHandler('login')">登录</a>
-          <a v-show="!uTxt" class="nav-container-link login-btn color-btn"
+          <a v-show="!uTxt" class="nav-container-link login-btn login-btn2 color-btn color-btn2"
              @click="loginHandler('registered')">注册</a>
 
           <a v-show="uTxt" class="isLogin" @mouseenter="listFlag=true" @mouseleave="listFlag=false">
@@ -88,7 +88,8 @@
       fetchdata(v) {
         const userInfo = window.sessionStorage.getItem('user');
         this.uTxt = userInfo ? JSON.parse(userInfo).username : false;
-        if (v === '/home') {
+        let t = document.documentElement.scrollTop || document.body.scrollTop;
+        if (v === '/home' && t < 300) {
           this.scrollNum = true;
         } else {
           this.scrollNum = false;

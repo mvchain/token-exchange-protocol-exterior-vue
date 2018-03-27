@@ -107,8 +107,7 @@
                     <input placeholder="输入验证码" v-model="modifyEmailFrom.emailCode">
                   </el-col>
                   <el-col :span="12" style="text-align: center;line-height: 45px;">
-                    <el-button :disabled="validateCodeInterval" type="text" @click="sendEmail">{{validateCodeTxt}}
-                    </el-button>
+                    <count-down :username="modifyEmailFrom.email"></count-down>
                   </el-col>
                 </el-form-item>
                 <el-form-item prop="name" class="safety-pane-item-modify-btn">
@@ -133,8 +132,7 @@
                     <input placeholder="输入验证码" v-model="modifyLoginPwd.emailCode">
                   </el-col>
                   <el-col :span="12" style="text-align: center;line-height: 45px;">
-                    <el-button :disabled="validateCodeInterval" type="text" @click="sendEmail1">{{validateCodeTxt}}
-                    </el-button>
+                    <count-down :username="username1"></count-down>
                   </el-col>
                 </el-form-item>
                 <el-form-item prop="name" class="safety-pane-item-modify-btn">
@@ -156,8 +154,7 @@
                     <input placeholder="输入验证码" v-model="modifyTxPwd.emailCode">
                   </el-col>
                   <el-col :span="12" style="text-align: center;line-height: 45px;">
-                    <el-button :disabled="validateCodeInterval" type="text" @click="sendEmail1">{{validateCodeTxt}}
-                    </el-button>
+                    <count-down :username="username1"></count-down>
                   </el-col>
                 </el-form-item>
                 <el-form-item prop="name" class="safety-pane-item-modify-btn">
@@ -178,11 +175,15 @@
 <script>
   import {mapGetters} from 'vuex';
   import {isEmail, isPassword} from '../../utils/validate.js';
-
+  import countDown from '../../components/countdown';
+  import { removeToken } from '@/utils/auth';
   export default {
     name: 'safety',
     watch: {
       '$route.query.type': 'changeList'
+    },
+    components: {
+      'count-down': countDown
     },
     data() {
       const validateEmail = (rule, value, callback) => {
@@ -241,6 +242,7 @@
         }
       };
       return {
+        username1: JSON.parse(window.sessionStorage.getItem('user')).username,
         rules: {
           email: [{required: true, trigger: 'blur', validator: validateEmail}],
           emailCode: [{required: true, message: '请输入验证码！', trigger: 'blur'}],
@@ -314,10 +316,6 @@
           transactionPassword2: '',
           emailCode: ''
         },
-        validateCodeInterval: false,
-        validateCodeFlag: null,
-        n: 59,
-        validateCodeTxt: '发送验证码',
         verificationImg: '',
         orderLoading: false,
         pageNum: 1,
@@ -341,20 +339,13 @@
         this.fundsNum = idx;
         this.$router.push({path: name, query: {id: '', type: '', code: ''}});
       },
-      sendEmail() {
-        let username = this.modifyEmailFrom.email;
-        this.emailHandler(username);
-      },
-      sendEmail1() {
-        let username = JSON.parse(window.sessionStorage.getItem('user')).username;
-        this.emailHandler(username);
-      },
       modifyEmailSub(name, type) {
         this.$refs[name].validate((valid) => {
           if (valid) {
             this.$store.dispatch(type, this[name]).then(() => {
               this.$message.success('修改成功');
               this.$refs[name].resetFields();
+              this.logout();
             }).catch((err) => {
               this.$message.error(err);
             });
@@ -366,29 +357,6 @@
       },
       createCode() {
         this.verificationImg = window.urlData.url + '/account/validate/image?t=' + Date.parse(new Date());
-      },
-      emailHandler(username) {
-        if (!this.validateCodeInterval) {
-          this.$store.dispatch('getValiEmail', username).then(() => {
-          }).catch((err) => {
-            this.$message.error(err);
-          });
-        }
-        this.validateCodeInterval = true;
-        if (this.n !== 59) return;
-        let that = this;
-        this.validateCodeFlag = setInterval(() => {
-          if (that.n <= 0) {
-            clearInterval(that.validateCodeFlag);
-            that.validateCodeInterval = false;
-            that.validateCodeTxt = '发送验证码';
-            that.n = 59;
-          } else {
-            that.n--;
-            that.validateCodeInterval = true;
-            that.validateCodeTxt = `已发送(${that.n})s`;
-          }
-        }, 1000);
       },
       orderHandler(str) {
         this.orderLoading = true;
@@ -406,6 +374,11 @@
       },
       handleCurrentChange(v) {
         this.orderHandler(`pageNum=${v}&pageSize=10&orderBy=created_at&status=${this.orderState}`);
+      },
+      logout() {
+        window.sessionStorage.clear();
+        removeToken();
+        this.$router.replace({path: '/home'});
       }
     }
   };

@@ -40,7 +40,7 @@ div.project-pane
     position :absolute;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,.5);
+    background:rgba(0,0,0,.1);
     top:0;
     left:0;
     z-index:999;
@@ -90,6 +90,8 @@ div.project-pane
       height:280px;
       background:#ddd;
       float:left;
+      border-radius:15px;
+      overflow:hidden;
 
       & img
         width:100%;
@@ -149,19 +151,19 @@ div.project-pane
 
 
 .help-con
-  padding-top:100px;
+  padding-top:90px;
   overflow-x:hidden;
 
   .help-circle-con
     height :380px;
     overflow :hidden;
     & .help-circle
-      height:560px;
+      height:500px;
       width:105%;
       background:#8a8bff;
       border-radius:50%;
       position :relative;
-      top:-205px;
+      top:-250px;
       left:-34px;
       font-size:30px;
       font-weight:900;
@@ -179,8 +181,8 @@ div.project-pane
     left:0;
     right:0;
     bottom:0
-    top:300px;
-    border-radius:40px;
+    top:230px;
+    border-radius:20px;
     padding:60px;
     display :flex;
     font-size:16px;
@@ -188,7 +190,7 @@ div.project-pane
 
 
     & > div:first-child
-      flex:2;
+      flex:0.7;
       text-align :right;
       & > p
         margin-bottom:20px;
@@ -199,11 +201,12 @@ div.project-pane
     & > div:nth-child(2)
       height:150px;
       width:1px;
-      background:#333333;
       margin:0 20px;
 
     & > div:last-child
       flex:5;
+      border-left:1px solid #ddd;
+      padding:0 40px;
 
       & h2
         margin-bottom:25px;
@@ -212,3 +215,10 @@ div.project-pane
       & p
         margin-bottom:45px;
         line-height:20px;
+
+.el-progress__text
+  float:right;
+.el-collapse-item__content
+  color:#999;
+.el-collapse
+  border-top-color:transparent;

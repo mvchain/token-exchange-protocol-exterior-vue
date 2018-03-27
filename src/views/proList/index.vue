@@ -13,7 +13,7 @@
           <div :class="k%2==0?'project-pane-item-d':''" @mouseenter="itemHandler(k+1)"
                v-for="(v, k) in projectList.list" :key="k" @mouseleave="itemLeave" @click="changeInfo(v.id,k)"
                class="project-pane-item">
-            <transition name="el-zoom-in-top">
+            <transition name="el-fade-in-linear">
               <div v-show="layerNum === k+1 && maskLayer" class="transition-box"></div>
             </transition>
             <i class="project-selling">{{v.status === 0 ? '即将开始' : v.status === 1?'进行中':'已结束'}}</i>
@@ -27,7 +27,7 @@
               <p class="project-coin">
                 <span>{{v.tokenName}}</span>
               </p>
-              <el-progress :percentage="v.soldEth/v.ethNumber * 100" :stroke-width="20"></el-progress>
+              <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
               <div class="project-pane-number" v-show="v.status === 1">
                 <span>{{v.buyerNum}}人投</span>
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
@@ -41,8 +41,8 @@
                 <span>目标：</span>
                 <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.startTime)-Date.now() |
-                changeTimeStamp}}</span> 天</p>
+              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.stopTime)-Date.now() |
+                changeTimeStamp}}</span></p>
               <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
             </div>
           </div>

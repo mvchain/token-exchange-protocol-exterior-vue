@@ -25,7 +25,7 @@
                 <span>{{projectInfo.tokenName}}</span>
                 <span>项目开始：{{projectInfo.startTime}}</span>
               </div>
-              <el-progress :percentage="projectInfo.soldEth ? projectInfo.soldEth/projectInfo.ethNumber * 100 : 0"
+              <el-progress :percentage="projectInfo | percentageFilter"
                            :stroke-width="20"></el-progress>
               <ul>
                 <li>目标</li>
@@ -33,7 +33,7 @@
                 <li>支持者</li>
                 <li><span>{{projectInfo.buyerNum}}</span></li>
                 <li>剩余时间</li>
-                <li><span>{{Date.parse(projectInfo.startTime)-Date.now() |
+                <li><span>{{Date.parse(projectInfo.stopTime)-Date.now() |
                 changeTimeStamp}}</span></li>
               </ul>
               <div class="info-now">
@@ -61,7 +61,7 @@
           <div>
             <ul>
               <li><span>兑换比例</span></li>
-              <li><span>1EHT={{projectInfo.ratio}}{{projectInfo.tokenName}}</span></li>
+              <li><span>1ETH={{projectInfo.ratio}}{{projectInfo.tokenName}}</span></li>
               <li><a target="_blank" class="color-btn color-btn2" :href="projectInfo.whitePaperAddress">白皮书下载</a></li>
               <li><span>项目官网</span></li>
               <li><a target="_blank" :href="projectInfo.homepage">{{projectInfo.homepage}}</a></li>
@@ -173,7 +173,11 @@
         });
       },
       configPurchase() {
-        this.dialogVisible = true;
+        if (this.purchaseVal < (this.projectInfo.ethNumber - this.projectInfo.soldEth)) {
+          this.dialogVisible = true;
+        } else {
+          this.$message.error('项目ETH超额');
+        }
       },
       participateHandler(bool) {
         if (!bool) return;

@@ -47,7 +47,7 @@ export function projectList(data) {
     method: 'get'
   });
 }
-export function refreshToken(data) {
+export function refreshToken() {
   return request({
     url: '/account/token/refresh',
     method: 'post'
@@ -114,5 +114,11 @@ export function forget(data) {
     url: '/account/forget',
     method: 'post',
     data
+  });
+}
+export function tokenaddress(data) {
+  return request({
+    url: '/account/address?coinName=' + data,
+    method: 'get'
   });
 }

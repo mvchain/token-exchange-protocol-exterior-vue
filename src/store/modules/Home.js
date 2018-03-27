@@ -1,4 +1,4 @@
-import { projectList, projectInfo, balance, transaction, transactionPro, tokenList, withdrawInfo, withdraw, getHistory, modifyEmail, modifyPwd, modifyTx, orderServer } from '@/services/index.js';
+import { projectList, projectInfo, balance, transaction, transactionPro, tokenList, withdrawInfo, withdraw, getHistory, modifyEmail, modifyPwd, modifyTx, orderServer, tokenaddress } from '@/services/index.js';
 const Home = {
   state: {
     projectList: {},
@@ -8,7 +8,8 @@ const Home = {
     tokenList: [],
     withdrawInfo: {},
     historyList: {},
-    orderList: {}
+    orderList: {},
+    tokenAddr: ''
   },
 
   mutations: {
@@ -35,6 +36,9 @@ const Home = {
     },
     SET_ORDER_LIST: (state, orderList) => {
       state.orderList = orderList;
+    },
+    SET_TOKEN_ADDR: (state, tokenAddr) => {
+      state.tokenAddr = tokenAddr;
     }
   },
 
@@ -158,6 +162,16 @@ const Home = {
       return new Promise((resolve, reject) => {
         orderServer(payload).then((res) => {
           commit('SET_ORDER_LIST', res.data);
+          resolve();
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+    getTokenAddr: ({commit, state}, payload) => {
+      return new Promise((resolve, reject) => {
+        tokenaddress(payload).then((res) => {
+          commit('SET_TOKEN_ADDR', res.data);
           resolve();
         }).catch(error => {
           reject(error);

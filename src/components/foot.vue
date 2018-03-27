@@ -1,26 +1,24 @@
 <template>
   <footer class="token-footer">
     <div class="footer-contact">
-      <div class="footer-contact-txt">联系方式</div>
-      <div class="footer-contact-icon">
+      <div class="footer-top">
         <ul>
-          <li>
-            <img src="../assets/img/wx.png" alt="微信二维码"  @mouseleave="ewmFlag=false" @mouseenter="ewmFlag=true">
-            <transition name="el-fade-in-linear">
-              <p v-show="ewmFlag" class="ewm-img">
-                <img src="../assets/img/ewm.png" alt="">
-              </p>
-            </transition>
+          <li class="foot-container-link">
+            <router-link to="/home">首页</router-link>
           </li>
-          <li><img src="../assets/img/fb.png" alt="facebook"></li>
-          <li><img src="../assets/img/tw.png" alt="推特"></li>
-          <li><img src="../assets/img/rb.png" alt="rb"></li>
+          <li class="foot-container-link">
+            <router-link to="/proList">项目列表</router-link>
+          </li>
+          <li  class="foot-container-link">
+            <router-link to="/help">帮助支持</router-link>
+          </li>
         </ul>
+        <div>
+          <p>联系方式：</p>
+          <p>869142248@qq.com</p>
+        </div>
       </div>
-      <div class="footer-contact-log">
-        <div class=""></div>
-        <div class="">Crugo, All rights reserved © 2018</div>
-      </div>
+      <div class="footer-bottom">Crugo, All rights reserved © 2018</div>
     </div>
   </footer>
 </template>
@@ -36,54 +34,37 @@
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
   .token-footer
-    background:url('../assets/img/back-img-btm-1.png') no-repeat bottom center;
+    background:url('../assets/img/back-img-btm-1.png') no-repeat top center;
     background-size:100% ;
-    min-height:516px;
+    min-height:300px;
 
     .footer-contact
       margin-top:100px;
       padding-top:140px;
 
-    .footer-contact-txt
-      text-align center;
-      font-size:34px;
-      font-weight:900;
+    & .footer-bottom
+      margin-top:30px;
+      text-align :center;
+      color:#fff;
+    & .footer-top
+      margin:0 auto;
+      width:1240px;
+  .footer-top
+    padding-bottom:20px;
+    border-bottom:1px solid #ddd;
+    & ul
+      float:left;
+    & div
+      float:right;
+      line-height :30px;
       color:#fff;
 
-    .footer-contact-icon
-      margin-top:60px;
-      & > ul
-        display :flex;
-        justify-content :center;
-        align-items :center;
+  .foot-container-link
+    display :inline-block;
+    margin-right:30px;
+    & a
+      color:#fff;
+    & a:hover
+      font-weight:900;
 
-        & > li
-          margin-left:30px;
-          cursor:pointer;
-
-    .footer-contact-log
-      width:1136px;
-      border-top:1px solid #ddd;
-      margin:0 auto;
-      margin-top:60px;
-      padding:100px 0 80px 0;
-      line-height :72px;
-
-      & > div:first-child
-        width:264px;
-        height:72px;
-        background:#fff;
-        float:left;
-
-      & > div:last-child
-        float:right;
-        color:#fff;
-
-    & .ewm-img
-      position :relative;
-
-      & img
-        position absolute;
-        top:-200px;
-        left:-60px;
 </style>

@@ -195,12 +195,12 @@
         loginFlag: false,
         registeredFlag: false,
         loginData: {
-          username: '375332835@qq.com',
-          password: 'aaa222',
+          username: '',
+          password: '',
           imageCode: ''
         },
         registeredData: {
-          email: '375332835@qq.com',
+          email: '',
           emailCode: '',
           password: '',
           password2: '',
@@ -208,7 +208,7 @@
           password4: ''
         },
         modifyData: {
-          email: '375332835@qq.com',
+          email: '',
           emailCode: '',
           password: '',
           password5: ''

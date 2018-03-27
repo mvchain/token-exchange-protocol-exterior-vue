@@ -5,7 +5,7 @@
       <div class="withdraw-from-body">
         <el-form :model="withdrawFrom" :rules="rules" ref="withdrawFrom">
           <el-form-item prop="token" class="withdraw-input">
-            <el-select :style="selectStyle" v-model="withdrawFrom.tokenName" placeholder="请选择">
+            <el-select @change="modifyNumHandler" :style="selectStyle" v-model="withdrawFrom.tokenName" placeholder="请选择">
               <el-option
                 v-for="(v,k) in tokenList"
                 :key="k"
@@ -25,7 +25,7 @@
               <li>账户余额：{{withdrawInfo.balance}}</li>
               <li>单日提现上限：{{withdrawInfo.max}}</li>
               <li>最少提现{{withdrawInfo.min}}ETH，单次最多{{withdrawInfo.max}}ETH</li>
-              <li>提现手续费{{withdrawInfo.Poundage}}%</li>
+              <li>提现手续费{{withdrawInfo.poundage}}{{$route.query.code}}</li>
             </ul>
           </el-form-item>
           <el-form-item prop="transactionPassword">
@@ -134,16 +134,19 @@
       })
     },
     mounted() {
-      this.getTokenList();
+      this.getTokenList(this.$route.query.code);
     },
     methods: {
-      getTokenList() {
+      getTokenList(id) {
         this.$store.dispatch('getTokenList').then(() => {
-          this.getWithdrawInfo(this.tokenList[0]);
-          this.withdrawFrom.tokenName = this.tokenList[0];
+          this.getWithdrawInfo(id);
+          this.withdrawFrom.tokenName = id;
         }).catch((err) => {
           this.$message.error(err);
         });
+      },
+      modifyNumHandler(v) {
+        this.getTokenList(v);
       },
       getWithdrawInfo(type) {
         this.$store.dispatch('getWithdrawInfo', type).then(() => {

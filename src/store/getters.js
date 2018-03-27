@@ -6,6 +6,7 @@ const getters = {
   tokenList: state => state.Home.tokenList,
   withdrawInfo: state => state.Home.withdrawInfo,
   historyList: state => state.Home.historyList,
-  orderList: state => state.Home.orderList
+  orderList: state => state.Home.orderList,
+  tokenAddr: state => state.Home.tokenAddr
 };
 export default getters;

@@ -26,7 +26,7 @@
           <div v-if="k<4" :class="k%2==0?'project-pane-item-d':''" @mouseenter="itemHandler(k+1)"
                v-for="(v, k) in projectList.list" :key="k" @mouseleave="itemLeave" @click="changeInfo(v.id, k)"
                class="project-pane-item">
-            <transition name="el-zoom-in-top">
+            <transition name="el-fade-in-linear">
               <div v-show="layerNum === k+1 && maskLayer" class="transition-box"></div>
             </transition>
             <i class="project-selling">{{v.status === 0 ? '即将开始' : v.status === 1?'进行中':'已结束'}}</i>
@@ -40,7 +40,7 @@
               <p class="project-coin">
                 <span>{{v.tokenName}}</span>
               </p>
-              <el-progress :percentage="v.soldEth/v.ethNumber * 100" :stroke-width="20"></el-progress>
+              <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
               <div class="project-pane-number" v-show="v.status === 1">
                 <span>{{v.buyerNum}}人投</span>
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
@@ -52,7 +52,7 @@
                 <span>目标：</span>
                 <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.startTime)-Date.now() |
+              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.stopTime)-Date.now() |
                 changeTimeStamp}}</span></p>
               <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
             </div>
@@ -76,7 +76,7 @@
               <p class="project-coin">
                 <span>{{v.tokenName}}</span>
               </p>
-              <el-progress :percentage="v.soldEth/v.ethNumber * 100" :stroke-width="20"></el-progress>
+              <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
               <div class="project-pane-number" v-show="v.status === 1">
                 <span>{{v.buyerNum}}人投</span>
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
@@ -88,8 +88,8 @@
                 <span>目标：</span>
                 <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.startTime)-Date.now() |
-                changeTimeStamp}}</span> 天</p>
+              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.stopTime)-Date.now() |
+                changeTimeStamp}}</span> </p>
               <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
             </div>
           </div>
@@ -102,7 +102,7 @@
         <div class="project-common-problem">
           <div class="project-common-problem-title">常见问题</div>
           <div class="project-common-problem-list">
-            <el-collapse v-model="activeNames" @change="handleChange" accordion>
+            <el-collapse v-model="activeNames" @change="handleChange">
               <el-collapse-item title="如何购买代币，代币购买教程" name="1">
                 <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
                 <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
@@ -132,28 +132,7 @@
           </div>
         </div>
       </div>
-      <div class="project-contact">
-        <div class="project-contact-txt">联系方式</div>
-        <div class="project-contact-icon">
-          <ul>
-            <li>
-              <img src="../../assets/img/wx.png" alt="微信二维码" @mouseleave="ewmFlag=false" @mouseenter="ewmFlag=true">
-              <transition name="el-fade-in-linear">
-                <p v-show="ewmFlag" class="ewm-img">
-                  <img src="../../assets/img/ewm.png" alt="">
-                </p>
-              </transition>
-            </li>
-            <li><img src="../../assets/img/fb.png" alt="facebook"></li>
-            <li><img src="../../assets/img/tw.png" alt="推特"></li>
-            <li><img src="../../assets/img/rb.png" alt="rb"></li>
-          </ul>
-        </div>
-        <div class="project-contact-log">
-          <div class=""></div>
-          <div class="">Crugo, All rights reserved © 2018</div>
-        </div>
-      </div>
+      <artisan-footer></artisan-footer>
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@
     <div class="recharge-info">
       <div class="recharge-type">ETH充值地址</div>
       <div class="recharge-addr">
-        <input id="codeID" readonly v-model="$route.query.code">
+        <input id="codeID" readonly v-model="tokenAddr">
         <span @click="copyHandler">复制</span>
       </div>
       <div class="recharge-info-txt">ETH充值地址二维码</div>
@@ -17,7 +17,7 @@
 
 <script>
   import QRCode from 'qrcode';
-
+  import {mapGetters} from 'vuex';
   export default {
     name: 'recharge',
     data() {
@@ -26,7 +26,12 @@
       };
     },
     mounted() {
-      this.getQRCode(this.$route.query.code);
+      this.getTokenHandler(this.$route.query.code);
+    },
+    computed: {
+      ...mapGetters({
+        tokenAddr: 'tokenAddr'
+      })
     },
     methods: {
       getQRCode(v) {
@@ -42,6 +47,18 @@
         Url2.select();
         document.execCommand('Copy');
         this.$message.success('复制成功');
+      },
+      getTokenHandler() {
+        this.$store.dispatch('getTokenAddr', this.$route.query.code).then(() => {
+          QRCode.toDataURL(this.tokenAddr)
+            .then(url => {
+              this.codeImg = url;
+            }).catch(err => {
+            this.$message.error(err);
+          });
+        }).catch((err) => {
+          this.$message.error(err);
+        });
       }
     }
   };

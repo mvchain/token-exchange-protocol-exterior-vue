@@ -18,10 +18,10 @@
       <el-table-column
         label="操作">
         <template slot-scope="scope">
-          <span class="color-btn handler-btn"
-                @click="rechargeHandler(scope.$index, 'recharge', scope.row.rechargeStatus)">充值</span>
-          <span class="color-btn handler-btn"
-                @click="rechargeHandler(scope.$index, 'withdraw', scope.row.withdrawStatus)">提现</span>
+          <span class="color-btn handler-btn" v-show="scope.row.rechargeStatus"
+                @click="rechargeHandler(scope.$index, 'recharge', scope.row.tokenName)">充值</span>
+          <span class="color-btn handler-btn" v-show="scope.row.withdrawStatus"
+                @click="rechargeHandler(scope.$index, 'withdraw', scope.row.tokenName)">提现</span>
           <span class="color-btn handler-btn" @click="rechargeHandler(scope.$index, 'ctHistory',scope.row.tokenId)">充提历史</span>
         </template>
       </el-table-column>
@@ -49,6 +49,7 @@
     },
     methods: {
       rechargeHandler(idx, name, code) {
+        console.log(code);
         this.$router.push({path: name, query: {id: idx, type: this.$route.query.type, code: code}});
       },
       getBalance() {
