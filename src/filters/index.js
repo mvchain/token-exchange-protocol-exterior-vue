@@ -62,3 +62,16 @@ export function percentageFilter(v) {
   }
   return parseFloat(v.soldEth / v.ethNumber * 100);
 }
+export function statusFilter (v) {
+  if (v.retire === 1) {
+    return '清退';
+  } else {
+    if (v.orderStatus === 9) {
+      return '已取消';
+    } else if (v.sendToken === 1) {
+      return '已发币';
+    } else {
+      return '未发币';
+    }
+  }
+}

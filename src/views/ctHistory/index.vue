@@ -8,20 +8,20 @@
         prop="orderId"
         label="单号"
         align="center"
-        width="150"
+        width="110"
         >
       </el-table-column>
       <el-table-column
         prop="createdAt"
         label="时间"
         align="center"
-        width="200"
+        width="170"
         >
       </el-table-column>
       <el-table-column
         label="类型"
         align="center"
-        width="100"
+        width="80"
       >
         <template slot-scope="scope">
           <span>{{scope.row.type === 0 ? '充值' : '提现'}}</span>
@@ -31,17 +31,18 @@
         prop="number"
         label="金额"
         align="center"
-        width="150"
+        width="100"
       >
       </el-table-column>
       <el-table-column
         prop="hash"
         label="地址"
         align="right"
+        width="580"
       >
         <template slot-scope="scope">
-          <p>{{scope.row.type === 0 ? scope.row.fromAddress : scope.row.toAddress}}</p>
-          <p>{{scope.row.hash}}</p>
+          <p><a target="_blank" :href="`https://etherscan.io/address/${scope.row.type === 0 ? scope.row.fromAddress : scope.row.toAddress}`">{{scope.row.type === 0 ? scope.row.fromAddress : scope.row.toAddress}}</a></p>
+          <p><a target="_blank" :href="`https://etherscan.io/tx/${scope.row.hash}`">{{scope.row.hash}}</a></p>
         </template>
       </el-table-column>
       <el-table-column

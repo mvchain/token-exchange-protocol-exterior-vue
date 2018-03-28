@@ -69,15 +69,15 @@
                 align="center"
               >
                 <template slot-scope="scope">
-                  <span>{{scope.row.status === 0 ? '即将开始' : scope.row.status === 2 ? '已结束' : '进行中'}}</span>
+                  <span>{{scope.row.status === 2 ? '成功' : scope.row.status === 1 ? '正在进行' : '失败'}}</span>
                 </template>
               </el-table-column>
               <el-table-column
-                label="是否发币"
+                label="订单状态"
                 align="center"
               >
                 <template slot-scope="scope">
-                  <span>{{scope.row.orderStatus === 0 ? '新币' : scope.row.orderStatus === 2 ? '已发币' : scope.row.orderStatus === 4 ? '清退' : '取消'}}</span>
+                  <span>{{scope.row | statusFilter}}</span>
                 </template>
               </el-table-column>
             </el-table>
@@ -98,7 +98,7 @@
           </div>
           <div class="safety-pane-item-modify">
             <div v-show="modifyNum === 0" class="safety-pane-item-modify-con modify-email">
-              <el-form :model="modifyEmailFrom" :rules="rules" ref="modifyEmailFrom">
+              <el-form v-show="emailFlag" :model="modifyEmailFrom" :rules="rules" ref="modifyEmailFrom">
                 <el-form-item prop="email" class="safety-pane-item-modify-input">
                   <input placeholder="输入新邮箱" v-model="modifyEmailFrom.email">
                 </el-form-item>
@@ -113,6 +113,23 @@
                 <el-form-item prop="name" class="safety-pane-item-modify-btn">
                   <span class="color-btn color-btn2"
                         @click="modifyEmailSub('modifyEmailFrom', 'modifyEmail')">确认修改</span>
+                </el-form-item>
+              </el-form>
+              <el-form v-show="!emailFlag">
+                <el-form-item class="safety-pane-item-modify-input">
+                 <p>已绑定邮箱：{{username1}}</p>
+                </el-form-item>
+                <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
+                  <el-col :span="12">
+                    <input placeholder="输入验证码" v-model="modifyCheckFrom.emailCode">
+                  </el-col>
+                  <el-col :span="12" style="text-align: center;line-height: 45px;">
+                    <count-down :username="username1"></count-down>
+                  </el-col>
+                </el-form-item>
+                <el-form-item prop="name" class="safety-pane-item-modify-btn">
+                  <span class="color-btn color-btn2"
+                        @click="modifyValiSub()">前往修改</span>
                 </el-form-item>
               </el-form>
             </div>
@@ -301,6 +318,10 @@
           }
         ],
         listNum: 0,
+        modifyCheckFrom: {
+          email: JSON.parse(window.sessionStorage.getItem('user')).username,
+          emailCode: ''
+        },
         modifyEmailFrom: {
           email: '',
           emailCode: ''
@@ -319,7 +340,8 @@
         verificationImg: '',
         orderLoading: false,
         pageNum: 1,
-        orderState: ''
+        orderState: '',
+        emailFlag: false
       };
     },
     mounted() {
@@ -379,6 +401,13 @@
         window.sessionStorage.clear();
         removeToken();
         this.$router.replace({path: '/home'});
+      },
+      modifyValiSub() {
+        this.$store.dispatch('getEmailCodeHandler', this.modifyCheckFrom).then(() => {
+          this.emailFlag = !this.emailFlag;
+        }).catch((err) => {
+          this.$message.error(err);
+        });
       }
     }
   };

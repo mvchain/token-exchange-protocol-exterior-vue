@@ -91,7 +91,7 @@
         <ul>
           <li>{{transactionProObj.ethBalance||'0'}}ETH</li>
           <li style="position: relative">
-            <input v-model="purchaseVal" type="text">
+            <input @change="fundsHandler" v-model="purchaseVal" type="text">
             <span>ETH</span>
             <span class="info-prompt">最小购买金额为0.1ETH</span>
           </li>
@@ -168,6 +168,9 @@
         }
         this.$store.dispatch('getTransaction', payInfo).then(() => {
           this.dialogVisible = false;
+          this.dialogTableVisible = false;
+          this.purchaseVal = '';
+          this.$message.success('购买成功');
         }).catch((err) => {
           this.$message.error(err);
         });
@@ -175,11 +178,17 @@
       configPurchase() {
         if (this.purchaseVal < (this.projectInfo.ethNumber - this.projectInfo.soldEth)) {
           this.dialogVisible = true;
+        } else if (isNaN(this.purchaseVal)) {
+          this.$message.error('请输入正确金额');
         } else {
           this.$message.error('项目ETH超额');
         }
       },
       participateHandler(bool) {
+        if (!window.sessionStorage.getItem('user')) {
+          this.$message.error('请登录后操作');
+          return;
+        }
         if (!bool) return;
         this.dialogTableVisible = true;
         this.$store.dispatch('getTransactionPro', this.projectInfo.id).then(() => {
@@ -205,6 +214,9 @@
         } else {
           this.getProjectInfo(this.projectList.list[idx >= this.projectList.list.length - 1 ? idx : idx + 1].id, idx >= this.projectList.list.length - 1 ? idx : idx + 1);
         }
+      },
+      fundsHandler() {
+        this.purchaseVal = Number(this.purchaseVal).toFixed(1);
       }
     }
   };

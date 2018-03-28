@@ -1,4 +1,4 @@
-import { projectList, projectInfo, balance, transaction, transactionPro, tokenList, withdrawInfo, withdraw, getHistory, modifyEmail, modifyPwd, modifyTx, orderServer, tokenaddress } from '@/services/index.js';
+import { checkEmail, projectList, projectInfo, balance, transaction, transactionPro, tokenList, withdrawInfo, withdraw, getHistory, modifyEmail, modifyPwd, modifyTx, orderServer, tokenaddress } from '@/services/index.js';
 const Home = {
   state: {
     projectList: {},
@@ -172,6 +172,15 @@ const Home = {
       return new Promise((resolve, reject) => {
         tokenaddress(payload).then((res) => {
           commit('SET_TOKEN_ADDR', res.data);
+          resolve();
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+    getEmailCodeHandler: ({commit, state}, payload) => {
+      return new Promise((resolve, reject) => {
+        checkEmail(payload).then((res) => {
           resolve();
         }).catch(error => {
           reject(error);

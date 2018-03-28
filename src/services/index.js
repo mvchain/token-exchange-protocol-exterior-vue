@@ -122,3 +122,10 @@ export function tokenaddress(data) {
     method: 'get'
   });
 }
+export function checkEmail(data) {
+  return request({
+    url: '/account/email/check',
+    method: 'post',
+    data
+  });
+}
