@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
-import { getToken,setToken } from '@/utils/auth'
+import { getToken2 } from '@/utils/auth'
 
 // 创建axios实例
 axios.defaults.withCredentials = true
@@ -12,8 +12,9 @@ const service = axios.create({
 
 // request拦截器
 service.interceptors.request.use(config => {
-  if (getToken()) {
-    config.headers['Authorization'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+  let to = getToken2()
+  if (to) {
+    config.headers['Authorization'] = to // 让每个请求携带自定义token 请根据实际情况自行修改
   }
   return config
 }, error => {
@@ -44,12 +45,6 @@ service.interceptors.response.use((response) => {
   (error) => {
     //  50014:Token 过期了;50015,长的
     if (error.response.data.status === 50014) {
-      location.reload()// 为了重新实例化vue-router对象 避免bug
-      Message({
-        message: '账号过期，请重新登录',
-        type: 'error',
-        duration: 5 * 1000
-      });
     } else if(error.response.data.status === 50015) {
       store.dispatch('FedLogOut').then(() => {
         location.reload()// 为了重新实例化vue-router对象 避免bug

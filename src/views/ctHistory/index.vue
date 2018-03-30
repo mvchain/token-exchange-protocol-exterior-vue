@@ -51,7 +51,7 @@
         width="100"
       >
         <template slot-scope="scope">
-          <span>{{scope.row.status === 0 ? '等待' : scope.row.status === 1 ? '进行' : scope.row.status === 2 ? '结束' : '失败'}}</span>
+          <span>{{scope.row.status === 0 ? '等待' : scope.row.status === 1 ? '进行' : scope.row.status === 2 ? '完成' : '失败'}}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -83,7 +83,7 @@
       })
     },
     mounted() {
-      this.getHistory(`pageNum=1&pageSize=10&orderBy=created_at&tokenId=${this.$route.query.code}`);
+      this.getHistory(`pageNum=1&pageSize=10&orderBy=created_at desc&tokenId=${this.$route.query.code}`);
     },
     methods: {
       getHistory(str) {
@@ -95,7 +95,9 @@
           this.historyLoading = false;
         });
       },
-      handleCurrentChange() {}
+      handleCurrentChange(v) {
+        this.getHistory(`pageNum=${v}&pageSize=10&orderBy=created_at desc&tokenId=${this.$route.query.code}`);
+      }
     }
   };
 </script>

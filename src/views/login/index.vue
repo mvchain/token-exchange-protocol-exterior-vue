@@ -72,14 +72,14 @@
       <div class="registered-container-form" style="margin-top:20px;">
         <el-form :rules="rules" ref="modifyData" :model="modifyData">
           <el-form-item prop="email">
-            <el-input placeholder="邮箱" v-model="registeredData.email" type="text"></el-input>
+            <el-input placeholder="邮箱" v-model="modifyData.email" type="text"></el-input>
           </el-form-item>
           <el-form-item prop="emailCode" class="registered-container-form-validate">
             <el-col :span="12">
               <el-input placeholder="验证码" v-model="modifyData.emailCode" type="text"></el-input>
             </el-col>
             <el-col :span="12" style="text-align: center;line-height: 60px;">
-              <el-button  :disabled="validateCodeInterval" type="text"  @click="sendEmail('registeredData')">
+              <el-button  :disabled="validateCodeInterval" type="text"  @click="sendEmail('modifyData')">
                 {{validateCodeTxt}}
               </el-button>
             </el-col>
@@ -261,7 +261,7 @@
         this.$router.push({path: '/login', query: {type: v}});
       },
       createCode() {
-        this.verificationImg = window.urlData.url + '/account/validate/image?t=' + Date.parse(new Date());
+        this.verificationImg = window.urlData.url + '/account/validate/image?t=' + Date.now();
       },
       registeredSub(name) {
         if (!this.checked) return;

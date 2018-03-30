@@ -6,13 +6,13 @@
 
 <script>
   import store from './store';
-
+  import { getToken3 } from '@/utils/auth';
   export default {
     name: 'app',
     mounted() {
       window.setInterval(showMsgIcon, 1500000);
       function showMsgIcon() {
-        let user = window.sessionStorage.getItem('user');
+        let user = getToken3();
         if (user) {
           store.dispatch('getReferToken');
         }

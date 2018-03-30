@@ -1,5 +1,5 @@
 import { login, registered, valiEmail, refreshToken, forget } from '@/services/index.js';
-import { setToken, removeToken } from '@/utils/auth';
+import { removeAll, getToken, setToken, setToken2, setToken3 } from '@/utils/auth';
 const Login = {
   state: {
   },
@@ -9,8 +9,9 @@ const Login = {
     getLogin: ({commit, state}, payload) => {
       return new Promise((resolve, reject) => {
         login(payload).then(res => {
-          window.sessionStorage.setItem('user', JSON.stringify({refreshToken: res.data.refreshToken, username: payload.username}));
-          setToken(res.data.token);
+          setToken3(payload.username);
+          setToken(res.data.refreshToken);
+          setToken2(res.data.token);
           resolve();
         }).catch(error => {
           reject(error);
@@ -36,20 +37,17 @@ const Login = {
       });
     },
     FedLogOut: ({commit}) => {
-      return new Promise(() => {
-        return new Promise(resolve => {
-          window.sessionStorage.clear();
-          removeToken();
-          resolve();
-        });
+      return new Promise((resolve, reject) => {
+        removeAll();
+        resolve();
       });
     },
     getReferToken: () => {
-      const rToken = JSON.parse(window.sessionStorage.getItem('user')).refreshToken;
-      setToken(rToken);
+      const rToken = getToken();
+      setToken2(rToken);
       return new Promise((resolve, reject) => {
         refreshToken().then(res => {
-          setToken(res.data);
+          setToken2(res.data);
           resolve();
         }).catch(error => {
           reject(error);

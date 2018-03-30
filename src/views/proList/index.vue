@@ -43,7 +43,11 @@
               </p>
               <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span></p>
-              <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
+              <div v-show="v.status === 1" class="project-pane-item-time">项目起止：
+                <p class="project-time-txt">
+                  {{v.startTime | timeDown}}—{{v.stopTime | timeDown}}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -72,7 +76,7 @@
         maskLayer: false,
         listLoading: false,
         layerNum: 0,
-        navNum: 0,
+        navNum: '',
         navList: [
           {
             title: '所有项目',
@@ -97,7 +101,7 @@
     },
     mounted() {
       this.getTimeFun();
-      this.getProList(`pageNum=${this.pageNum}&pageSize=${this.pageSize}&orderBy=created_at`);
+      this.getProList(`pageNum=${this.pageNum}&pageSize=${this.pageSize}&orderBy=created_at desc`);
     },
     computed: {
       ...mapGetters({
@@ -121,7 +125,7 @@
       },
       navEnterHandler(k, key) {
         this.navNum = key;
-        this.getProList(`pageNum=${this.pageNum}&pageSize=10&orderBy=created_at&status=${k}`);
+        this.getProList(`pageNum=${this.pageNum}&pageSize=10&orderBy=created_at desc&status=${k || ''}`);
       },
       getProList(str) {
         this.listLoading = true;
@@ -139,7 +143,8 @@
         });
       },
       handleCurrentChange(val) {
-        this.getProList();
+        this.pageNum = val;
+        this.getProList(`pageNum=${this.pageNum}&pageSize=10&orderBy=created_at desc&status=${this.navNum || ''}`);
       }
     },
     components: {

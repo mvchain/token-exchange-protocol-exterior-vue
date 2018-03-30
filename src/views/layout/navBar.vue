@@ -43,8 +43,7 @@
 
 <script>
   import {mapGetters} from 'vuex';
-  import {removeToken} from '@/utils/auth';
-
+  import { getToken3 } from '@/utils/auth';
   export default {
     watch: {
       '$route.path': 'fetchdata'
@@ -59,8 +58,7 @@
 
     mounted: function () {
       const that = this;
-      const userInfo = window.sessionStorage.getItem('user');
-      this.uTxt = userInfo ? JSON.parse(userInfo).username : false;
+      this.uTxt = getToken3();
       if (this.$route.path === '/home') {
         this.scrollNum = true;
       } else {
@@ -86,8 +84,7 @@
     },
     methods: {
       fetchdata(v) {
-        const userInfo = window.sessionStorage.getItem('user');
-        this.uTxt = userInfo ? JSON.parse(userInfo).username : false;
+        this.uTxt = getToken3();
         let t = document.documentElement.scrollTop || document.body.scrollTop;
         if (v === '/home' && t < 300) {
           this.scrollNum = true;
@@ -99,10 +96,10 @@
         this.$router.push({path: '/login', query: {type: type}});
       },
       logout() {
-        window.sessionStorage.clear();
-        removeToken();
-        this.$router.replace({path: '/home'});
-        this.uTxt = '';
+        this.$store.dispatch('FedLogOut').then(() => {
+          this.$router.replace({path: '/home'});
+          this.uTxt = '';
+        }).catch();
       }
     }
   };

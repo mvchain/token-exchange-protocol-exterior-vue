@@ -49,7 +49,6 @@
     },
     methods: {
       rechargeHandler(idx, name, code) {
-        console.log(code);
         this.$router.push({path: name, query: {id: idx, type: this.$route.query.type, code: code}});
       },
       getBalance() {

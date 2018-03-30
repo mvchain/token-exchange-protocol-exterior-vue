@@ -60,10 +60,10 @@ export function percentageFilter(v) {
   if (!v.soldEth) {
     return 0;
   }
-  if ((v.soldEth / v.ethNumber * 100).toFixed(2) > 100) {
+  if ((v.soldEth / v.ethNumber * 100).toFixed(1) > 100) {
     return 100;
   }
-  return Number((v.soldEth / v.ethNumber * 100).toFixed(2));
+  return Number((v.soldEth / v.ethNumber * 100).toFixed(1));
 }
 export function statusFilter (v) {
   if (v.retire === 1) {
@@ -78,6 +78,6 @@ export function statusFilter (v) {
     }
   }
 }
-export function timeDown(d, u) {
-  console.log(d, u);
+export function timeDown(d) {
+  return d.replace(/-/ig, '/');
 }

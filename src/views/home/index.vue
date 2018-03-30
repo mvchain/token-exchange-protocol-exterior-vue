@@ -52,9 +52,13 @@
                 <span>目标：</span>
                 <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
-                changeTimeStamp}}</span></p>
-              <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
+              <div v-show="v.status === 1" class="project-pane-item-day">剩余时间：<p class="project-time-txt">{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
+                changeTimeStamp}}</p></div>
+              <div v-show="v.status === 1" class="project-pane-item-time">项目起止：
+                <p class="project-time-txt">
+                  {{v.startTime | timeDown}}—{{v.stopTime | timeDown}}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -88,9 +92,13 @@
                 <span>目标：</span>
                 <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day">剩余dd时间：<span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
+              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span> </p>
-              <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
+              <div v-show="v.status === 1" class="project-pane-item-time">项目起止：
+                <p class="project-time-txt">
+                  {{v.startTime | timeDown}}—{{v.stopTime | timeDown}}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -182,7 +190,7 @@
     },
     mounted: function () {
       this.getTimeFun();
-      this.getProList(`pageNum=1&pageSize=8&orderBy=created_at`);
+      this.getProList(`pageNum=1&pageSize=8&orderBy=created_at desc`);
       this.carouselInterval = setInterval(() => {
         if (this.enterFlag) {
           this.carouselNum++;

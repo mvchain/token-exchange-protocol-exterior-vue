@@ -50,8 +50,8 @@
 
 <script>
   import {mapGetters} from 'vuex';
-  import {} from '../../utils/validate.js';
-
+  import { cryptoFun } from '../../utils/index';
+  import { getToken3 } from '@/utils/auth';
   export default {
     name: 'withdraw',
     data() {
@@ -158,7 +158,10 @@
         this.subFlag = true;
         this.$refs[name].validate((valid) => {
           if (valid) {
-            this.$store.dispatch('getWithdraw', this[name]).then(() => {
+            let opt = JSON.stringify(this[name]);
+            let _opt = JSON.parse(opt);
+            _opt.transactionPassword = cryptoFun(_opt.transactionPassword);
+            this.$store.dispatch('getWithdraw', _opt).then(() => {
               this.$message.success('提现成功');
               this.$refs[name].resetFields();
               this.subFlag = false;
@@ -174,7 +177,7 @@
         });
       },
       sendEmail() {
-        let username = JSON.parse(window.sessionStorage.getItem('user')).username;
+        let username = getToken3();
         if (!this.validateCodeInterval) {
           this.$store.dispatch('getValiEmail', username).then(() => {
           }).catch((err) => {

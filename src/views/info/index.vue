@@ -22,7 +22,7 @@
             </div>
             <div class="info-right">
               <div>
-                <span>{{projectInfo.tokenName}}</span>
+                <span>{{projectInfo.title}}</span>
                 <span>项目开始：{{projectInfo.startTime}}</span>
               </div>
               <el-progress :percentage="projectInfo | percentageFilter"
@@ -37,7 +37,7 @@
                 changeTimeStamp}}</span></li>
               </ul>
               <div class="info-now">
-                <span disabled class="color-btn color-btn2"
+                <span v-show="projectInfo.status === 1" disabled class="color-btn color-btn2"
                       @click="participateHandler(projectInfo.status === 1)">立即参与</span>
               </div>
             </div>
@@ -64,7 +64,7 @@
               <li><span>1ETH={{projectInfo.ratio}}{{projectInfo.tokenName}}</span></li>
               <li><a target="_blank" class="color-btn color-btn2" :href="projectInfo.whitePaperAddress">白皮书下载</a></li>
               <li><span>项目官网</span></li>
-              <li><a target="_blank" :href="projectInfo.homepage">{{projectInfo.homepage}}</a></li>
+              <li><a target="_blank" :href="projectInfo.homepage">{{projectInfo.homepage&&projectInfo.homepage.replace(/(https:\/\/www.)|(http:\/\/www.)/ig, '')}}</a></li>
             </ul>
           </div>
         </div>
@@ -128,7 +128,7 @@
   import { cryptoFun } from '../../utils/index';
   import foot from '../../components/foot';
   import {mapGetters} from 'vuex';
-
+  import { getToken2 } from '@/utils/auth';
   export default {
     name: 'info',
     components: {
@@ -146,7 +146,7 @@
     mounted() {
       this.getTimeFun();
       this.getProjectInfo(this.$route.query.id, this.$route.query.idx);
-      this.$store.dispatch('getProjectList', `pageNum=1&pageSize=1000&orderBy=created_at`).then(() => {
+      this.$store.dispatch('getProjectList', `pageNum=1&pageSize=1000&orderBy=created_at desc`).then(() => {
       }).catch((err) => {
         this.$message.error(err);
       });
@@ -189,7 +189,7 @@
         });
       },
       configPurchase() {
-        if (this.purchaseVal < (this.projectInfo.ethNumber - this.projectInfo.soldEth)) {
+        if (this.purchaseVal <= (this.projectInfo.ethNumber - this.projectInfo.soldEth)) {
           this.dialogVisible = true;
         } else if (isNaN(this.purchaseVal)) {
           this.$message.error('请输入正确金额');
@@ -198,7 +198,7 @@
         }
       },
       participateHandler(bool) {
-        if (!window.sessionStorage.getItem('user')) {
+        if (!getToken2()) {
           this.$message.error('请登录后操作');
           return;
         }

@@ -84,7 +84,7 @@
             <div style="text-align: center;margin-top:30px;">
               <el-pagination
                 @current-change="handleCurrentChange"
-                :page-size="100"
+                :page-size="10"
                 layout="prev, pager, next, jumper"
                 :total="orderLists.total">
               </el-pagination>
@@ -100,11 +100,11 @@
             <div v-show="modifyNum === 0" class="safety-pane-item-modify-con modify-email">
               <el-form v-show="emailFlag" :model="modifyEmailFrom" :rules="rules" ref="modifyEmailFrom">
                 <el-form-item prop="email" class="safety-pane-item-modify-input">
-                  <input placeholder="输入新邮箱" v-model="modifyEmailFrom.email">
+                  <el-input placeholder="输入新邮箱" v-model="modifyEmailFrom.email"></el-input>
                 </el-form-item>
                 <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
                   <el-col :span="12">
-                    <input placeholder="输入验证码" v-model="modifyEmailFrom.emailCode">
+                    <el-input placeholder="输入验证码" v-model="modifyEmailFrom.emailCode"></el-input>
                   </el-col>
                   <el-col :span="12" style="text-align: center;line-height: 45px;">
                     <count-down :username="modifyEmailFrom.email"></count-down>
@@ -121,7 +121,7 @@
                 </el-form-item>
                 <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
                   <el-col :span="12">
-                    <input placeholder="输入验证码" v-model="modifyCheckFrom.emailCode">
+                    <el-input placeholder="输入验证码" v-model="modifyCheckFrom.emailCode"></el-input>
                   </el-col>
                   <el-col :span="12" style="text-align: center;line-height: 45px;">
                     <count-down :username="username1"></count-down>
@@ -136,20 +136,20 @@
             <div v-show="modifyNum === 1" class="safety-pane-item-modify-con modify-login-pwd">
               <el-form :model="modifyLoginPwd" :rules="rules" ref="modifyLoginPwd">
                 <el-form-item prop="password" class="safety-pane-item-modify-input">
-                  <input type="password" placeholder="输入旧密码" v-model="modifyLoginPwd.password">
+                  <el-input type="password" placeholder="输入旧密码" v-model="modifyLoginPwd.password"></el-input>
                 </el-form-item>
-                <el-form-item prop="password" class="safety-pane-item-modify-input">
-                  <input type="password" placeholder="输入新密码" v-model="modifyLoginPwd.newPassword">
+                <el-form-item prop="newPassword" class="safety-pane-item-modify-input">
+                  <el-input type="password" placeholder="输入新密码" v-model="modifyLoginPwd.newPassword"></el-input>
                 </el-form-item>
-                <el-form-item prop="password" class="safety-pane-item-modify-input">
-                  <input type="password" placeholder="再次输入新密码" v-model="modifyLoginPwd.newPassword2">
+                <el-form-item prop="newPassword2" class="safety-pane-item-modify-input">
+                  <el-input type="password" placeholder="再次输入新密码" v-model="modifyLoginPwd.newPassword2"></el-input>
                 </el-form-item>
-                <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
+                <el-form-item prop="imageCode" class="safety-pane-item-modify-input">
                   <el-col :span="12">
-                    <input placeholder="输入验证码" v-model="modifyLoginPwd.emailCode">
+                    <el-input placeholder="输入验证码" v-model="modifyLoginPwd.imageCode"></el-input>
                   </el-col>
                   <el-col :span="12" style="text-align: center;line-height: 45px;">
-                    <count-down :username="username1"></count-down>
+                    <b @click="createCode"><img :src="verificationImg" alt=""></b>
                   </el-col>
                 </el-form-item>
                 <el-form-item prop="name" class="safety-pane-item-modify-btn">
@@ -161,14 +161,14 @@
             <div v-show="modifyNum === 2" class="safety-pane-item-modify-con modify-tx-pwd">
               <el-form :model="modifyTxPwd" :rules="rules" ref="modifyTxPwd">
                 <el-form-item prop="transactionPassword" class="safety-pane-item-modify-input">
-                  <input type="password" placeholder="输入新密码" v-model="modifyTxPwd.transactionPassword">
+                  <el-input type="password" placeholder="输入新密码" v-model="modifyTxPwd.transactionPassword"></el-input>
                 </el-form-item>
                 <el-form-item prop="transactionPassword2" class="safety-pane-item-modify-input">
-                  <input type="password" placeholder="再次输入新密码" v-model="modifyTxPwd.transactionPassword2">
+                  <el-input type="password" placeholder="再次输入新密码" v-model="modifyTxPwd.transactionPassword2"></el-input>
                 </el-form-item>
                 <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
                   <el-col :span="12">
-                    <input placeholder="输入验证码" v-model="modifyTxPwd.emailCode">
+                    <el-input placeholder="输入验证码" v-model="modifyTxPwd.emailCode"></el-input>
                   </el-col>
                   <el-col :span="12" style="text-align: center;line-height: 45px;">
                     <count-down :username="username1"></count-down>
@@ -184,7 +184,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -194,7 +193,7 @@
   import {isEmail, isPassword} from '../../utils/validate.js';
   import countDown from '../../components/countdown';
   import { cryptoFun } from '../../utils/index';
-  import { removeToken } from '@/utils/auth';
+  import { getToken3 } from '@/utils/auth';
   export default {
     name: 'safety',
     watch: {
@@ -230,7 +229,7 @@
         if (!value) {
           callback(new Error('请再次输入登录密码！'));
         } else {
-          if (value === this.modifyLoginPwd.newPassword2) {
+          if (value === this.modifyLoginPwd.newPassword) {
             callback();
           } else {
             callback(new Error('登录密码两次输入不一致！'));
@@ -260,11 +259,14 @@
         }
       };
       return {
-        username1: JSON.parse(window.sessionStorage.getItem('user')).username,
+        username1: getToken3(),
         rules: {
           email: [{required: true, trigger: 'blur', validator: validateEmail}],
           emailCode: [{required: true, message: '请输入验证码！', trigger: 'blur'}],
+          imageCode: [{required: true, message: '请输入验证码！', trigger: 'blur'}],
           password: [{required: true, trigger: 'blur', validator: validatePassword}],
+          newPassword: [{required: true, trigger: 'blur', validator: validatePassword}],
+          newPassword2: [{required: true, trigger: 'blur', validator: validatePassword2}],
           password2: [{required: true, trigger: 'blur', validator: validatePassword2}],
           transactionPassword2: [{required: true, trigger: 'blur', validator: validatePassword4}],
           transactionPassword: [{required: true, min: 6, trigger: 'blur', validator: validatePassword3}]
@@ -320,7 +322,7 @@
         ],
         listNum: 0,
         modifyCheckFrom: {
-          email: JSON.parse(window.sessionStorage.getItem('user')).username,
+          email: getToken3(),
           emailCode: ''
         },
         modifyEmailFrom: {
@@ -331,7 +333,7 @@
           password: '',
           newPassword: '',
           newPassword2: '',
-          emailCode: ''
+          imageCode: ''
         },
         modifyTxPwd: {
           transactionPassword: '',
@@ -347,7 +349,8 @@
     },
     mounted() {
       this.listNum = this.$route.query.type;
-      this.orderHandler('pageNum=1&pageSize=10&orderBy=created_at');
+      this.orderHandler('pageNum=1&pageSize=10&orderBy=created_at desc');
+      this.createCode();
     },
     computed: {
       ...mapGetters({
@@ -380,7 +383,9 @@
             this.$store.dispatch(type, _opt).then(() => {
               this.$message.success('修改成功');
               this.$refs[name].resetFields();
-              this.logout();
+              if (name !== 'modifyTxPwd') {
+                this.logout();
+              }
             }).catch((err) => {
               this.$message.error(err);
             });
@@ -391,7 +396,7 @@
         });
       },
       createCode() {
-        this.verificationImg = window.urlData.url + '/account/validate/image?t=' + Date.parse(new Date());
+        this.verificationImg = window.urlData.url + '/account/validate/image?t=' + Date.now();
       },
       orderHandler(str) {
         this.orderLoading = true;
@@ -405,15 +410,17 @@
       switchOrder(k, v) {
         this.orderNum = k;
         this.orderState = v;
-        this.orderHandler(`pageNum=${this.pageNum}&pageSize=10&orderBy=created_at&status=${v}`);
+        this.orderHandler(`pageNum=${this.pageNum}&pageSize=10&orderBy=created_at desc&status=${v}`);
+        this.pageNum = 1;
       },
       handleCurrentChange(v) {
-        this.orderHandler(`pageNum=${v}&pageSize=10&orderBy=created_at&status=${this.orderState}`);
+        this.pageNum = v;
+        this.orderHandler(`pageNum=${this.pageNum}&pageSize=10&orderBy=created_at desc&status=${this.orderState}`);
       },
       logout() {
-        window.sessionStorage.clear();
-        removeToken();
-        this.$router.replace({path: '/home'});
+        this.$store.dispatch('FedLogOut').then(() => {
+          this.$router.replace({path: '/home'});
+        }).catch();
       },
       modifyValiSub() {
         this.$store.dispatch('getEmailCodeHandler', this.modifyCheckFrom).then(() => {
@@ -426,6 +433,6 @@
   };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  @import "./index..styl"
+<style lang="stylus" rel="stylesheet/stylus">
+  @import "index..styl"
 </style>
