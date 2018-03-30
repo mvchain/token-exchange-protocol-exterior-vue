@@ -1,4 +1,4 @@
-import { checkEmail, projectList, projectInfo, balance, transaction, transactionPro, tokenList, withdrawInfo, withdraw, getHistory, modifyEmail, modifyPwd, modifyTx, orderServer, tokenaddress } from '@/services/index.js';
+import { getTimeService, checkEmail, projectList, projectInfo, balance, transaction, transactionPro, tokenList, withdrawInfo, withdraw, getHistory, modifyEmail, modifyPwd, modifyTx, orderServer, tokenaddress } from '@/services/index.js';
 const Home = {
   state: {
     projectList: {},
@@ -9,7 +9,8 @@ const Home = {
     withdrawInfo: {},
     historyList: {},
     orderList: {},
-    tokenAddr: ''
+    tokenAddr: '',
+    timeTxt: ''
   },
 
   mutations: {
@@ -39,6 +40,9 @@ const Home = {
     },
     SET_TOKEN_ADDR: (state, tokenAddr) => {
       state.tokenAddr = tokenAddr;
+    },
+    SET_TIME_TXT: (state, timeTxt) => {
+      state.timeTxt = timeTxt;
     }
   },
 
@@ -182,6 +186,16 @@ const Home = {
       return new Promise((resolve, reject) => {
         checkEmail(payload).then((res) => {
           resolve();
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+    getTimeHandler: ({commit, state}) => {
+      return new Promise((resolve, reject) => {
+        getTimeService().then((res) => {
+          commit('SET_TIME_TXT', res.data);
+          resolve(res.data);
         }).catch(error => {
           reject(error);
         });

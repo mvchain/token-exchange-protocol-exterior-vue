@@ -57,10 +57,13 @@ export function changeTimeStamp(timeStamp) {
 }
 
 export function percentageFilter(v) {
-  if (parseFloat(v.soldEth / v.ethNumber * 100) > 100) {
+  if (!v.soldEth) {
+    return 0;
+  }
+  if ((v.soldEth / v.ethNumber * 100).toFixed(2) > 100) {
     return 100;
   }
-  return parseFloat(v.soldEth / v.ethNumber * 100);
+  return Number((v.soldEth / v.ethNumber * 100).toFixed(2));
 }
 export function statusFilter (v) {
   if (v.retire === 1) {
@@ -74,4 +77,7 @@ export function statusFilter (v) {
       return '未发币';
     }
   }
+}
+export function timeDown(d, u) {
+  console.log(d, u);
 }

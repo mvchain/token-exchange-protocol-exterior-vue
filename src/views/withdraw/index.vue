@@ -162,6 +162,7 @@
               this.$message.success('提现成功');
               this.$refs[name].resetFields();
               this.subFlag = false;
+              this.getWithdrawInfo(this.$route.query.code);
             }).catch((err) => {
               this.$message.error(err);
               this.subFlag = false;

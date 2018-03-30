@@ -1,7 +1,14 @@
 /**
  * Created by jiachenpan on 16/11/18.
  */
-
+import md5 from 'md5';
+import RIPEMD160 from 'ripemd160';
+export function cryptoFun (str) {
+  let ripemd160Stream = new RIPEMD160();
+  let val = md5(str);
+  ripemd160Stream.end(val);
+  return ripemd160Stream.read().toString('hex');
+}
 export function parseTime(time, cFormat) {
   if (arguments.length === 0) {
     return null

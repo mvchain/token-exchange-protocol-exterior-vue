@@ -193,6 +193,7 @@
   import {mapGetters} from 'vuex';
   import {isEmail, isPassword} from '../../utils/validate.js';
   import countDown from '../../components/countdown';
+  import { cryptoFun } from '../../utils/index';
   import { removeToken } from '@/utils/auth';
   export default {
     name: 'safety',
@@ -364,7 +365,19 @@
       modifyEmailSub(name, type) {
         this.$refs[name].validate((valid) => {
           if (valid) {
-            this.$store.dispatch(type, this[name]).then(() => {
+            let opt = JSON.stringify(this[name]);
+            let _opt = JSON.parse(opt);
+
+            if (_opt.password) {
+              _opt.password = cryptoFun(_opt.password);
+            }
+            if (_opt.newPassword) {
+              _opt.newPassword = cryptoFun(_opt.newPassword);
+            }
+            if (_opt.transactionPassword) {
+              _opt.transactionPassword = cryptoFun(_opt.transactionPassword);
+            }
+            this.$store.dispatch(type, _opt).then(() => {
               this.$message.success('修改成功');
               this.$refs[name].resetFields();
               this.logout();

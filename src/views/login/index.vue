@@ -102,7 +102,7 @@
 
 <script type='text/ecmascript-6'>
   import {isEmail, isPassword} from '../../utils/validate.js';
-
+  import { cryptoFun } from '../../utils/index';
   export default {
     name: 'login',
     watch: {
@@ -267,8 +267,11 @@
         if (!this.checked) return;
         this.$refs[name].validate((valid) => {
           if (valid) {
+            let opt = JSON.stringify(this[name]);
+            let _opt = JSON.parse(opt);
             if (name === 'loginData') {
-              this.$store.dispatch('getLogin', this[name]).then(() => {
+              _opt.password = cryptoFun(_opt.password);
+              this.$store.dispatch('getLogin', _opt).then(() => {
                 this.$message.success('登录成功');
                 this.$router.push({path: '/home'});
               }).catch((err) => {
@@ -276,7 +279,8 @@
                 this.createCode();
               });
             } else if (name === 'modifyData') {
-              this.$store.dispatch('getForget', this[name]).then(() => {
+              _opt.password = cryptoFun(_opt.password);
+              this.$store.dispatch('getForget', _opt).then(() => {
                 this.$message.success('重置成功');
                 this.$refs[name].resetFields();
                 this.$router.replace({path: '/login', query: {type: 'login'}});
@@ -285,7 +289,9 @@
                 this.createCode();
               });
             } else {
-              this.$store.dispatch('getRegistered', this[name]).then(() => {
+              _opt.password = cryptoFun(this[name].password);
+              _opt.transactionPassword = cryptoFun(this[name].transactionPassword);
+              this.$store.dispatch('getRegistered', _opt).then(() => {
                 this.$router.replace({path: '/login', query: {type: 'login'}});
                 this.$message.success('注册成功');
                 this.$refs[name].resetFields();

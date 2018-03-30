@@ -129,3 +129,9 @@ export function checkEmail(data) {
     data
   });
 }
+export function getTimeService() {
+  return request({
+    url: '/account/time',
+    method: 'get'
+  });
+}

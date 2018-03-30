@@ -38,21 +38,21 @@
             </div>
             <div class="project-pane-item-info">
               <p class="project-coin">
-                <span>{{v.tokenName}}</span>
+                <span>{{v.title}}</span>
               </p>
               <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
               <div class="project-pane-number" v-show="v.status === 1">
                 <span>{{v.buyerNum}}人投</span>
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
               </div>
-              <p v-show="v.status===2&&Date.parse(v.stopTime) < Date.now()" class="project-pane-item-over">{{v.soldEth >=
+              <p v-show="v.status===2&&Date.parse(v.stopTime) < Date.parse(timeTxt)" class="project-pane-item-over">{{v.soldEth >=
                 v.ethNumber? '圆满结束':'未完成'}}</p>
-              <p v-show="v.status===0" class="project-pane-item-over">{{Date.parse(v.startTime)-Date.now() | changeTimeStamp}}</p>
+              <p v-show="v.status===0" class="project-pane-item-over">{{Date.parse(v.startTime)-Date.parse(timeTxt) | changeTimeStamp}}</p>
               <p class="project-pane-item-aims" v-show="v.status===0">
                 <span>目标：</span>
                 <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.stopTime)-Date.now() |
+              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span></p>
               <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
             </div>
@@ -74,21 +74,21 @@
             </div>
             <div class="project-pane-item-info">
               <p class="project-coin">
-                <span>{{v.tokenName}}</span>
+                <span>{{v.title}}</span>
               </p>
               <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
               <div class="project-pane-number" v-show="v.status === 1">
                 <span>{{v.buyerNum}}人投</span>
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
               </div>
-              <p v-show="v.status===2&&Date.parse(v.stopTime) < Date.now()" class="project-pane-item-over">{{v.soldEth >=
+              <p v-show="v.status===2&&Date.parse(v.stopTime) < Date.parse(timeTxt)" class="project-pane-item-over">{{v.soldEth >=
                 v.ethNumber? '圆满结束':'未完成'}}</p>
-              <p v-show="v.status===0" class="project-pane-item-over">{{Date.parse(v.startTime)-Date.now() | changeTimeStamp}}</p>
+              <p v-show="v.status===0" class="project-pane-item-over">{{Date.parse(v.startTime)-Date.parse(timeTxt) | changeTimeStamp}}</p>
               <p class="project-pane-item-aims" v-show="v.status===0">
                 <span>目标：</span>
                 <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.stopTime)-Date.now() |
+              <p v-show="v.status === 1" class="project-pane-item-day">剩余dd时间：<span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span> </p>
               <p v-show="v.status === 1" class="project-pane-item-time">项目起止：{{v.startTime}}~{{v.stopTime}}</p>
             </div>
@@ -181,6 +181,7 @@
       };
     },
     mounted: function () {
+      this.getTimeFun();
       this.getProList(`pageNum=1&pageSize=8&orderBy=created_at`);
       this.carouselInterval = setInterval(() => {
         if (this.enterFlag) {
@@ -197,7 +198,8 @@
     },
     computed: {
       ...mapGetters({
-        projectList: 'projectList'
+        projectList: 'projectList',
+        timeTxt: 'timeTxt'
       })
     },
     methods: {
@@ -216,6 +218,12 @@
       },
       itemLeave() {
         this.maskLayer = false;
+      },
+      getTimeFun() {
+        this.$store.dispatch('getTimeHandler').then((res) => {
+        }).catch((err) => {
+          this.$message.error(err);
+        });
       },
       changeHelp(path) {
         this.$router.push({path: path});

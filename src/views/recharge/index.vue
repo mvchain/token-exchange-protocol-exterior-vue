@@ -4,7 +4,7 @@
     <div class="recharge-info">
       <div class="recharge-type">ETH充值地址</div>
       <div class="recharge-addr">
-        <input id="codeID" readonly v-model="tokenAddr">
+        <input style="width:450px;" id="codeID" readonly v-model="tokenAddr">
         <span @click="copyHandler">复制</span>
       </div>
       <div class="recharge-info-txt">ETH充值地址二维码</div>

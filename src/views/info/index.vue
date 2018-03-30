@@ -33,7 +33,7 @@
                 <li>支持者</li>
                 <li><span>{{projectInfo.buyerNum}}</span></li>
                 <li>剩余时间</li>
-                <li><span>{{Date.parse(projectInfo.stopTime)-Date.now() |
+                <li><span>{{Date.parse(projectInfo.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span></li>
               </ul>
               <div class="info-now">
@@ -111,6 +111,9 @@
       center
     >
       <p class="dialog-confirm-title">确认是否支付{{purchaseVal}}ETH</p>
+      <el-input placeholder="请输入内容" type="password" v-model="txPassword">
+        <template slot="prepend">输入交易密码：</template>
+      </el-input>
       <span slot="footer" class="dialog-footer">
         <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn"
                    @click="confirmPay(purchaseVal)">是</el-button>
@@ -122,6 +125,7 @@
 </template>
 
 <script>
+  import { cryptoFun } from '../../utils/index';
   import foot from '../../components/foot';
   import {mapGetters} from 'vuex';
 
@@ -133,12 +137,14 @@
     data() {
       return {
         purchaseVal: '',
+        txPassword: '',
         infoLoading: false,
         dialogTableVisible: false,
         dialogVisible: false
       };
     },
     mounted() {
+      this.getTimeFun();
       this.getProjectInfo(this.$route.query.id, this.$route.query.idx);
       this.$store.dispatch('getProjectList', `pageNum=1&pageSize=1000&orderBy=created_at`).then(() => {
       }).catch((err) => {
@@ -149,16 +155,23 @@
       ...mapGetters({
         projectInfo: 'projectInfo',
         projectList: 'projectList',
-        transactionProObj: 'transactionProObj'
+        transactionProObj: 'transactionProObj',
+        timeTxt: 'timeTxt'
       })
     },
     methods: {
       confirmPay(val) {
         let payInfo = {
           ethNumber: val,
-          projectId: this.projectInfo.id
+          projectId: this.projectInfo.id,
+          transactionPassword: cryptoFun(this.txPassword.replace(/\s/ig, ''))
         };
         let _val = payInfo.ethNumber.replace(/\s/ig, '');
+        let _pwd = payInfo.transactionPassword;
+        if (!_pwd) {
+          this.$message.error('请输入交易密码');
+          return;
+        }
         if (!_val) {
           this.$message.error('请输入购买金额');
           return;
@@ -217,6 +230,12 @@
       },
       fundsHandler() {
         this.purchaseVal = Number(this.purchaseVal).toFixed(1);
+      },
+      getTimeFun() {
+        this.$store.dispatch('getTimeHandler').then((res) => {
+        }).catch((err) => {
+          this.$message.error(err);
+        });
       }
     }
   };
