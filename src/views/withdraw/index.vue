@@ -24,7 +24,7 @@
             <ul>
               <li>账户余额：{{withdrawInfo.balance}}</li>
               <li>单日提现上限：{{withdrawInfo.max}}</li>
-              <li>最少提现{{withdrawInfo.min}}ETH，单次最多{{withdrawInfo.max}}ETH</li>
+              <li>最少提现{{withdrawInfo.min}}{{$route.query.code}}，单次最多{{withdrawInfo.max}}{{$route.query.code}}</li>
               <li>提现手续费{{withdrawInfo.poundage}}{{$route.query.code}}</li>
             </ul>
           </el-form-item>
@@ -155,12 +155,12 @@
         });
       },
       subFrom(name) {
-        this.subFlag = true;
         this.$refs[name].validate((valid) => {
           if (valid) {
             let opt = JSON.stringify(this[name]);
             let _opt = JSON.parse(opt);
             _opt.transactionPassword = cryptoFun(_opt.transactionPassword);
+            this.subFlag = true;
             this.$store.dispatch('getWithdraw', _opt).then(() => {
               this.$message.success('提现成功');
               this.$refs[name].resetFields();

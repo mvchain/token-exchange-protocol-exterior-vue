@@ -183,6 +183,7 @@
           this.dialogVisible = false;
           this.dialogTableVisible = false;
           this.purchaseVal = '';
+          this.txPassword = '';
           this.$message.success('购买成功');
         }).catch((err) => {
           this.$message.error(err);

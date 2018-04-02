@@ -29,7 +29,7 @@ export function setToken2(token) {
 }
 export function setToken3(token) {
   return Cookies.set(username, token,  {
-    expires: 7
+    expires: 1
   });
 }
 

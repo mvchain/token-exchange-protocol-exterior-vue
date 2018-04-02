@@ -45,6 +45,9 @@ service.interceptors.response.use((response) => {
   (error) => {
     //  50014:Token 过期了;50015,长的
     if (error.response.data.status === 50014) {
+      store.dispatch('getReferToken').then(() => {
+        window.location.reload();
+      }).catch();
     } else if(error.response.data.status === 50015) {
       store.dispatch('FedLogOut').then(() => {
         location.reload()// 为了重新实例化vue-router对象 避免bug
