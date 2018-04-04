@@ -6,14 +6,12 @@
   bottom:0;
   left:0;
   right:0;
-  padding-top:180px;
+  padding-top:150px;
 
   & .safety-title
     height:72px;
     display:flex;
-    border-radius:15px;
     justify-content :space-between;
-    background:#fff;
 
     & .safety-name
       flex:1;
@@ -24,6 +22,14 @@
       cursor:pointer;
       background:#fff;
       transition box-shadow 0.5s;
+
+    & .safety-name:first-child
+      border-bottom-left-radius :15px
+      border-top-left-radius :15px
+
+    & .safety-name:last-child
+      border-bottom-right-radius :15px
+      border-top-right-radius :15px
 
     & .selected-title
       box-shadow: 0 5px 12px 3px rgba(80,35,54,.15);
@@ -80,7 +86,6 @@
           & .safety-pane-item-modify-con
             width:330px;
             height:350px;
-            margin-left:-75px;
 
             & .safety-pane-item-modify-input
               margin-bottom:20px;

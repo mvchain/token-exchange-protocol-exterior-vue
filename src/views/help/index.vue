@@ -48,12 +48,17 @@
         </div>
       </div>
     </div>
+    <footer-com></footer-com>
   </div>
 </template>
 
 <script>
+  import foot from '../../components/foot';
   export default {
     name: 'help',
+    components: {
+      'footer-com': foot
+    },
     data() {
       return {
         listNum: 0,

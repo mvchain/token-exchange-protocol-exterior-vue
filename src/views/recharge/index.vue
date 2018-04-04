@@ -77,7 +77,7 @@
       margin-top: 10px;
 
     .recharge-info
-      padding-left: 400px;
+      padding-left: 210px;
 
     .recharge-type
       font-weight: 900;

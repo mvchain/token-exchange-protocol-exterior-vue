@@ -49,10 +49,8 @@ div.project-pane
     z-index:999;
 
   & > div.project-pane-item-d
-    margin-right:24px;
+    margin-right:48px;
 
-  & > div.project-pane-item-s
-    margin-left:24px;
 
   & div.project-pane-item
     height: 320px;
@@ -108,8 +106,18 @@ div.project-pane
 
       & .project-coin
         color:#666;
-        font-size:30px;
-        margin:20px 0;
+        font-size:24px;
+        margin:4px 0 12px 0;
+        line-height :24px;
+
+        & span
+          font-weight:900;
+
+        & i
+          font-style: normal;
+          float:right;
+          font-size:16px;
+
 
       & .project-pane-number
         display :flex;
@@ -135,16 +143,23 @@ div.project-pane
         bottom:70px;
 
         & span
-          font-size:30px;
+          font-size:16px;
+          font-weight:900;
 
       & .project-pane-item-time
         bottom:20px;
 
       & .project-pane-item-over
         position absolute
-        font-size:30px;
-        bottom:100px;
-        right:135px;
+        font-size:24px;
+        bottom:114px;
+        font-weight:900;
+        right:10px;
+        text-align :center;
+        width:370px;
+
+        & span
+          font-weight:900;
 
       & .project-pane-item-aims
         font-size:16px;
@@ -158,7 +173,7 @@ div.project-pane
   overflow-x:hidden;
 
   .help-circle-con
-    height :380px;
+    height :710px;
     overflow :hidden;
     & .help-circle
       height:500px;
@@ -221,7 +236,11 @@ div.project-pane
 
 .el-progress__text
   float:right;
+  font-size:18px !important;
+  font-weight:900;
 .el-collapse-item__content
   color:#999;
 .el-collapse
   border-top-color:transparent;
+.el-progress
+  padding-bottom:12px;

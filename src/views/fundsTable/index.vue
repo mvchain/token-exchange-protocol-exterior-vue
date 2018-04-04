@@ -76,4 +76,6 @@
     margin-right: 10px;
     color: #ff7974;
     cursor: pointer;
+  .handler-btn:hover
+    box-shadow :none;
 </style>

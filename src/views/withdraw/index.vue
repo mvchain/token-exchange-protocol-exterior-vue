@@ -107,9 +107,7 @@
         validateCodeInterval: false,
         n: 59,
         selectStyle: {
-          width: '100%',
-          border: '1px solid #ff7974',
-          borderRadius: '5px'
+          width: '100%'
         },
         withdrawFrom: {
           tokenName: '',
@@ -204,6 +202,6 @@
   };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
   @import "./index.styl";
 </style>

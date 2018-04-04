@@ -14,7 +14,6 @@
           <a v-show="!uTxt" class="nav-container-link login-btn color-btn" @click="loginHandler('login')">登录</a>
           <a v-show="!uTxt" class="nav-container-link login-btn login-btn2 color-btn color-btn2"
              @click="loginHandler('registered')">注册</a>
-
           <a v-show="uTxt" class="isLogin" @mouseenter="listFlag=true" @mouseleave="listFlag=false">
             <img src="../../assets/img/avatar.png" alt="">
             <span>{{uTxt}}</span>
@@ -22,13 +21,13 @@
               <div v-show="listFlag" class="transition-box">
                 <ul>
                   <li>
-                    <router-link class="nav-container-link" to="/safety?type=2">账户安全</router-link>
-                  </li>
-                  <li>
                     <router-link class="nav-container-link" to="/safety?type=0">资金管理</router-link>
                   </li>
                   <li>
                     <router-link class="nav-container-link" to="/safety?type=1">订单管理</router-link>
+                  </li>
+                  <li>
+                    <router-link class="nav-container-link" to="/safety?type=2">账户安全</router-link>
                   </li>
                   <li><a @click="logout">登出</a></li>
                 </ul>

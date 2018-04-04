@@ -1,12 +1,16 @@
 .home-carousel
-  height: 815px;
+  height: 805px;
   position relative
   overflow :hidden;
-  .banner-img
+  width:100%;
+
+  .home-carousel-div
+    height:805px;
+    width:100%;
+    background-position :center center;
     position: absolute;
     transition: opacity 2s ease-in-out;
     opacity: 0;
-    width:100%;
 
   .banner-img-hover
     opacity: 1;
@@ -34,7 +38,7 @@
 
 .project-bottom
   background:url('../../assets/img/back-img-btm.png') no-repeat bottom center;
-  background-size:88% ;
+  background-size:80% ;
 
   .project-list
     width:1420px;
@@ -46,7 +50,7 @@
 
       & > div:first-child
         float:left;
-        font-size:34px;
+        font-size:30px;
         font-weight:900;
         color:#666;
       & > div:last-child
@@ -78,6 +82,11 @@
       border-radius:15px;
       margin-top:100px;
       padding:65px;
+
+      & .project-common-problem-list
+        height:354px;
+        overflow-x: hidden;
+        overflow-y :auto;
 
       & > .project-common-problem-title
         text-align :center;

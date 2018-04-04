@@ -18,7 +18,7 @@
               <img src="../../assets/img/participate.png">
             </b>
             <div class="info-big-img">
-              <img :src="projectInfo.projectImageAddress">
+              <img :src="projectInfo.projectCoverAddress">
             </div>
             <div class="info-right">
               <div>
@@ -33,8 +33,14 @@
                 <li>支持者</li>
                 <li><span>{{projectInfo.buyerNum}}</span></li>
                 <li>剩余时间</li>
-                <li><span>{{Date.parse(projectInfo.stopTime)-Date.parse(timeTxt) |
-                changeTimeStamp}}</span></li>
+                <li>
+                  <span v-show="projectInfo.status === 1">{{Date.parse(projectInfo.stopTime)-Date.parse(timeTxt) |
+                changeTimeStamp}}</span>
+                  <span v-show="projectInfo.status === 0">{{Date.parse(projectInfo.startTime)-Date.parse(timeTxt) |
+                changeTimeStamp}}</span>
+                  <span v-show="projectInfo.status === 2 && projectInfo.soldEth === projectInfo.ethNumber">圆满成功！</span>
+                  <span v-show="projectInfo.status === 2 && projectInfo.soldEth !== projectInfo.ethNumber">未完成！</span>
+                </li>
               </ul>
               <div class="info-now">
                 <span v-show="projectInfo.status === 1" disabled class="color-btn color-btn2"
@@ -46,22 +52,22 @@
             <div>
               <img :src="projectInfo.leaderImageAddress" alt="">
             </div>
-            <p class="info-people">{{projectInfo.leaderName}}</p>
-            <p class="info-people">{{projectInfo.position}}</p>
-            <p>{{projectInfo.description}}</p>
+            <p class="info-people" style="font-weight:900;font-size:18px;margin-top:24px;">{{projectInfo.leaderName}}</p>
+            <p class="info-people" >{{projectInfo.position}}</p>
+            <p style="height:165px;overflow:auto;color:#999;font-size:14px;">{{projectInfo.description}}</p>
           </div>
         </div>
         <div class="info-container-bottom">
           <div>
             <div class="info-container-bottom-title">项目详情</div>
             <div class="info-container-bottom-des">
-              <img :src="projectInfo.projectCoverAddress" alt="">
+              <img :src="projectInfo.projectImageAddress" alt="">
             </div>
           </div>
           <div>
             <ul>
               <li><span>兑换比例</span></li>
-              <li><span>1ETH={{projectInfo.ratio}}{{projectInfo.tokenName}}</span></li>
+              <li><span style="font-weight:900;font-size:18px;">1ETH={{projectInfo.ratio}}{{projectInfo.tokenName}}</span></li>
               <li><a target="_blank" class="color-btn color-btn2" :href="projectInfo.whitePaperAddress">白皮书下载</a></li>
               <li><span>项目官网</span></li>
               <li><a target="_blank" :href="projectInfo.homepage">{{projectInfo.homepage&&projectInfo.homepage.replace(/(https:\/\/www.)|(http:\/\/www.)/ig, '')}}</a></li>
@@ -190,7 +196,7 @@
         });
       },
       configPurchase() {
-        if (this.purchaseVal <= (this.projectInfo.ethNumber - this.projectInfo.soldEth)) {
+        if (parseFloat(this.purchaseVal) <= (this.projectInfo.ethNumber - this.projectInfo.soldEth).toFixed(1)) {
           this.dialogVisible = true;
         } else if (isNaN(this.purchaseVal)) {
           this.$message.error('请输入正确金额');

@@ -1,5 +1,5 @@
 <template>
-  <div class="help-con">
+  <div class="help-con container-dear">
     <div class="help-circle-con">
       <div class="help-circle">
       </div>
@@ -32,6 +32,7 @@
             <el-table
               :data="orderLists.list"
               v-loading="orderLoading"
+              height="430"
               style="width: 100%">
               <el-table-column
                 prop="orderId"
@@ -91,7 +92,7 @@
             </div>
           </div>
         </div>
-        <div v-show="listNum == 2" class="safety-pane-item">
+        <div v-show="listNum == 2"  class="safety-pane-item">
           <div class="safety-pane-item-left">
             <span :class="modifyNum === k ? 'selected-btn' : ''" @click="modifyNum = k" class="color-btn"
                   v-for="(v, k) in modifyList" :key="k">{{v.name}}</span>
@@ -184,6 +185,7 @@
         </div>
       </div>
     </div>
+    <footer-com></footer-com>
   </div>
 </template>
 
@@ -194,13 +196,15 @@
   import countDown from '../../components/countdown';
   import { cryptoFun } from '../../utils/index';
   import { getToken3 } from '@/utils/auth';
+  import foot from '../../components/foot';
   export default {
     name: 'safety',
     watch: {
       '$route.query.type': 'changeList'
     },
     components: {
-      'count-down': countDown
+      'count-down': countDown,
+      'footer-com': foot
     },
     data() {
       const validateEmail = (rule, value, callback) => {

@@ -3,6 +3,7 @@
     <el-table
       :data="historyList.list"
       v-loading="historyLoading"
+      height="430"
       style="width: 100%">
       <el-table-column
         prop="orderId"
@@ -48,7 +49,6 @@
       <el-table-column
         label="状态"
         align="center"
-        width="100"
       >
         <template slot-scope="scope">
           <span>{{scope.row.status === 0 ? '等待' : scope.row.status === 1 ? '进行' : scope.row.status === 2 ? '完成' : '失败'}}</span>

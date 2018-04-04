@@ -10,7 +10,7 @@
       </div>
       <div class="list-container-con">
         <div class="project-pane" v-loading="listLoading">
-          <div :class="k%2==0?'project-pane-item-d':''" @mouseenter="itemHandler(k+1)"
+          <div :class="k%2==0?'project-pane-item-d':'project-pane-item-s'" @mouseenter="itemHandler(k+1)"
                v-for="(v, k) in projectList.list" :key="k" @mouseleave="itemLeave" @click="changeInfo(v.id,k)"
                class="project-pane-item">
             <transition name="el-fade-in-linear">
@@ -21,31 +21,33 @@
               <img src="../../assets/img/participate.png">
             </b>
             <div class="project-bigImg">
-              <img :src="v.projectImageAddress" :alt="v.tokenName">
+              <img :src="v.projectCoverAddress" :alt="v.tokenName">
             </div>
             <div class="project-pane-item-info">
               <p class="project-coin">
                 <span>{{v.title}}</span>
+                <i v-show="v.status===0">目标：{{v.ethNumber}}ETH</i>
               </p>
               <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
               <div class="project-pane-number" v-show="v.status === 1">
                 <span>{{v.buyerNum}}人投</span>
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
               </div>
-              <p v-show="v.status===2&&Date.parse(v.stopTime) < Date.parse(timeTxt)" class="project-pane-item-over">{{v.soldEth
-                >=
-                v.ethNumber? '圆满结束':'未完成'}}</p>
-              <p v-show="v.status===0" class="project-pane-item-over">{{Date.parse(v.startTime)-Date.parse(timeTxt) |
-                changeTimeStamp}}</p>
-              <p class="project-pane-item-aims" v-show="v.status===0">
-                <span>目标：</span>
-                <span>{{v.ethNumber}}ETH</span>
+              <p v-show="v.status===2" class="project-pane-item-over">
+                <span v-if="v.soldEth >= v.ethNumber">圆满结束</span>
+                <span v-else>未完成</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day">剩余时间：<span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
+              <p v-show="v.status===0" class="project-pane-item-over">
+                <span style="font-size:16px;position: relative;top:-10px;">倒计时</span><br/>
+                {{Date.parse(v.startTime)-Date.parse(timeTxt) |
+                changeTimeStamp}}
+              </p>
+
+              <p v-show="v.status === 1" class="project-pane-item-day" style="line-height: 22px;">剩余时间：<br/><span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span></p>
               <div v-show="v.status === 1" class="project-pane-item-time">项目起止：
                 <p class="project-time-txt">
-                  {{v.startTime | timeDown}}—{{v.stopTime | timeDown}}
+                  {{v.startTime | timeDown}}--{{v.stopTime | timeDown}}
                 </p>
               </div>
             </div>
@@ -76,7 +78,7 @@
         maskLayer: false,
         listLoading: false,
         layerNum: 0,
-        navNum: '',
+        navNum: 0,
         navList: [
           {
             title: '所有项目',
