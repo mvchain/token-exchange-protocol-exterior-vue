@@ -104,7 +104,7 @@
             </div>
           </div>
         </div>
-        <div v-show="projectList.list&&projectList.list.length>3" class="project-pane-icon">
+        <div v-show="projectList.list&&projectList.list.length>4" class="project-pane-icon">
           <ul>
             <li :class="paneNum==k?'banner-hover-icon':''" v-for="(v, k) in 2" @click="paneHandler(k)" :key="k"></li>
           </ul>

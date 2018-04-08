@@ -7,8 +7,8 @@
             <span class="color-btn color-btn2" @click="$router.back()"><i class="el-icon-arrow-left"></i>返回上一级</span>
           </div>
           <div>
-            <span class="color-btn" @click="getOtherInfo($route.query.idx, true)">上一个</span>
-            <span class="color-btn" @click="getOtherInfo($route.query.idx, false)">下一个</span>
+            <span :disabled =  preFlag :class="!preFlag && 'btn-opcity'" class="color-btn" @click="getOtherInfo(true)">上一个</span>
+            <span :disabled =  nextFlag :class="!nextFlag && 'btn-opcity'" class="color-btn" @click="getOtherInfo( false)">下一个</span>
           </div>
         </div>
         <div class="info-container-middle">
@@ -39,7 +39,7 @@
                   <span v-show="projectInfo.status === 0">{{Date.parse(projectInfo.startTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span>
                   <span v-show="projectInfo.status === 2 && projectInfo.soldEth === projectInfo.ethNumber">圆满成功！</span>
-                  <span v-show="projectInfo.status === 2 && projectInfo.soldEth !== projectInfo.ethNumber">未完成！</span>
+                  <span v-show="projectInfo.status === 2 && projectInfo.soldEth !== projectInfo.ethNumber">未完成!</span>
                 </li>
               </ul>
               <div class="info-now">
@@ -146,13 +146,19 @@
         txPassword: '',
         infoLoading: false,
         dialogTableVisible: false,
-        dialogVisible: false
+        dialogVisible: false,
+        preFlag: false,
+        nextFlag: false,
+        idxNum: 0
       };
     },
     mounted() {
       this.getTimeFun();
       this.getProjectInfo(this.$route.query.id, this.$route.query.idx);
       this.$store.dispatch('getProjectList', `pageNum=1&pageSize=1000&orderBy=created_at desc`).then(() => {
+        this.getListIdx(parseInt(this.$route.query.id));
+        this.preFlag = this.idxNum === 0;
+        this.nextFlag = this.idxNum === this.projectList.list.length - 1;
       }).catch((err) => {
         this.$message.error(err);
       });
@@ -216,24 +222,26 @@
           this.$message.error(err);
         });
       },
-      getProjectInfo(id, idx) {
+      getProjectInfo(id) {
         this.infoLoading = true;
         this.$store.dispatch('getProjectInfo', id).then(() => {
-          this.$route.query.id = this.projectInfo.id;
-          this.$route.query.idx = idx;
           this.infoLoading = false;
+          this.preFlag = this.idxNum !== 0;
+          this.nextFlag = (this.idxNum !== this.projectList.list.length - 1);
         }).catch((err) => {
           this.$message.error(err);
           this.infoLoading = false;
         });
       },
-      getOtherInfo(idx, type) {
-        idx = parseInt(idx);
+      getOtherInfo(type) {
         if (type) {
-          this.getProjectInfo(this.projectList.list[idx === 0 ? 0 : idx - 1].id, idx === 0 ? 0 : idx - 1);
+          if (this.idxNum === 0) return;
+          this.idxNum --;
         } else {
-          this.getProjectInfo(this.projectList.list[idx >= this.projectList.list.length - 1 ? idx : idx + 1].id, idx >= this.projectList.list.length - 1 ? idx : idx + 1);
+          if (this.idxNum === this.projectList.list.length - 1) return;
+          this.idxNum ++;
         }
+        this.getProjectInfo(this.projectList.list[this.idxNum].id);
       },
       fundsHandler() {
         this.purchaseVal = Number(this.purchaseVal).toFixed(1);
@@ -242,6 +250,11 @@
         this.$store.dispatch('getTimeHandler').then((res) => {
         }).catch((err) => {
           this.$message.error(err);
+        });
+      },
+      getListIdx(idx) {
+        this.projectList.list.forEach((v, k) => {
+          (v.id === idx) && (this.idxNum = k);
         });
       }
     }

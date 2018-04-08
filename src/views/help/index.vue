@@ -1,7 +1,7 @@
 <template>
   <div class="help-con">
     <div class="help-circle-con">
-      <div class="help-circle">帮助与支持</div>
+      <div class="help-circle">帮 助 与 支 持</div>
     </div>
     <div class="help-rectangle">
       <div>

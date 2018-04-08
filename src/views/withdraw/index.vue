@@ -24,8 +24,8 @@
             <ul>
               <li>账户余额：{{withdrawInfo.balance}}</li>
               <li>单日提现上限：{{withdrawInfo.max}}</li>
-              <li>最少提现{{withdrawInfo.min}}{{$route.query.code}}，单次最多{{withdrawInfo.max}}{{$route.query.code}}</li>
-              <li>提现手续费{{withdrawInfo.poundage}}{{$route.query.code}}</li>
+              <li>最少提现 {{withdrawInfo.min}}，单次最多 {{withdrawInfo.max}}</li>
+              <li>提现手续费 {{withdrawInfo.poundage}}</li>
             </ul>
           </el-form-item>
           <el-form-item prop="transactionPassword">
