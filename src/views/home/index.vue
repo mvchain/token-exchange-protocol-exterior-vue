@@ -161,7 +161,7 @@
         maskLayer: false,
         ewmFlag: false,
         layerNum: 0,
-        activeNames: ['1'],
+        activeNames: ['0'],
         myBackToTopStyle: {
           right: '50px',
           bottom: '50px',

@@ -20,11 +20,11 @@
           </el-form-item>
           <el-form-item>
             <span style="cursor:pointer;" @click="changePage('modify')">忘记密码？</span>
-            <span style="float:right;">还没有账户？<el-button type="text" @click="changePage('registered')">注册</el-button></span>
+            <span style="float:right;">还没有账户？<el-button  type="text" @click="changePage('registered')">注册</el-button></span>
           </el-form-item>
 
           <el-form-item class="login-container-form-sub">
-            <el-button v-loading="subFlag" @click="registeredSub('loginData')">登 录</el-button>
+            <el-button class="registedBtn" v-loading="subFlag" @click="registeredSub('loginData')">登 录</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -56,13 +56,13 @@
             <el-input placeholder="输入交易密码" v-model="registeredData.transactionPassword" type="password"></el-input>
           </el-form-item>
           <el-form-item prop="password4">
-            <el-input placeholder="再次交易登录密码" v-model="registeredData.password4" type="password"></el-input>
+            <el-input placeholder="再次输入交易密码" v-model="registeredData.password4" type="password"></el-input>
           </el-form-item>
           <el-form-item style="text-align: center">
             <el-checkbox v-model="checked">同意用户协议《用户协议》</el-checkbox>
           </el-form-item>
           <el-form-item class="login-container-form-sub" style="margin-top:-10px;">
-            <el-button v-loading="subFlag" @click="registeredSub('registeredData')">注 册</el-button>
+            <el-button class="registedBtn" v-loading="subFlag" @click="registeredSub('registeredData')">注 册</el-button>
           </el-form-item>
         </el-form>
       </div>

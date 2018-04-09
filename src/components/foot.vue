@@ -34,9 +34,8 @@
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
   .token-footer
-    background:url('../assets/img/back-img-btm-1.png') no-repeat top center;
-    background-size:100% ;
-    min-height:300px;
+    background:url('../assets/img/back-img-btm-1.png') no-repeat bottom center;
+    min-height:315px;
 
     .footer-contact
       margin-top:100px;

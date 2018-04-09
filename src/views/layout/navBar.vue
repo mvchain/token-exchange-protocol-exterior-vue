@@ -11,7 +11,7 @@
           <router-link class="nav-container-link" to="/home">首页</router-link>
           <router-link class="nav-container-link" to="/proList">项目列表</router-link>
           <router-link class="nav-container-link" to="/help">帮助支持</router-link>
-          <a v-show="!uTxt" class="nav-container-link login-btn color-btn" @click="loginHandler('login')">登录</a>
+          <a v-show="!uTxt" class="nav-container-link login-btn login-btn1 color-btn" @click="loginHandler('login')">登录</a>
           <a v-show="!uTxt" class="nav-container-link login-btn login-btn2 color-btn color-btn2"
              @click="loginHandler('registered')">注册</a>
           <a v-show="uTxt" class="isLogin" @mouseenter="listFlag=true" @mouseleave="listFlag=false">
