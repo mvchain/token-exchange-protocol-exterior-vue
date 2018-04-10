@@ -154,11 +154,9 @@
     },
     mounted() {
       this.getTimeFun();
-      this.getProjectInfo(this.$route.query.id, this.$route.query.idx);
       this.$store.dispatch('getProjectList', `pageNum=1&pageSize=1000&orderBy=created_at desc`).then(() => {
         this.getListIdx(parseInt(this.$route.query.id));
-        this.preFlag = this.idxNum === 0;
-        this.nextFlag = this.idxNum === this.projectList.list.length - 1;
+        this.getProjectInfo(this.$route.query.id);
       }).catch((err) => {
         this.$message.error(err);
       });
