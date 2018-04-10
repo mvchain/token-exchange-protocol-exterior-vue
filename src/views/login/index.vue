@@ -1,9 +1,9 @@
 <template>
   <div class="login-con" :style="loginHeight">
     <div v-show="loginFlag" class="login-container">
-      <div class="login-container-title">登 录</div>
+      <div class="login-container-title" >登 录</div>
       <div class="login-container-form">
-        <el-form :rules="rules" ref="loginData" :model="loginData">
+        <el-form @keyup.enter.native="registeredSub('loginData')"  :rules="rules" ref="loginData" :model="loginData">
           <el-form-item prop="username">
             <el-input placeholder="邮箱" v-model="loginData.username" type="text"></el-input>
           </el-form-item>
@@ -229,6 +229,9 @@
       this.createCode();
     },
     methods: {
+      registeredSub1() {
+        console.log(1);
+      },
       sendEmail(name) {
         if (!this.validateCodeInterval) {
           this.$store.dispatch('getValiEmail', this[name].email).then(() => {
