@@ -5,7 +5,9 @@
         :style="scrollNum&&$route.path==='/home'?'box-shadow: none;':'box-shadow: 0 8px 16px 5px rgba(80,35,54,.15);'"
         :class="scrollNum?'home-nav':'home-nav-other'" class="nav-container-bottom home-nav">
         <div class="main-size">
-          <div class="navBar-logo"></div>
+          <div class="navBar-logo">
+            <img :src="scrollNum?loginI1:loginI2" alt="">
+          </div>
         </div>
         <div>
           <router-link class="nav-container-link" to="/home">首页</router-link>
@@ -42,6 +44,8 @@
 
 <script>
   import {mapGetters} from 'vuex';
+  import loginImg1 from '@/assets/img/login-w.png';
+  import loginImg2 from '@/assets/img/logo-c.png';
   import { getToken3 } from '@/utils/auth';
   export default {
     watch: {
@@ -51,7 +55,9 @@
       return {
         scrollNum: true,
         listFlag: false,
-        uTxt: ''
+        uTxt: '',
+        loginI1: loginImg1,
+        loginI2: loginImg2
       };
     },
 
