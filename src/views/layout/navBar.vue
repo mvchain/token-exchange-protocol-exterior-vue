@@ -36,6 +36,14 @@
               </div>
             </transition>
           </a>
+          <el-select @change="changeFun" id="languageAuto" v-model="langVal" placeholder="请选择">
+            <el-option
+              v-for="item in langList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </div>
       </div>
     </nav>
@@ -57,11 +65,28 @@
         listFlag: false,
         uTxt: '',
         loginI1: loginImg1,
-        loginI2: loginImg2
+        loginI2: loginImg2,
+        langList: [
+          {
+            label: '中文',
+            value: 1
+          },
+          {
+            label: 'EN',
+            value: 2
+          }
+        ],
+        langVal: 1
       };
     },
 
     mounted: function () {
+      let language = (navigator.language || navigator.browserLanguage).toLowerCase();
+      if (language.indexOf('en') > -1) {
+        this.langVal = 2;
+      } else {
+        this.langVal = 1;
+      }
       const that = this;
       this.uTxt = getToken3();
       if (this.$route.path === '/home') {
@@ -88,6 +113,9 @@
       })
     },
     methods: {
+      changeFun(v) {
+        this.$store.dispatch('getLanguage', v);
+      },
       fetchdata(v) {
         this.uTxt = getToken3();
         let t = document.documentElement.scrollTop || document.body.scrollTop;

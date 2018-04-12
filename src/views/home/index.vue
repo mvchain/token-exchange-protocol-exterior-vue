@@ -13,7 +13,7 @@
     <div class="project-bottom">
       <div class="project-list">
         <div class="project-title" style="line-height: 48px;">
-          <div>项目列表</div>
+          <div>项目列表{{languageVal}}</div>
           <div>
             <span @click="changeHelp('/proList')" style=" width:150px;height:48px;"
                   class="color-btn color-btn2">更多项目</span>
@@ -148,8 +148,6 @@
 </template>
 <script type='text/ecmascript-6'>
   import b1 from '@/assets/img/Big-background1.png';
-  import b2 from '@/assets/img/Big-background2.png';
-  import b3 from '@/assets/img/Big-background3.png';
   import footer from '@/components/foot.vue';
   import BackToTop from '@/components/toTop.vue';
   import {mapGetters} from 'vuex';
@@ -177,11 +175,11 @@
           },
           {
             k: 1,
-            v: b2
+            v: b1
           },
           {
             k: 2,
-            v: b3
+            v: b1
           }
         ],
         carouselNum: 0,
@@ -209,7 +207,8 @@
     computed: {
       ...mapGetters({
         projectList: 'projectList',
-        timeTxt: 'timeTxt'
+        timeTxt: 'timeTxt',
+        languageVal: 'languageVal'
       })
     },
     methods: {

@@ -8,6 +8,7 @@ const getters = {
   historyList: state => state.Home.historyList,
   orderList: state => state.Home.orderList,
   timeTxt: state => state.Home.timeTxt,
-  tokenAddr: state => state.Home.tokenAddr
+  tokenAddr: state => state.Home.tokenAddr,
+  languageVal: state => state.Home.languageVal
 };
 export default getters;

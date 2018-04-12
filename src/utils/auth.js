@@ -47,5 +47,6 @@ export function removeToken3() {
 export function removeAll() {
   Object.keys(Cookies.get()).forEach((n) => {
     Cookies.remove(n)
+    console.log(n)
   })
 }

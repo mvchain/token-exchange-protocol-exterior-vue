@@ -11,8 +11,8 @@
       <div></div>
       <div>
         <div class="help-div" v-show="listNum === 0">
-          <h4><span>点击获取代币购买教程</span></h4>
-          <h4><span class="download-btn">下载教程</span></h4>
+          <h4><span>在线查看购买教程</span></h4>
+          <h4><span class="download-btn">查看教程</span></h4>
         </div>
       </div>
     </div>

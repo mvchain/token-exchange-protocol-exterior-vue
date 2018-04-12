@@ -10,7 +10,8 @@ const Home = {
     historyList: {},
     orderList: {},
     tokenAddr: '',
-    timeTxt: ''
+    timeTxt: '',
+    languageVal: 1
   },
 
   mutations: {
@@ -43,6 +44,9 @@ const Home = {
     },
     SET_TIME_TXT: (state, timeTxt) => {
       state.timeTxt = timeTxt;
+    },
+    SET_LANGAUGE: (state, languageVal) => {
+      state.languageVal = languageVal;
     }
   },
 
@@ -200,6 +204,9 @@ const Home = {
           reject(error);
         });
       });
+    },
+    getLanguage: ({commit, state}, payload) => {
+      commit('SET_LANGAUGE', payload);
     }
   }
 };

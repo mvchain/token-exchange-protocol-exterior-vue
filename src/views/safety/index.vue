@@ -70,7 +70,11 @@
                 align="center"
               >
                 <template slot-scope="scope">
-                  <span>{{scope.row.status === 2 ? '成功' : scope.row.status === 1 ? '正在进行' : '失败'}}</span>
+                  <span v-show="scope.row.status === 1">正在进行</span>
+                  <span v-show="scope.row.status === 9">失败</span>
+                  <span v-show="scope.row.status === 2">
+                    {{scope.row.ethNumber >= scope.row.projectEthNumber ? '圆满完成' : '未完成'}}
+                  </span>
                 </template>
               </el-table-column>
               <el-table-column
