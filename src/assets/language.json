@@ -227,12 +227,12 @@
     "Pleaseenteranewpassword": "Please enter a new password",
     "Enternewpasswordagain": "Enter new password again",
     "Confirmreset": "Confirm reset",
-    "Resetsuccessful": "Reset successful",
+    "Resetsuccessful": "Reset successfully",
     "regSUCCESS": "SUCCESS",
     "logSUCCESS": "SUCCESS",
 
 
-    "Fund": "Fund",
+    "Fund": "Finance",
     "Account": "Account",
     "orderManage": "Order",
     "Logout": "Logout",
@@ -249,9 +249,9 @@
     "Adress": "Adress",
     "Status": "Status",
     "Recharge": "Recharge",
-    "Withdrawal": "Withdrawal",
+    "Withdrawal": "Withdraw",
     "Done": "Done",
-    "Witing": "Witing",
+    "Witing": "waiting",
 
 
 
@@ -280,7 +280,7 @@
     "Enteroldpassword": "Enter old password",
 
     "TransactionPasswordModification": "Transaction Password Modification",
-    "Confirmrevision": "Confirm revision",
+    "Confirmrevision": "Confirm Modification",
 
 
     "Questions1": "Don’t know how to buy digital currency?",
