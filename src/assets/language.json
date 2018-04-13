@@ -1,45 +1,298 @@
 {
-  zh: {
-    "Home": "",
+  "zh": {
+    "Home": "首页",
     "Projects": "项目列表",
     "Help": "帮助支持",
     "Login": "登录",
     "SignUp": "注册",
-    "MoreInfo": "点击查看详情",
-    "OurProjects": "项目列表",
-    "MoreProject": "更多项目",
-    "INPROGRESS": "进行中",
-    "DONE": "圆满完成",
-    "OVER": "已结束",
-    "FAILED": "未完成",
-    "COMINGSOON": "即将开始 ",
-    "TIMEREMAINING": "剩余时间",
-    "TIMETABLE": "项目起止",
+
+    "MORE":"更多项目",
+    "COMINGSOON":"即将开始",
+    "INPROGRESS": "正在进行",
+    "over":"已结束",
+    "Timetable": "项目起止",
+    "Target": "目标",
+
     "TARGET": "目标",
-    "Questions": "常见问题",
-    "Contact": "联系我们",
-    "ALL": "所有项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目",
-    "MoreProject": "更多项目"
+    "TimeRemaining": "剩余时间",
+    "Countdown": "倒计时",
+    "DONE": "圆满结束",
+    "FAILED": "未完成",
+    "Involved": "已参与",
+    "DAYS": "天",
+    "HOURS": "小时",
+    "MINUTES": "分",
+    "FrequentlyAskedQuestions": "常见问题",
+    "LearnMore": "了解更多",
+    "ContactUs": "联系我们",
+
+
+    "ProjectParticipationTutorial": "项目参与教程",
+    "Clickfortutorial": "点击获取教程",
+    "DownloadTutorial": "下载教程",
+
+    "ALLPROJECTS": "所有项目",
+    "BACK": "返回上一级",
+    "PREV": "上一个",
+    "NEXT": "下一个",
+
+    "StartTime": "项目开始",
+    "PARTICIPANTS": "参与者",
+    "TIMEREMAINING": "剩余时间",
+    "ProjectDetails": "项目详情",
+    "RATE": "兑换比例",
+    "WhiterPaperDownload": "白皮书下载",
+    "Website": "项目官网",
+    "Participate": "立即参与",
+    "Clickfordetails": "点击查看详情",
+    "peopleinvolved": "人参与",
+
+
+    "Email": "邮箱",
+    "Code": "验证码",
+    "Sendthecode": "发送验证码",
+    "Invalidverificationcode,pleaseregain": "验证码错误，请重新获取",
+    "Sent": "已发送",
+    "Enterloginpassword": "输入登录密码",
+    "Pleaseenterloginpassword": "请输入登录密码",
+    "Entertheloginpasswordagain": "再次输入登陆密码",
+    "Pleaseenteryourloginpasswordagain": "请再次输入登陆密码",
+    "Entertransactionpassword": "输入交易密码",
+    "Pleaseenterthetransactionpassword": "请输入交易密码",
+    "Entertransactionpasswordagain": "再次输入交易密码",
+    "Pleaseentertransactionpasswordagain": "请再次输入交易密码",
+    "AgreedtotheUserAgreement": "同意用户协议《用户协议》",
+    "Forgotyourpassword": "忘记密码",
+    "Newuser": "还没有账户？",
+    "Pleasecompletetheforminformation": "请完善表单信息",
+    "Pleaseentertheemailaddress": "请输入邮箱",
+    "Pleaseenteracode": "请输入验证码",
+    "Theformatofthemailboxisincorrect": "邮箱格式错误",
+    "Loginpasswordmustbeatleastdigitsandincludenumbersandletters": "登录密码需至少6位且包含数字和字母",
+    "Theloginpasswordisinconsistentlyenteredtwice": "登录密码两次输入不一致",
+    "Inconsistentinputoftransactionpasswordtwice": "交易密码两次输入不一致",
+
+
+    "Resetpassword": "重置密码",
+    "Enternewpassword": "输入新密码",
+    "Pleaseenteranewpassword": "请输入新密码",
+    "Enternewpasswordagain": "再次输入新密码",
+    "Confirmreset": "确认重置",
+    "Resetsuccessful": "重置成功",
+    "regSUCCESS": "注册成功",
+    "logSUCCESS": "登录成功",
+
+
+
+    "Fund": "资金管理",
+    "Account": "账户安全",
+    "orderManage": "订单管理",
+    "Logout": "登出",
+
+
+    "Balance": "余额",
+    "History": "充提历史",
+    "Currency": "币种",
+    "Operation": "操作",
+
+
+    "Type": "类型",
+    "Amount": "金额",
+    "Adress": "地址",
+    "Status": "状态",
+    "Recharge": "充值",
+    "Withdrawal": "提现",
+    "Witing": "等待",
+
+
+
+
+    "Order": "订单号",
+    "All": "所有",
+    "Time": "时间",
+    "Project": "项目名称",
+    "buyAmount": "购买金额",
+    "Number": "购买数量",
+    "ProjectStatus": "项目状态",
+    "OrderStatus": "订单状态",
+    "Done": "已完成",
+    "Faild": "未完成",
+    "InProgress": "正在进行",
+    "Undelivered": "未发币",
+    "Issued": "已发币",
+    "Cleared": "已清退",
+    "Cancel": "已取消",
+    "Waiting": "等待",
+
+    "Emailmodification": "邮箱修改",
+    "Emailisalreadybound": "已绑定邮箱",
+    "Gotomodify": "前往修改",
+
+    "LoginPasswordModification": "登录密码修改",
+    "Enteroldpassword": "输入旧密码",
+
+    "TransactionPasswordModification": "交易密码修改",
+    "Confirmrevision": "确认修改",
+
+    "Questions1": "我不知道如何参与购买数字货币怎么办？",
+    "Questions2": "支持哪些币种购买数字货币？",
+    "Questions3": "参与成功后，在哪能看到自己的购买订单？",
+    "Questions4": "我交易密码忘记了怎么办？",
+    "Questions5": "我参与的项目结束后，为什么余额里对应的数字货币余额还是为 0 ？",
+    "Answer1": "点击网站顶部的“帮助支持”，页面内可以在线查看参与教程 PDF 文档。",
+    "Answer2": "目前暂时只支持 ETH 购买，未来我们会支持更多币种。",
+    "Answer3": "账户登录后，右上角账户选项下拉菜单里，订单管理页面可以查看到您所有的购买订单信息，包括订单是否发币的状态。订单发币后，可在资金管理页面查询到对应代币余额。",
+    "Answer4": "登录账户后，右上角账户选项下拉菜单里，账户安全页面可以修改交易密码。",
+    "Answer5": "项目购买结束后，并不是立即发放代币，每个项目结束后代币发放时间都有所不同，具体时间请留意网站公告。代币发放后，余额页面可以查询到所获得的代币数量。"
+
+
+
   },
-  en: {
+  "en": {
+    "Home": "Home",
+    "Projects": "Projects",
+    "Help": "Help",
+    "Login": "Login",
+    "SignUp": "Sign Up",
+
+    "MORE":"MORE",
+    "COMINGSOON":"COMINGSOON",
+    "INPROGRESS": "INPROGRESS",
+    "over":"DONE",
+    "Timetable": "Timetable",
+    "Target": "Target",
+
+
+    "TARGET": "TARGET",
+    "TimeRemaining": "TimeRemaining",
+    "Countdown": "Countdown",
+    "DONE": "DONE",
+    "FAILED": "FAILED",
+    "Involved": "Involved",
+    "DAYS": "DAYS",
+    "HOURS": "HOURS",
+    "MINUTES": "MINUTES",
+    "FrequentlyAskedQuestions": "Frequently Asked Questions",
+    "LearnMore": "Learn More",
+    "ContactUs": "Contact Us",
+
+    "ProjectParticipationTutorial": "Project Participation Tutorial",
+    "Clickfortutorial": "Click for tutorial",
+    "DownloadTutorial": "Download Tutorial",
+
+    "ALLPROJECTS": "ALL PROJECTS",
+    "BACK": "BACK",
+    "PREV": "PREV",
+    "NEXT": "NEXT",
+    "StartTime": "Start Time",
+    "PARTICIPANTS": "PARTICIPANTS",
+    "TIMEREMAINING": "TIME REMAINING",
+    "ProjectDetails": "Project Details",
+    "RATE": "RATE",
+    "WhiterPaperDownload": "Whiter Paper Download",
+    "Website": "Website",
+    "Participate": "Participate",
+    "Clickfordetails": "Click for details",
+    "peopleinvolved": "people involved",
+
+
+    "Email": "E-mail",
+    "Code": "Code",
+    "Sendthecode": "Send the code",
+    "Invalidverificationcode,pleaseregain": "Invalid verification code, please regain",
+    "Sent": "Sent",
+    "Enterloginpassword": "Enter login password",
+    "Pleaseenterloginpassword": "Please enter login password",
+    "Entertheloginpasswordagain": "Enter the login password again",
+    "Pleaseenteryourloginpasswordagain": "Please enter your login password again",
+    "Entertransactionpassword": "Enter transaction password",
+    "Pleaseenterthetransactionpassword": "Please enter the transaction password",
+    "Entertransactionpasswordagain": "Enter transaction password again",
+    "Pleaseentertransactionpasswordagain": "Please enter transaction password again",
+    "AgreedtotheUserAgreement": "Agreed to the User Agreement ",
+    "Forgotyourpassword": "Forgot your password",
+    "Newuser": "New user ?",
+    "Pleasecompletetheforminformation": "Please complete the form information",
+    "Pleaseentertheemailaddress": "Please enter the email address",
+    "Pleaseenterlogin password": "Please enter login password",
+    "Pleaseenteracode": "Please enter a code",
+    "Theformatofthemailboxisincorrect": "The format of the mailbox is incorrect",
+    "Loginpasswordmustbeatleastdigitsandincludenumbersandletters": "Login password must be at least 6 digits and include numbers and letters",
+    "Theloginpasswordisinconsistentlyenteredtwice": "The login password is inconsistently entered twice",
+    "Inconsistentinputoftransactionpasswordtwice": "Inconsistent input of transaction password twice",
+
+
+    "Resetpassword": "Reset password",
+    "Enternewpassword": "Enter new password",
+    "Pleaseenteranewpassword": "Please enter a new password",
+    "Enternewpasswordagain": "Enter new password again",
+    "Confirmreset": "Confirm reset",
+    "Resetsuccessful": "Reset successful",
+    "regSUCCESS": "SUCCESS",
+    "logSUCCESS": "SUCCESS",
+
+
+    "Fund": "Fund",
+    "Account": "Account",
+    "orderManage": "Order",
+    "Logout": "Logout",
+
+
+    "Balance": "Balance",
+    "History": "History",
+    "Currency": "Currency",
+    "Operation": "Operation",
+
+
+    "Type": "Type",
+    "Amount": "Amount",
+    "Adress": "Adress",
+    "Status": "Status",
+    "Recharge": "Recharge",
+    "Withdrawal": "Withdrawal",
+    "Done": "Done",
+    "Witing": "Witing",
+
+
+
+
+    "Order": "Order",
+    "All": "All",
+    "Time": "Time",
+    "Project": "Project",
+    "buyAmount": "Amount",
+    "Number": "Number",
+    "ProjectStatus": "Project Status",
+    "OrderStatus": "Order Status",
+
+
+    "Undelivered": "Undelivered",
+    "Issued": "Issued",
+    "Cleared": "Cleared",
+    "Cancel": "Cancel",
+    "Waiting": "Waiting",
+
+    "Emailmodification": "E-mail modification",
+    "Emailisalreadybound": "E-mail is already bound",
+    "Gotomodify": "Go to modify",
+
+    "LoginPasswordModification": "Login Password Modification",
+    "Enteroldpassword": "Enter old password",
+
+    "TransactionPasswordModification": "Transaction Password Modification",
+    "Confirmrevision": "Confirm revision",
+
+
+    "Questions1": "Don’t know how to buy digital currency?",
+    "Questions2": "How many tokens are supported?",
+    "Questions3": "Where can I see my purchase order after I participate?",
+    "Questions4": "What if I forgot the transaction password?",
+    "Questions5": "As the project is complete, why is the corresponding digital currency balance still 0?",
+    "Answer1": "Click on “Help Support” at the top of the website to view the Participation Tutorial PDF document online.",
+    "Answer2": "Presently, only ETH is supported. We will support more tokens in the future.",
+    "Answer3": "After logging in, in the drop-down menu of account options in the upper right corner, the order management page can view all your purchase order information, including the status of whether the order was issued. After the order is issued, the corresponding token balance can be found on the fund management page.",
+    "Answer4": "After logging in, the account security page can modify the transaction password in the account option drop-down menu in the upper right corner.",
+    "Answer5": "After the purchase of the project is finished, the tokens are not issued immediately. The time for issuing tokens after the completion of each project is different. Please pay attention to the website announcement at the specific time. After the token is issued, the balance page can query the number of tokens obtained."
 
   }
 }

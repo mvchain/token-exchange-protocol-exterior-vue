@@ -1,8 +1,8 @@
 <template>
   <div class="recharge-con">
-    <h1 class="recharge-title">充值</h1>
+    <h1 class="recharge-title">{{languageVal.Recharge}}</h1>
     <div class="recharge-info">
-      <div class="recharge-type">ETH充值地址</div>
+      <div class="recharge-type">ETH{{languageVal.Recharge}}{{languageVal.Adress}}</div>
       <div class="recharge-addr">
         <input style="width:450px;" id="codeID" readonly v-model="tokenAddr">
         <span @click="copyHandler">复制</span>
@@ -30,7 +30,8 @@
     },
     computed: {
       ...mapGetters({
-        tokenAddr: 'tokenAddr'
+        tokenAddr: 'tokenAddr',
+        languageVal: 'languageVal'
       })
     },
     methods: {

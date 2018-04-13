@@ -1,4 +1,5 @@
 import { getTimeService, checkEmail, projectList, projectInfo, balance, transaction, transactionPro, tokenList, withdrawInfo, withdraw, getHistory, modifyEmail, modifyPwd, modifyTx, orderServer, tokenaddress } from '@/services/index.js';
+import lang from '@/assets/language.json';
 const Home = {
   state: {
     projectList: {},
@@ -11,7 +12,7 @@ const Home = {
     orderList: {},
     tokenAddr: '',
     timeTxt: '',
-    languageVal: 1
+    languageVal: {}
   },
 
   mutations: {
@@ -206,7 +207,7 @@ const Home = {
       });
     },
     getLanguage: ({commit, state}, payload) => {
-      commit('SET_LANGAUGE', payload);
+      commit('SET_LANGAUGE', (payload === 1 ? lang.zh : lang.en));
     }
   }
 };

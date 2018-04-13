@@ -10,12 +10,12 @@
           </div>
         </div>
         <div>
-          <router-link class="nav-container-link" to="/home">首页</router-link>
-          <router-link class="nav-container-link" to="/proList">项目列表</router-link>
-          <router-link class="nav-container-link" to="/help">帮助支持</router-link>
-          <a v-show="!uTxt" class="nav-container-link login-btn login-btn1 color-btn" @click="loginHandler('login')">登录</a>
+          <router-link class="nav-container-link" to="/home">{{languageVal.Home}}</router-link>
+          <router-link class="nav-container-link" to="/proList">{{languageVal.Projects}}</router-link>
+          <router-link class="nav-container-link" to="/help">{{languageVal.Help }}</router-link>
+          <a v-show="!uTxt" class="nav-container-link login-btn login-btn1 color-btn" @click="loginHandler('login')">{{languageVal.Login}}</a>
           <a v-show="!uTxt" class="nav-container-link login-btn login-btn2 color-btn color-btn2"
-             @click="loginHandler('registered')">注册</a>
+             @click="loginHandler('registered')">{{languageVal.SignUp}}</a>
           <a v-show="uTxt" class="isLogin" @mouseenter="listFlag=true" @mouseleave="listFlag=false">
             <img src="../../assets/img/avatar.png" alt="">
             <span>{{uTxt}}</span>
@@ -23,15 +23,15 @@
               <div v-show="listFlag" class="transition-box">
                 <ul>
                   <li>
-                    <router-link class="nav-container-link" to="/safety?type=0">资金管理</router-link>
+                    <router-link class="nav-container-link" to="/safety?type=0">{{languageVal.Fund}}</router-link>
                   </li>
                   <li>
-                    <router-link class="nav-container-link" to="/safety?type=1">订单管理</router-link>
+                    <router-link class="nav-container-link" to="/safety?type=1">{{languageVal.orderManage}}</router-link>
                   </li>
                   <li>
-                    <router-link class="nav-container-link" to="/safety?type=2">账户安全</router-link>
+                    <router-link class="nav-container-link" to="/safety?type=2">{{languageVal.Account}}</router-link>
                   </li>
-                  <li><a @click="logout">登出</a></li>
+                  <li><a @click="logout">{{languageVal.Logout}}</a></li>
                 </ul>
               </div>
             </transition>
@@ -83,9 +83,9 @@
     mounted: function () {
       let language = (navigator.language || navigator.browserLanguage).toLowerCase();
       if (language.indexOf('en') > -1) {
-        this.langVal = 2;
+        this.changeFun(2);
       } else {
-        this.langVal = 1;
+        this.changeFun(1);
       }
       const that = this;
       this.uTxt = getToken3();
@@ -109,7 +109,8 @@
     },
     computed: {
       ...mapGetters({
-        username: 'username'
+        username: 'username',
+        languageVal: 'languageVal'
       })
     },
     methods: {

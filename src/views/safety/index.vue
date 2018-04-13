@@ -36,49 +36,49 @@
               style="width: 100%">
               <el-table-column
                 prop="orderId"
-                label="订单号"
+                :label="languageVal.Order"
                 align="center"
               >
               </el-table-column>
               <el-table-column
                 prop="createdAt"
-                label="时间"
+                :label="languageVal.Time"
                 align="center"
               >
               </el-table-column>
               <el-table-column
                 prop="projectName"
-                label="项目名称"
+                :label="languageVal.Project"
                 align="center"
               >
               </el-table-column>
               <el-table-column
                 prop="ethNumber"
-                label="购买金额"
+                :label="languageVal.buyAmount"
                 align="center"
               >
               </el-table-column>
               <el-table-column
                 prop="tokenNumber"
-                label="购买数量"
+                :label="languageVal.Number"
                 align="center"
               >
               </el-table-column>
               <el-table-column
                 prop="status"
-                label="项目状态"
+                :label="languageVal.ProjectStatus"
                 align="center"
               >
                 <template slot-scope="scope">
-                  <span v-show="scope.row.status === 1">正在进行</span>
-                  <span v-show="scope.row.status === 9">失败</span>
+                  <span v-show="scope.row.status === 1">{{languageVal.InProgress}}</span>
+                  <span v-show="scope.row.status === 9">{{languageVal.FAILED}}</span>
                   <span v-show="scope.row.status === 2">
-                    {{scope.row.ethNumber >= scope.row.projectEthNumber ? '圆满完成' : '未完成'}}
+                    {{scope.row.ethNumber >= scope.row.projectEthNumber ? languageVal.DONE : languageVal.FAILED}}
                   </span>
                 </template>
               </el-table-column>
               <el-table-column
-                label="订单状态"
+                :label="languageVal.OrderStatus"
                 align="center"
               >
                 <template slot-scope="scope">
@@ -109,7 +109,7 @@
                 </el-form-item>
                 <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
                   <el-col :span="12">
-                    <el-input placeholder="输入验证码" v-model="modifyEmailFrom.emailCode"></el-input>
+                    <el-input :placeholder="languageVal.Pleaseenteracode" v-model="modifyEmailFrom.emailCode"></el-input>
                   </el-col>
                   <el-col :span="12" style="text-align: center;line-height: 45px;">
                     <count-down :username="modifyEmailFrom.email"></count-down>
@@ -117,16 +117,16 @@
                 </el-form-item>
                 <el-form-item prop="name" class="safety-pane-item-modify-btn">
                   <span class="color-btn color-btn2"
-                        @click="modifyEmailSub('modifyEmailFrom', 'modifyEmail')">确认修改</span>
+                        @click="modifyEmailSub('modifyEmailFrom', 'modifyEmail')">{{languageVal.Confirmrevision}}</span>
                 </el-form-item>
               </el-form>
               <el-form v-show="!emailFlag">
                 <el-form-item class="safety-pane-item-modify-input">
-                 <p>已绑定邮箱：{{username1}}</p>
+                 <p>{{languageVal.Emailisalreadybound}}：{{username1}}</p>
                 </el-form-item>
                 <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
                   <el-col :span="12">
-                    <el-input placeholder="输入验证码" v-model="modifyCheckFrom.emailCode"></el-input>
+                    <el-input :placeholder="languageVal.Pleaseenteracode" v-model="modifyCheckFrom.emailCode"></el-input>
                   </el-col>
                   <el-col :span="12" style="text-align: center;line-height: 45px;">
                     <count-down :username="username1"></count-down>
@@ -134,24 +134,24 @@
                 </el-form-item>
                 <el-form-item prop="name" class="safety-pane-item-modify-btn">
                   <span class="color-btn color-btn2"
-                        @click="modifyValiSub()">前往修改</span>
+                        @click="modifyValiSub()">{{languageVal.Gotomodify}}</span>
                 </el-form-item>
               </el-form>
             </div>
             <div v-show="modifyNum === 1" class="safety-pane-item-modify-con modify-login-pwd">
               <el-form :model="modifyLoginPwd" :rules="rules" ref="modifyLoginPwd">
                 <el-form-item prop="password" class="safety-pane-item-modify-input">
-                  <el-input type="password" placeholder="输入旧密码" v-model="modifyLoginPwd.password"></el-input>
+                  <el-input type="password" :placeholder="languageVal.Enteroldpassword" v-model="modifyLoginPwd.password"></el-input>
                 </el-form-item>
                 <el-form-item prop="newPassword" class="safety-pane-item-modify-input">
-                  <el-input type="password" placeholder="输入新密码" v-model="modifyLoginPwd.newPassword"></el-input>
+                  <el-input type="password" :placeholder="languageVal.Enternewpassword" v-model="modifyLoginPwd.newPassword"></el-input>
                 </el-form-item>
                 <el-form-item prop="newPassword2" class="safety-pane-item-modify-input">
-                  <el-input type="password" placeholder="再次输入新密码" v-model="modifyLoginPwd.newPassword2"></el-input>
+                  <el-input type="password" :placeholder="languageVal.Enternewpasswordagain" v-model="modifyLoginPwd.newPassword2"></el-input>
                 </el-form-item>
                 <el-form-item prop="imageCode" class="safety-pane-item-modify-input">
                   <el-col :span="12">
-                    <el-input placeholder="输入验证码" v-model="modifyLoginPwd.imageCode"></el-input>
+                    <el-input :placeholder="languageVal.Pleaseenteracode" v-model="modifyLoginPwd.imageCode"></el-input>
                   </el-col>
                   <el-col :span="12" style="text-align: center;line-height: 45px;">
                     <b @click="createCode"><img :src="verificationImg" alt=""></b>
@@ -159,21 +159,21 @@
                 </el-form-item>
                 <el-form-item prop="name" class="safety-pane-item-modify-btn">
                   <span class="color-btn color-btn2"
-                        @click="modifyEmailSub('modifyLoginPwd', 'modifyPwdHandler')">确认修改</span>
+                        @click="modifyEmailSub('modifyLoginPwd', 'modifyPwdHandler')">{{languageVal.Confirmrevision}}</span>
                 </el-form-item>
               </el-form>
             </div>
             <div v-show="modifyNum === 2" class="safety-pane-item-modify-con modify-tx-pwd">
               <el-form :model="modifyTxPwd" :rules="rules" ref="modifyTxPwd">
                 <el-form-item prop="transactionPassword" class="safety-pane-item-modify-input">
-                  <el-input type="password" placeholder="输入新密码" v-model="modifyTxPwd.transactionPassword"></el-input>
+                  <el-input type="password" :placeholder="languageVal.Enternewpassword" v-model="modifyTxPwd.transactionPassword"></el-input>
                 </el-form-item>
                 <el-form-item prop="transactionPassword2" class="safety-pane-item-modify-input">
-                  <el-input type="password" placeholder="再次输入新密码" v-model="modifyTxPwd.transactionPassword2"></el-input>
+                  <el-input type="password" :placeholder="languageVal.Enternewpasswordagain" v-model="modifyTxPwd.transactionPassword2"></el-input>
                 </el-form-item>
                 <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
                   <el-col :span="12">
-                    <el-input placeholder="输入验证码" v-model="modifyTxPwd.emailCode"></el-input>
+                    <el-input :placeholder="languageVal.Pleaseenteracode" v-model="modifyTxPwd.emailCode"></el-input>
                   </el-col>
                   <el-col :span="12" style="text-align: center;line-height: 45px;">
                     <count-down :username="username1"></count-down>
@@ -181,7 +181,7 @@
                 </el-form-item>
                 <el-form-item prop="name" class="safety-pane-item-modify-btn">
                   <span class="color-btn color-btn2"
-                        @click="modifyEmailSub('modifyTxPwd', 'modifyTxHandler')">确认修改</span>
+                        @click="modifyEmailSub('modifyTxPwd', 'modifyTxHandler')">{{languageVal.Confirmrevision}}</span>
                 </el-form-item>
               </el-form>
             </div>
@@ -204,7 +204,8 @@
   export default {
     name: 'safety',
     watch: {
-      '$route.query.type': 'changeList'
+      '$route.query.type': 'changeList',
+      'languageVal': 'languageValHandler'
     },
     components: {
       'count-down': countDown,
@@ -213,10 +214,10 @@
     data() {
       const validateEmail = (rule, value, callback) => {
         if (!value) {
-          callback(new Error('请输入邮箱！'));
+          callback(new Error(this.languageVal.Pleaseentertheemailaddress));
         } else {
           if (!isEmail(value)) {
-            callback(new Error('邮箱格式错误'));
+            callback(new Error(this.languageVal.Theformatofthemailboxisincorrect));
           } else {
             callback();
           }
@@ -224,10 +225,10 @@
       };
       const validatePassword = (rule, value, callback) => {
         if (!value) {
-          callback(new Error('请输入登录密码！'));
+          callback(new Error(this.languageVal.Pleaseenterloginpassword));
         } else {
           if (!isPassword(value)) {
-            callback(new Error('登录密码需至少6位且包含数字和字母！'));
+            callback(new Error(this.languageVal.Loginpasswordmustbeatleastdigitsandincludenumbersandletters));
           } else {
             callback();
           }
@@ -235,18 +236,18 @@
       };
       const validatePassword2 = (rule, value, callback) => {
         if (!value) {
-          callback(new Error('请再次输入登录密码！'));
+          callback(new Error(this.languageVal.Pleaseenteryourloginpasswordagain));
         } else {
           if (value === this.modifyLoginPwd.newPassword) {
             callback();
           } else {
-            callback(new Error('登录密码两次输入不一致！'));
+            callback(new Error(this.languageVal.Theloginpasswordisinconsistentlyenteredtwice));
           }
         }
       };
       const validatePassword3 = (rule, value, callback) => {
         if (!value) {
-          callback(new Error('请输入交易密码！'));
+          callback(new Error(this.languageVal.Pleaseenterthetransactionpassword));
         } else {
           if (value.length < 6) {
             callback(new Error('交易密码需至少6位！'));
@@ -257,12 +258,12 @@
       };
       const validatePassword4 = (rule, value, callback) => {
         if (!value) {
-          callback(new Error('请再次输入交易密码！'));
+          callback(new Error(this.languageVal.Entertransactionpasswordagain));
         } else {
           if (value === this.modifyTxPwd.transactionPassword) {
             callback();
           } else {
-            callback(new Error('交易密码两次输入不一致！'));
+            callback(new Error(this.languageVal.Inconsistentinputoftransactionpasswordtwice));
           }
         }
       };
@@ -270,8 +271,8 @@
         username1: getToken3(),
         rules: {
           email: [{required: true, trigger: 'blur', validator: validateEmail}],
-          emailCode: [{required: true, message: '请输入验证码！', trigger: 'blur'}],
-          imageCode: [{required: true, message: '请输入验证码！', trigger: 'blur'}],
+          emailCode: [{required: true, message: '', trigger: 'blur'}],
+          imageCode: [{required: true, message: '', trigger: 'blur'}],
           password: [{required: true, trigger: 'blur', validator: validatePassword}],
           newPassword: [{required: true, trigger: 'blur', validator: validatePassword}],
           newPassword2: [{required: true, trigger: 'blur', validator: validatePassword2}],
@@ -282,50 +283,50 @@
         fundsNum: 0,
         fundsList: [
           {
-            name: '余额',
+            name: '',
             route: '/safety/fundsTable'
           },
           {
-            name: '充提历史',
+            name: '',
             route: '/safety/ctHistory'
           }
         ],
         orderNum: 0,
         orderList: [
           {
-            name: '所有',
+            name: '',
             value: ''
           },
           {
-            name: '已结束',
+            name: '',
             value: '2'
           },
           {
-            name: '正在进行',
+            name: '',
             value: '1'
           }
         ],
         modifyNum: 0,
         modifyList: [
           {
-            name: '更改邮箱'
+            name: ''
           },
           {
-            name: '登录密码修改'
+            name: ''
           },
           {
-            name: '交易密码修改'
+            name: ''
           }
         ],
         listName: [
           {
-            name: '资金管理'
+            name: ''
           },
           {
-            name: '订单管理'
+            name: ''
           },
           {
-            name: '账户安全'
+            name: ''
           }
         ],
         listNum: 0,
@@ -359,13 +360,30 @@
       this.listNum = this.$route.query.type;
       this.orderHandler('pageNum=1&pageSize=10&orderBy=created_at desc');
       this.createCode();
+      this.languageValHandler(this.languageVal);
     },
     computed: {
       ...mapGetters({
-        orderLists: 'orderList'
+        orderLists: 'orderList',
+        languageVal: 'languageVal'
       })
     },
     methods: {
+      languageValHandler(a) {
+        this.fundsList[0].name = a.Balance;
+        this.fundsList[1].name = a.History;
+        this.orderList[0].name = a.All;
+        this.orderList[1].name = a.over;
+        this.orderList[2].name = a.INPROGRESS;
+        this.modifyList[0].name = a.Emailmodification;
+        this.modifyList[1].name = a.LoginPasswordModification;
+        this.modifyList[2].name = a.TransactionPasswordModification;
+        this.listName[0].name = a.Fund;
+        this.listName[1].name = a.orderManage;
+        this.listName[2].name = a.Account;
+        this.rules.emailCode[0].message = a.Pleaseenteracode;
+        this.rules.imageCode[0].message = a.Pleaseenteracode;
+      },
       changeList(t) {
         this.listNum = t;
       },
@@ -398,7 +416,7 @@
               this.$message.error(err);
             });
           } else {
-            this.$message.error('请完善表单信息');
+            this.$message.error(this.languageVal.Pleasecompletetheforminformation);
             return false;
           }
         });

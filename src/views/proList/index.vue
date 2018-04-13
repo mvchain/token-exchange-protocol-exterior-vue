@@ -16,7 +16,7 @@
             <transition name="el-fade-in-linear">
               <div v-show="layerNum === k+1 && maskLayer" class="transition-box"></div>
             </transition>
-            <i class="project-selling">{{v.status === 0 ? '即将开始' : v.status === 1?'进行中':'已结束'}}</i>
+            <i class="project-selling">{{v.status === 0 ? (languageVal.COMINGSOOM) : v.status === 1 ? (languageVal.INPROGRESS) : (languageVal.over)}}</i>
             <b class="project-participate" v-show="v.partake">
               <img src="../../assets/img/participate.png">
             </b>
@@ -26,26 +26,26 @@
             <div class="project-pane-item-info">
               <p class="project-coin">
                 <span>{{v.title}}</span>
-                <i v-show="v.status===0">目标：{{v.ethNumber}}ETH</i>
+                <i v-show="v.status===0">{{languageVal.Target}}：{{v.ethNumber}}ETH</i>
               </p>
               <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
               <div class="project-pane-number" v-show="v.status === 1">
-                <span>{{v.buyerNum}}人投</span>
+                <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
               </div>
               <p v-show="v.status===2" class="project-pane-item-over">
-                <span v-if="v.soldEth >= v.ethNumber">圆满结束</span>
-                <span v-else>未完成</span>
+                <span v-if="v.soldEth >= v.ethNumber">{{languageVal.DONE}}</span>
+                <span v-else>{{languageVal.FAILED}}</span>
               </p>
               <p v-show="v.status===0" class="project-pane-item-over">
-                <span style="font-size:16px;position: relative;top:-10px;">倒计时</span><br/>
+                <span style="font-size:16px;position: relative;top:-10px;">{{languageVal.Countdown}}</span><br/>
                 {{Date.parse(v.startTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}
               </p>
 
-              <p v-show="v.status === 1" class="project-pane-item-day" style="line-height: 22px;">剩余时间：<br/><span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
+              <p v-show="v.status === 1" class="project-pane-item-day" style="line-height: 22px;">{{languageVal.TimeRemaining}}：<br/><span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span></p>
-              <div v-show="v.status === 1" class="project-pane-item-time">项目起止：
+              <div v-show="v.status === 1" class="project-pane-item-time">{{languageVal.Timetable}}：
                 <p class="project-time-txt">
                   {{v.startTime | timeDown}}--{{v.stopTime | timeDown}}
                 </p>
@@ -70,9 +70,11 @@
 <script>
   import foot from '../../components/foot';
   import {mapGetters} from 'vuex';
-
   export default {
     name: 'proList',
+    watch: {
+      'languageVal': 'languageValHandler'
+    },
     data() {
       return {
         maskLayer: false,
@@ -81,19 +83,19 @@
         navNum: 0,
         navList: [
           {
-            title: '所有项目',
+            title: '',
             value: ''
           },
           {
-            title: '正在进行',
+            title: '',
             value: '1'
           },
           {
-            title: '即将开始',
+            title: '',
             value: '0'
           },
           {
-            title: '已结束',
+            title: '',
             value: '2'
           }
         ],
@@ -104,14 +106,22 @@
     mounted() {
       this.getTimeFun();
       this.getProList(`pageNum=${this.pageNum}&pageSize=${this.pageSize}&orderBy=created_at desc`);
+      this.languageValHandler(this.languageVal);
     },
     computed: {
       ...mapGetters({
         projectList: 'projectList',
-        timeTxt: 'timeTxt'
+        timeTxt: 'timeTxt',
+        languageVal: 'languageVal'
       })
     },
     methods: {
+      languageValHandler(a) {
+        this.navList[0].title = a.ALLPROJECTS;
+        this.navList[1].title = a.INPROGRESS;
+        this.navList[2].title = a.COMINGSOON;
+        this.navList[3].title = a.over;
+      },
       itemHandler(k) {
         this.layerNum = k;
         this.maskLayer = true;

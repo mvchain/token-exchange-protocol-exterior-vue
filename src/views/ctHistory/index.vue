@@ -7,37 +7,37 @@
       style="width: 100%">
       <el-table-column
         prop="orderId"
-        label="单号"
+        :label="languageVal.Order"
         align="center"
         width="110"
         >
       </el-table-column>
       <el-table-column
         prop="createdAt"
-        label="时间"
+        :label="languageVal.Time"
         align="center"
         width="170"
         >
       </el-table-column>
       <el-table-column
-        label="类型"
+        :label="languageVal.Type"
         align="center"
         width="80"
       >
         <template slot-scope="scope">
-          <span>{{scope.row.type === 0 ? '充值' : '提现'}}</span>
+          <span>{{scope.row.type === 0 ? languageVal.Recharge : languageVal.Withdrawal}}</span>
         </template>
       </el-table-column>
       <el-table-column
         prop="number"
-        label="金额"
+        :label="languageVal.Amount"
         align="center"
         width="100"
       >
       </el-table-column>
       <el-table-column
         prop="hash"
-        label="地址"
+        :label="languageVal.Adress"
         align="right"
         width="580"
       >
@@ -47,11 +47,11 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="状态"
+        :label="languageVal.Status"
         align="center"
       >
         <template slot-scope="scope">
-          <span>{{scope.row.status === 0 ? '等待' : scope.row.status === 1 ? '进行' : scope.row.status === 2 ? '完成' : '失败'}}</span>
+          <span>{{scope.row.status === 0 ? languageVal.Witing : scope.row.status === 1 ? languageVal.InProgress : scope.row.status === 2 ? languageVal.Done : languageVal.Faild}}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -79,7 +79,8 @@
     },
     computed: {
       ...mapGetters({
-        historyList: 'historyList'
+        historyList: 'historyList',
+        languageVal: 'languageVal'
       })
     },
     mounted() {

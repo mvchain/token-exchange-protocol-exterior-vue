@@ -5,24 +5,24 @@
       style="width: 100%">
       <el-table-column
         prop="tokenName"
-        label="币种"
+        :label="languageVal.Currency"
         align="center"
         width="180">
       </el-table-column>
       <el-table-column
         prop="balance"
-        label="余额"
+        :label="languageVal.Balance"
         align="center"
         width="380">
       </el-table-column>
       <el-table-column
-        label="操作">
+        :label="languageVal.Operation">
         <template slot-scope="scope">
           <span class="color-btn handler-btn" v-show="scope.row.rechargeStatus"
-                @click="rechargeHandler(scope.$index, 'recharge', scope.row.tokenName)">充值</span>
+                @click="rechargeHandler(scope.$index, 'recharge', scope.row.tokenName)">{{languageVal.Recharge}}</span>
           <span class="color-btn handler-btn" v-show="scope.row.withdrawStatus"
-                @click="rechargeHandler(scope.$index, 'withdraw', scope.row.tokenName)">提现</span>
-          <span class="color-btn handler-btn" @click="rechargeHandler(scope.$index, 'ctHistory',scope.row.tokenId)">充提历史</span>
+                @click="rechargeHandler(scope.$index, 'withdraw', scope.row.tokenName)">{{languageVal.Withdrawal}}</span>
+          <span class="color-btn handler-btn" @click="rechargeHandler(scope.$index, 'ctHistory',scope.row.tokenId)">{{languageVal.History}}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -41,7 +41,8 @@
     },
     computed: {
       ...mapGetters({
-        balance: 'balance'
+        balance: 'balance',
+        languageVal: 'languageVal'
       })
     },
     mounted() {

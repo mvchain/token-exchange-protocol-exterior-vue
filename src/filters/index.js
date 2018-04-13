@@ -1,3 +1,5 @@
+// import lang from '@/assets/language.json';
+import store from '../store';
 export function timeFilter(time, cFormat) {
   if (arguments.length === 0) {
     return null;
@@ -34,7 +36,7 @@ export function timeFilter(time, cFormat) {
 export function changeTimeStamp(timeStamp) {
   if (!isNaN(timeStamp)) {
     if (timeStamp < 0) {
-      return '已截止！';
+      return store.state.Home.languageVal.over;
     }
     let day = Math.floor((timeStamp / 1000 / 3600) / 24);
     let hour = Math.floor((timeStamp / 1000 / 3600) % 24);
@@ -50,9 +52,9 @@ export function changeTimeStamp(timeStamp) {
       hour = '0' + hour;
     }
 
-    return day + '天' + hour + '小时' + min + '分';
+    return day + (store.state.Home.languageVal.DAYS) + hour + (store.state.Home.languageVal.HOURS) + min + (store.state.Home.languageVal.MINUTES);
   } else {
-    return '已截止！';
+    return store.state.Home.languageVal.over;
   }
 }
 
@@ -67,14 +69,14 @@ export function percentageFilter(v) {
 }
 export function statusFilter (v) {
   if (v.retire === 1) {
-    return '清退';
+    return store.state.Home.languageVal.Cleared;
   } else {
     if (v.orderStatus === 9) {
-      return '已取消';
+      return store.state.Home.languageVal.Cancel;
     } else if (v.sendToken === 1) {
-      return '已发币';
+      return store.state.Home.languageVal.Issued;
     } else {
-      return '未发币';
+      return store.state.Home.languageVal.Undelivered;
     }
   }
 }

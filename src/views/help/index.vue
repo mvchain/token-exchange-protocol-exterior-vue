@@ -1,7 +1,7 @@
 <template>
   <div class="help-con">
     <div class="help-circle-con">
-      <div class="help-circle">帮助与支持</div>
+      <div class="help-circle">{{languageVal.Help}}</div>
     </div>
     <div class="help-rectangle">
       <div>
@@ -11,8 +11,8 @@
       <div></div>
       <div>
         <div class="help-div" v-show="listNum === 0">
-          <h4><span>在线查看购买教程</span></h4>
-          <h4><span class="download-btn">查看教程</span></h4>
+          <h4><span>{{languageVal.Clickfortutorial}}</span></h4>
+          <h4><span class="download-btn">{{languageVal.DownloadTutorial}}</span></h4>
         </div>
       </div>
     </div>
@@ -22,23 +22,33 @@
 
 <script>
   import foot from '../../components/foot';
+  import {mapGetters} from 'vuex';
   export default {
     name: 'help',
     components: {
       'footer-com': foot
+    },
+    computed: {
+      ...mapGetters({
+        languageVal: 'languageVal'
+      })
     },
     data() {
       return {
         listNum: 0,
         listTxt: [
           {
-            title: '代币购买教程'
+            title: ''
           },
           {
-            title: '常见问题'
+            title: ''
           }
         ]
       };
+    },
+    mounted() {
+      this.listTxt[0].title = this.languageVal.ProjectParticipationTutorial;
+      this.listTxt[1].title = this.languageVal.FrequentlyAskedQuestions;
     },
     methods: {
       titleHandler(k) {

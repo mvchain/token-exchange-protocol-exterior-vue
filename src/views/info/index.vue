@@ -4,16 +4,16 @@
       <div class="info-container-body">
         <div class="info-container-title">
           <div>
-            <span class="color-btn color-btn2" @click="$router.back()"><i class="el-icon-arrow-left"></i>返回上一级</span>
+            <span class="color-btn color-btn2" @click="$router.back()"><i class="el-icon-arrow-left"></i>{{languageVal.BACK}}</span>
           </div>
           <div>
-            <span :disabled =  preFlag :class="!preFlag && 'btn-opcity'" class="color-btn" @click="getOtherInfo(true)">上一个</span>
-            <span :disabled =  nextFlag :class="!nextFlag && 'btn-opcity'" class="color-btn" @click="getOtherInfo( false)">下一个</span>
+            <span :disabled =  preFlag :class="!preFlag && 'btn-opcity'" class="color-btn" @click="getOtherInfo(true)">{{languageVal.PREV}}</span>
+            <span :disabled =  nextFlag :class="!nextFlag && 'btn-opcity'" class="color-btn" @click="getOtherInfo( false)">{{languageVal.NEXT}}</span>
           </div>
         </div>
         <div class="info-container-middle">
           <div>
-            <i class="info-working">{{projectInfo.status === 0 ? '即将开始' : projectInfo.status === 1?'进行中':'已结束'}}</i>
+            <i class="info-working">{{projectInfo.status === 0 ? (languageVal.COMINGSOON) : projectInfo.status === 1 ? (languageVal.INPROGRESS) : (languageVal.over)}}</i>
             <b class="info-participate" v-show="projectInfo.partake">
               <img src="../../assets/img/participate.png">
             </b>
@@ -23,28 +23,28 @@
             <div class="info-right">
               <div>
                 <span>{{projectInfo.title}}</span>
-                <span>项目开始：{{projectInfo.startTime}}</span>
+                <span>{{languageVal.StartTime}}：{{projectInfo.startTime}}</span>
               </div>
               <el-progress :percentage="projectInfo | percentageFilter"
                            :stroke-width="20"></el-progress>
               <ul>
-                <li>目标</li>
+                <li>{{languageVal.Target}}</li>
                 <li><span>{{projectInfo.soldEth}}/{{projectInfo.ethNumber}}ETH</span></li>
-                <li>支持者</li>
+                <li>{{languageVal.PARTICIPANTS}}</li>
                 <li><span>{{projectInfo.buyerNum}}</span></li>
-                <li>剩余时间</li>
+                <li>{{languageVal.TIMEREMAINING}}</li>
                 <li>
                   <span v-show="projectInfo.status === 1">{{Date.parse(projectInfo.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span>
                   <span v-show="projectInfo.status === 0">{{Date.parse(projectInfo.startTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span>
-                  <span v-show="projectInfo.status === 2 && projectInfo.soldEth === projectInfo.ethNumber">圆满成功！</span>
-                  <span v-show="projectInfo.status === 2 && projectInfo.soldEth !== projectInfo.ethNumber">未完成!</span>
+                  <span v-show="projectInfo.status === 2 && projectInfo.soldEth === projectInfo.ethNumber">{{languageVal.DONE}}！</span>
+                  <span v-show="projectInfo.status === 2 && projectInfo.soldEth !== projectInfo.ethNumber">{{languageVal.FAILED}}!</span>
                 </li>
               </ul>
               <div class="info-now">
                 <span v-show="projectInfo.status === 1" disabled class="color-btn color-btn2"
-                      @click="participateHandler(projectInfo.status === 1)">立即参与</span>
+                      @click="participateHandler(projectInfo.status === 1)">{{languageVal.Participate}}</span>
               </div>
             </div>
           </div>
@@ -59,17 +59,17 @@
         </div>
         <div class="info-container-bottom">
           <div>
-            <div class="info-container-bottom-title">项目详情</div>
+            <div class="info-container-bottom-title">{{languageVal.ProjectDetails}}</div>
             <div class="info-container-bottom-des">
               <img :src="projectInfo.projectImageAddress" alt="">
             </div>
           </div>
           <div>
             <ul>
-              <li><span>兑换比例</span></li>
+              <li><span>{{languageVal.RATE}}</span></li>
               <li><span style="font-weight:900;font-size:18px;">1ETH={{projectInfo.ratio}}{{projectInfo.tokenName}}</span></li>
-              <li><a target="_blank" class="color-btn color-btn2" :href="projectInfo.whitePaperAddress">白皮书下载</a></li>
-              <li><span>项目官网</span></li>
+              <li><a target="_blank" class="color-btn color-btn2" :href="projectInfo.whitePaperAddress">{{languageVal.WhiterPaperDownload}}</a></li>
+              <li><span>{{languageVal.Website}}</span></li>
               <li><a target="_blank" :href="projectInfo.homepage">{{projectInfo.homepage&&projectInfo.homepage.replace(/(https:\/\/www.)|(http:\/\/www.)/ig, '')}}</a></li>
             </ul>
           </div>
@@ -88,8 +88,8 @@
       <div class="dialog-title">参与购买</div>
       <div class="dialog-label">
         <ul>
-          <li>ETH余额：</li>
-          <li>购买金额：</li>
+          <li>ETH{{languageVal.Balance}}：</li>
+          <li>{{languageVal.buyAmount}}：</li>
           <li>获得代币数量：</li>
         </ul>
       </div>
@@ -118,7 +118,7 @@
     >
       <p class="dialog-confirm-title">确认是否支付{{purchaseVal}}ETH</p>
       <el-input placeholder="请输入内容" type="password" v-model="txPassword">
-        <template slot="prepend">输入交易密码：</template>
+        <template slot="prepend">{{languageVal.Entertransactionpassword}}：</template>
       </el-input>
       <span slot="footer" class="dialog-footer">
         <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn"
@@ -166,7 +166,8 @@
         projectInfo: 'projectInfo',
         projectList: 'projectList',
         transactionProObj: 'transactionProObj',
-        timeTxt: 'timeTxt'
+        timeTxt: 'timeTxt',
+        languageVal: 'languageVal'
       })
     },
     methods: {

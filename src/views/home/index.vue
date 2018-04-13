@@ -13,10 +13,10 @@
     <div class="project-bottom">
       <div class="project-list">
         <div class="project-title" style="line-height: 48px;">
-          <div>项目列表{{languageVal}}</div>
+          <div>{{languageVal.Projects}}</div>
           <div>
             <span @click="changeHelp('/proList')" style=" width:150px;height:48px;"
-                  class="color-btn color-btn2">更多项目</span>
+                  class="color-btn color-btn2">{{languageVal.MORE}}</span>
           </div>
         </div>
 
@@ -28,7 +28,7 @@
             <transition name="el-fade-in-linear">
               <div v-show="layerNum === k+1 && maskLayer" class="transition-box"></div>
             </transition>
-            <i class="project-selling">{{v.status === 0 ? '即将开始' : v.status === 1?'进行中':'已结束'}}</i>
+            <i class="project-selling">{{v.status === 0 ? (languageVal.COMINGSOON) : v.status === 1?(languageVal.INPROGRESS):(languageVal.over)}}</i>
             <b class="project-participate" v-show="v.partake">
               <img src="../../assets/img/participate.png" alt="">
             </b>
@@ -38,25 +38,25 @@
             <div class="project-pane-item-info">
               <p class="project-coin">
                 <span>{{v.title}}</span>
-                <i v-show="v.status===0">目标：{{v.ethNumber}}ETH</i>
+                <i v-show="v.status===0">{{languageVal.Target}}：{{v.ethNumber}}ETH</i>
               </p>
               <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
               <div class="project-pane-number" v-show="v.status === 1">
-                <span>{{v.buyerNum}}人投</span>
+                <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
               </div>
               <p v-show="v.status===2" class="project-pane-item-over">
-                <span v-if="v.soldEth >= v.ethNumber">圆满结束</span>
-                <span v-else>未完成</span>
+                <span v-if="v.soldEth >= v.ethNumber">{{languageVal.DONE}}</span>
+                <span v-else>{{languageVal.FAILED}}</span>
               </p>
               <p v-show="v.status===0" class="project-pane-item-over" style="text-align: center;">
-                <span style="font-size:16px;position: relative;top:-10px;">倒计时</span><br/>
+                <span style="font-size:16px;position: relative;top:-10px;">{{languageVal.Countdown}}</span><br/>
                 {{Date.parse(v.startTime)-Date.parse(timeTxt) | changeTimeStamp}}
               </p>
 
-              <div v-show="v.status === 1" class="project-pane-item-day">剩余时间：<p class="project-time-txt">{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
+              <div v-show="v.status === 1" class="project-pane-item-day">{{languageVal.TimeRemaining}}：<p class="project-time-txt">{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</p></div>
-              <div v-show="v.status === 1" class="project-pane-item-time">项目起止：
+              <div v-show="v.status === 1" class="project-pane-item-time">{{languageVal.Timetable}}：
                 <p class="project-time-txt">
                   {{v.startTime | timeDown}}--{{v.stopTime | timeDown}}
                 </p>
@@ -71,7 +71,7 @@
             <transition name="el-fade-in-linear">
               <div v-show="layerNum === k+1 && maskLayer" class="transition-box"></div>
             </transition>
-            <i class="project-selling">{{v.status === 0 ? '即将开始' : v.status === 1?'进行中':'已结束'}}</i>
+            <i class="project-selling">{{v.status === 0 ? (languageVal.COMINGSOON) : v.status === 1?(languageVal.INPROGRESS):(languageVal.over)}}</i>
             <b class="project-participate">
               <img src="../../assets/img/participate.png" alt="">
             </b>
@@ -84,19 +84,19 @@
               </p>
               <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
               <div class="project-pane-number" v-show="v.status === 1">
-                <span>{{v.buyerNum}}人投</span>
+                <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
               </div>
               <p v-show="v.status===2" class="project-pane-item-over">{{v.soldEth >=
-                v.ethNumber? '圆满结束':'未完成'}}</p>
+                v.ethNumber? (languageVal.DONE):(languageVal.FAILED)}}</p>
               <p v-show="v.status===0" class="project-pane-item-over">{{Date.parse(v.startTime)-Date.parse(timeTxt) | changeTimeStamp}}</p>
               <p class="project-pane-item-aims" v-show="v.status===0">
-                <span>目标：</span>
+                <span>{{languageVal.Target}}：</span>
                 <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day" style="line-height: 22px;">剩余时间：<br/><span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
+              <p v-show="v.status === 1" class="project-pane-item-day" style="line-height: 22px;">{{languageVal.TimeRemaining}}：<br/><span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span> </p>
-              <div v-show="v.status === 1" class="project-pane-item-time">项目起止：
+              <div v-show="v.status === 1" class="project-pane-item-time">{{languageVal.Timetable}}：
                 <p class="project-time-txt">
                   {{v.startTime | timeDown}}--{{v.stopTime | timeDown}}
                 </p>
@@ -110,35 +110,29 @@
           </ul>
         </div>
         <div class="project-common-problem">
-          <div class="project-common-problem-title">常见问题</div>
+          <div class="project-common-problem-title">{{languageVal.FrequentlyAskedQuestions}}</div>
           <div class="project-common-problem-list">
             <el-collapse v-model="activeNames" @change="handleChange">
-              <el-collapse-item title="如何购买代币，代币购买教程" name="1">
-                <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-                <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+              <el-collapse-item :title="languageVal.Questions1" name="1">
+                <div>{{languageVal.Answer1}}</div>
               </el-collapse-item>
-              <el-collapse-item title="项目如何进行投资，如何使收益最大化" name="2">
-                <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-                <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+              <el-collapse-item :title="languageVal.Questions2" name="2">
+                <div>{{languageVal.Answer2}}</div>
               </el-collapse-item>
-              <el-collapse-item title="三步让你成为投资大帅" name="3">
-                <div>简化流程：设计简洁直观的操作流程；</div>
-                <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
-                <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
+              <el-collapse-item :title="languageVal.Questions3" name="3">
+                <div>{{languageVal.Answer3}}</div>
               </el-collapse-item>
-              <el-collapse-item title="项目如何进行投资，如何使投资人效益最大化" name="4">
-                <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-                <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+              <el-collapse-item :title="languageVal.Questions4" name="4">
+                <div>{{languageVal.Answer4}}</div>
               </el-collapse-item>
-              <el-collapse-item title="三步让你成为投资大帅" name="5">
-                <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-                <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+              <el-collapse-item :title="languageVal.Questions5"  name="5">
+                <div>{{languageVal.Answer5}}</div>
               </el-collapse-item>
             </el-collapse>
           </div>
           <div class="project-common-problem-more">
             <span @click="changeHelp('/help')" class="color-btn color-btn2"
-                  style=" width:150px;height:48px;">了解更多</span>
+                  style=" width:150px;height:48px;">{{languageVal.LearnMore}}</span>
           </div>
         </div>
       </div>
