@@ -231,6 +231,7 @@
       this.rules.emailCode[0].message = this.languageVal.Pleaseenteracode;
       this.rules.imageCode[0].message = this.languageVal.Pleaseenteracode;
       this.createCode();
+      this.validateCodeTxt = this.languageVal.Sendthecode;
     },
 
     computed: {
@@ -240,7 +241,7 @@
     },
     methods: {
       sendEmail(name) {
-        if (!this[name]) return;
+        if (!this[name].email) return;
         if (!this.validateCodeInterval) {
           this.$store.dispatch('getValiEmail', this[name].email).then(() => {
           }).catch((err) => {

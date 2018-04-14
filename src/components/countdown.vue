@@ -28,6 +28,9 @@
         validateCodeFlag: null
       };
     },
+    mounted() {
+      this.languageValHandler(this.languageVal);
+    },
     methods: {
       languageValHandler(a) {
         this.validateCodeTxt = a.Sendthecode;
