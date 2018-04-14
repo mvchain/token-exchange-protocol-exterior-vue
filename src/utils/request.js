@@ -14,9 +14,21 @@ const service = axios.create({
 service.interceptors.request.use(config => {
   let to = getToken2()
   if (to) {
+
     config.headers['Authorization'] = to // 让每个请求携带自定义token 请根据实际情况自行修改
-    config.headers['Accept-Language'] = window.sessionStorage.getItem('LanguageType') || (navigator.language || navigator.browserLanguage);
+
   }
+  let language = (navigator.language || navigator.browserLanguage).toLowerCase();
+  let l = parseInt(window.sessionStorage.getItem('LanguageType'));
+  let a = '';
+  if (l === 1) {
+    a = 'zh-CN'
+  } else if(l === 2) {
+    a = 'en-US'
+  } else {
+    a = language
+  }
+  config.headers['Accept-Language'] = a
   return config
 }, error => {
   // Do something with request error
