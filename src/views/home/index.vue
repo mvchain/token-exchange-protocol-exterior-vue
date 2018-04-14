@@ -28,7 +28,7 @@
             <transition name="el-fade-in-linear">
               <div v-show="layerNum === k+1 && maskLayer" class="transition-box"></div>
             </transition>
-            <i class="project-selling">{{v.status === 0 ? (languageVal.COMINGSOON) : v.status === 1?(languageVal.INPROGRESS):(languageVal.over)}}</i>
+            <i class="project-selling">{{v.status === 0 ? languageVal.COMINGSOON : v.status === 1? languageVal.INPROGRESS : languageVal.over}}</i>
             <b class="project-participate" v-show="v.partake">
               <img src="../../assets/img/participate.png" alt="">
             </b>

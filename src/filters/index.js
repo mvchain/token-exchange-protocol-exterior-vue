@@ -51,8 +51,7 @@ export function changeTimeStamp(timeStamp) {
     if (hour < 10) {
       hour = '0' + hour;
     }
-
-    return day + (store.state.Home.languageVal.DAYS) + hour + (store.state.Home.languageVal.HOURS) + min + (store.state.Home.languageVal.MINUTES);
+    return day + ' ' + (store.state.Home.languageVal.DAYS) + ' ' + hour + ' ' + (store.state.Home.languageVal.HOURS) + ' ' + min + ' ' + (store.state.Home.languageVal.MINUTES);
   } else {
     return store.state.Home.languageVal.over;
   }

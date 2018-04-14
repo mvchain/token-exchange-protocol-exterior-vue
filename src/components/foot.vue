@@ -4,17 +4,17 @@
       <div class="footer-top">
         <ul>
           <li class="foot-container-link">
-            <router-link to="/home">{{languageVal === 1 ? lang.zh.Home : lang.en.Home}}</router-link>
+            <router-link to="/home">{{languageVal.Home}}</router-link>
           </li>
           <li class="foot-container-link">
-            <router-link to="/proList">{{languageVal === 1 ? lang.zh.Projects : lang.en.Projects}}</router-link>
+            <router-link to="/proList">{{languageVal.Projects}}</router-link>
           </li>
           <li  class="foot-container-link">
-            <router-link to="/help">{{languageVal === 1 ? lang.zh.Help : lang.en.Help}}</router-link>
+            <router-link to="/help">{{languageVal.Help}}</router-link>
           </li>
         </ul>
         <div>
-          <p>联系方式：</p>
+          <p>{{languageVal.ContectUs}}：</p>
           <p>869142248@qq.com</p>
         </div>
       </div>
@@ -23,14 +23,12 @@
   </footer>
 </template>
 <script type='text/ecmascript-6'>
-  import lang from '@/assets/language.json';
   import {mapGetters} from 'vuex';
   export default {
     name: 'foot',
     data() {
       return {
-        ewmFlag: false,
-        lang: lang
+        ewmFlag: false
       };
     },
     computed: {

@@ -105,7 +105,7 @@
             <div v-show="modifyNum === 0" class="safety-pane-item-modify-con modify-email">
               <el-form v-show="emailFlag" :model="modifyEmailFrom" :rules="rules" ref="modifyEmailFrom">
                 <el-form-item prop="email" class="safety-pane-item-modify-input">
-                  <el-input placeholder="输入新邮箱" v-model="modifyEmailFrom.email"></el-input>
+                  <el-input :placeholder="languageVal.NEWEMAIL" v-model="modifyEmailFrom.email"></el-input>
                 </el-form-item>
                 <el-form-item prop="emailCode" class="safety-pane-item-modify-input">
                   <el-col :span="12">
@@ -250,7 +250,7 @@
           callback(new Error(this.languageVal.Pleaseenterthetransactionpassword));
         } else {
           if (value.length < 6) {
-            callback(new Error('交易密码需至少6位！'));
+            callback(new Error(this.languageVal.TradingPassword));
           } else {
             callback();
           }
@@ -407,7 +407,7 @@
               _opt.transactionPassword = cryptoFun(_opt.transactionPassword);
             }
             this.$store.dispatch(type, _opt).then(() => {
-              this.$message.success('修改成功');
+              this.$message.success(this.languageVal.Successfullymodified);
               this.$refs[name].resetFields();
               if (name !== 'modifyTxPwd') {
                 this.logout();

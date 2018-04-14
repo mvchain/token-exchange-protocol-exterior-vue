@@ -207,7 +207,8 @@ const Home = {
       });
     },
     getLanguage: ({commit, state}, payload) => {
-      commit('SET_LANGAUGE', (payload === 1 ? lang.zh : lang.en));
+      let l = parseInt(window.sessionStorage.getItem('LanguageType'));
+      commit('SET_LANGAUGE', (l === 1 ? lang.zh : lang.en));
     }
   }
 };

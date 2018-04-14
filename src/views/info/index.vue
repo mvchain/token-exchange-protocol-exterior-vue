@@ -28,11 +28,11 @@
               <el-progress :percentage="projectInfo | percentageFilter"
                            :stroke-width="20"></el-progress>
               <ul>
-                <li>{{languageVal.Target}}</li>
+                <li style="color:#999;">{{languageVal.Target}}</li>
                 <li><span>{{projectInfo.soldEth}}/{{projectInfo.ethNumber}}ETH</span></li>
-                <li>{{languageVal.PARTICIPANTS}}</li>
+                <li style="color:#999;">{{languageVal.PARTICIPANTS}}</li>
                 <li><span>{{projectInfo.buyerNum}}</span></li>
-                <li>{{languageVal.TIMEREMAINING}}</li>
+                <li style="color:#999;" >{{languageVal.TIMEREMAINING}}</li>
                 <li>
                   <span v-show="projectInfo.status === 1">{{Date.parse(projectInfo.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span>

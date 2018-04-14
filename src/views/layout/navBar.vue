@@ -76,16 +76,17 @@
             value: 2
           }
         ],
-        langVal: 1
+        langVal: parseInt(window.sessionStorage.getItem('LanguageType')) || 1
       };
     },
 
     mounted: function () {
       let language = (navigator.language || navigator.browserLanguage).toLowerCase();
+      let l = parseInt(window.sessionStorage.getItem('LanguageType'));
       if (language.indexOf('en') > -1) {
-        this.changeFun(2);
+        this.changeFun(l || 2);
       } else {
-        this.changeFun(1);
+        this.changeFun(l || 1);
       }
       const that = this;
       this.uTxt = getToken3();
@@ -115,6 +116,7 @@
     },
     methods: {
       changeFun(v) {
+        window.sessionStorage.setItem('LanguageType', v);
         this.$store.dispatch('getLanguage', v);
       },
       fetchdata(v) {

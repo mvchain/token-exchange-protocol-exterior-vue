@@ -5,9 +5,9 @@
       <div class="recharge-type">ETH{{languageVal.Recharge}}{{languageVal.Adress}}</div>
       <div class="recharge-addr">
         <input style="width:450px;" id="codeID" readonly v-model="tokenAddr">
-        <span @click="copyHandler">复制</span>
+        <span @click="copyHandler">{{languageVal.copy}}</span>
       </div>
-      <div class="recharge-info-txt">ETH充值地址二维码</div>
+      <div class="recharge-info-txt">ETH{{languageVal.QRcode}}</div>
       <div class="recharge-code">
         <img :src="codeImg" alt="">
       </div>
@@ -47,7 +47,7 @@
         let Url2 = window.document.getElementById('codeID');
         Url2.select();
         document.execCommand('Copy');
-        this.$message.success('复制成功');
+        this.$message.success(this.languageVal.copysuccess);
       },
       getTokenHandler() {
         this.$store.dispatch('getTokenAddr', this.$route.query.code).then(() => {

@@ -11,8 +11,8 @@
       <div></div>
       <div>
         <div class="help-div" v-show="listNum === 0">
-          <h4><span>{{languageVal.Clickfortutorial}}</span></h4>
-          <h4><span class="download-btn">{{languageVal.DownloadTutorial}}</span></h4>
+          <h4><span>{{languageVal.Online}}</span></h4>
+          <h4><span class="download-btn">{{languageVal.watch}}</span></h4>
         </div>
       </div>
     </div>
@@ -27,6 +27,9 @@
     name: 'help',
     components: {
       'footer-com': foot
+    },
+    watch: {
+      'languageVal': 'languageValHandler'
     },
     computed: {
       ...mapGetters({
@@ -47,12 +50,21 @@
       };
     },
     mounted() {
-      this.listTxt[0].title = this.languageVal.ProjectParticipationTutorial;
-      this.listTxt[1].title = this.languageVal.FrequentlyAskedQuestions;
+      this.languageValHandler(this.languageVal);
     },
     methods: {
+      mounted() {
+        this.listNum = this.$route.query.type;
+        this.orderHandler('pageNum=1&pageSize=10&orderBy=created_at desc');
+        this.createCode();
+        this.languageValHandler(this.languageVal);
+      },
       titleHandler(k) {
         this.listNum = k;
+      },
+      languageValHandler(a) {
+        this.listTxt[0].title = a.ProjectParticipationTutorial;
+        this.listTxt[1].title = a.FrequentlyAskedQuestions;
       }
     }
   };

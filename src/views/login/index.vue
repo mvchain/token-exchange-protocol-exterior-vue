@@ -149,7 +149,7 @@
           callback(new Error(this.languageVal.Pleaseenterthetransactionpassword));
         } else {
           if (value.length < 6) {
-            callback(new Error('交易密码需至少6位！'));
+            callback(new Error(this.languageVal.TradingPassword));
           } else {
             callback();
           }

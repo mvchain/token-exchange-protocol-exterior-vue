@@ -1,11 +1,11 @@
 <template>
   <div class="withdraw-con">
     <div class="withdraw-from">
-      <div class="withdraw-from-title">提 现</div>
+      <div class="withdraw-from-title">{{languageVal.Withdrawal}}</div>
       <div class="withdraw-from-body">
         <el-form :model="withdrawFrom" :rules="rules" ref="withdrawFrom">
           <el-form-item prop="token" class="withdraw-input">
-            <el-select @change="modifyNumHandler" :style="selectStyle" v-model="withdrawFrom.tokenName" placeholder="请选择">
+            <el-select @change="modifyNumHandler" :style="selectStyle" v-model="withdrawFrom.tokenName" >
               <el-option
                 v-for="(v,k) in tokenList"
                 :key="k"
@@ -15,32 +15,32 @@
             </el-select>
           </el-form-item>
           <el-form-item prop="address" class="withdraw-input">
-            <input placeholder="输入提现地址" v-model="withdrawFrom.address">
+            <input :placeholder="languageVal.EnterWithdrawal" v-model="withdrawFrom.address">
           </el-form-item>
           <el-form-item prop="number">
-            <input placeholder="输入提现金额" v-model="withdrawFrom.number">
+            <input :placeholder="languageVal.EnterWithdrawalAddr" v-model="withdrawFrom.number">
           </el-form-item>
           <el-form-item style="margin-bottom:10px;" class="withdraw-from-body-instructions">
             <ul>
-              <li>账户余额：{{withdrawInfo.balance}}</li>
-              <li>单日提现上限：{{withdrawInfo.max}}</li>
-              <li>最少提现 {{withdrawInfo.min}}，单次最多 {{withdrawInfo.max}}</li>
-              <li>提现手续费 {{withdrawInfo.poundage}}</li>
+              <li>{{languageVal.AccountBalance}}：{{withdrawInfo.balance}}</li>
+              <li>{{languageVal.Oneday}}：{{withdrawInfo.max}}</li>
+              <li>{{languageVal.cashout}} {{withdrawInfo.min}}，{{languageVal.SingleMost}} {{withdrawInfo.max}}</li>
+              <li>{{languageVal.WithdrawalFee}} {{withdrawInfo.poundage}}</li>
             </ul>
           </el-form-item>
           <el-form-item prop="transactionPassword">
-            <input type="password" placeholder="输入交易密码" v-model="withdrawFrom.transactionPassword">
+            <input type="password" :placeholder="languageVal.Entertransactionpassword" v-model="withdrawFrom.transactionPassword">
           </el-form-item>
           <el-form-item prop="emailCode">
             <el-col :span="12">
-              <input placeholder="输入验证码" v-model="withdrawFrom.emailCode">
+              <input :placeholder="languageVal.Pleaseenteracode" v-model="withdrawFrom.emailCode">
             </el-col>
             <el-col :span="12" style="text-align: center;line-height: 30px;">
               <el-button :disabled="validateCodeInterval" type="text"  @click="sendEmail">{{validateCodeTxt}}</el-button>
             </el-col>
           </el-form-item>
           <el-form-item class="withdraw-from-body-sub">
-            <el-button v-loading="subFlag" class="color-btn2 color-btn" @click="subFrom('withdrawFrom')">确认提现</el-button>
+            <el-button v-loading="subFlag" class="color-btn2 color-btn registedBtn" @click="subFrom('withdrawFrom')">{{languageVal.ConfirmWithdrawal}}</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -54,31 +54,34 @@
   import { getToken3 } from '@/utils/auth';
   export default {
     name: 'withdraw',
+    watch: {
+      'languageVal': 'languageValHandler'
+    },
     data() {
       const tokenNameVali = (rule, value, callback) => {
         if (!value) {
-          callback(new Error('请选择token'));
+          callback(new Error(this.languageVal.selectToken));
         } else {
           callback();
         }
       };
       const addressVali = (rule, value, callback) => {
         if (!value || value.length !== 42) {
-          callback(new Error('提现地址长度错误！'));
+          callback(new Error(this.languageVal.addressLength));
         } else {
           callback();
         }
       };
       const numberVali = (rule, value, callback) => {
         if (!value) {
-          callback(new Error('请输入提现金额！'));
+          callback(new Error(this.languageVal.withdrawalAmount));
         } else {
           if (value > this.withdrawInfo.balance) {
-            callback(new Error('金额不足！'));
+            callback(new Error(this.languageVal.InsufficientFunds));
           } else if (value < this.withdrawInfo.min) {
-            callback(new Error('提现金额需大于最少提现额！'));
+            callback(new Error(this.languageVal.withdrawalAmountMoreThenMin));
           } else if (value > this.withdrawInfo.max) {
-            callback(new Error('提现金额超出上限！'));
+            callback(new Error(this.languageVal.withdrawalAmountLimit));
           } else {
             callback();
           }
@@ -86,14 +89,14 @@
       };
       const emailCodeVali = (rule, value, callback) => {
         if (!value) {
-          callback(new Error('请输入验证码！'));
+          callback(new Error(this.languageVal.Pleaseenteracode));
         } else {
           callback();
         }
       };
       const transactionPasswordVali = (rule, value, callback) => {
         if (!value) {
-          callback(new Error('请输入交易密码！'));
+          callback(new Error(this.languageVal.Pleaseenterthetransactionpassword));
         } else {
           callback();
         }
@@ -102,7 +105,7 @@
         coinType: '',
         subFlag: false,
         codeFlag: false,
-        validateCodeTxt: '发送验证码',
+        validateCodeTxt: '',
         validateCodeFlag: null,
         validateCodeInterval: false,
         n: 59,
@@ -128,13 +131,18 @@
     computed: {
       ...mapGetters({
         tokenList: 'tokenList',
-        withdrawInfo: 'withdrawInfo'
+        withdrawInfo: 'withdrawInfo',
+        languageVal: 'languageVal'
       })
     },
     mounted() {
       this.getTokenList(this.$route.query.code);
+      this.validateCodeTxt = this.languageVal.Sendthecode;
     },
     methods: {
+      languageValHandler(a) {
+        this.validateCodeTxt = a.Sendthecode;
+      },
       getTokenList(id) {
         this.$store.dispatch('getTokenList').then(() => {
           this.getWithdrawInfo(id);
@@ -160,7 +168,7 @@
             _opt.transactionPassword = cryptoFun(_opt.transactionPassword);
             this.subFlag = true;
             this.$store.dispatch('getWithdraw', _opt).then(() => {
-              this.$message.success('提现成功');
+              this.$message.success(this.languageVal.SuccessfulWithdrawal);
               this.$refs[name].resetFields();
               this.subFlag = false;
               this.getWithdrawInfo(this.$route.query.code);
@@ -169,7 +177,7 @@
               this.subFlag = false;
             });
           } else {
-            this.$message.error('请完善表单信息');
+            this.$message.error(this.languageVal.Pleasecompletetheforminformation);
             return false;
           }
         });
@@ -189,12 +197,12 @@
           if (that.n <= 0) {
             clearInterval(that.validateCodeFlag);
             that.validateCodeInterval = false;
-            that.validateCodeTxt = '发送验证码';
+            that.validateCodeTxt = that.languageVal.Sendthecode;
             that.n = 59;
           } else {
             that.n--;
             that.validateCodeInterval = true;
-            that.validateCodeTxt = `已发送(${that.n})s`;
+            that.validateCodeTxt = `${that.languageVal.Sent}(${that.n})s`;
           }
         }, 1000);
       }
