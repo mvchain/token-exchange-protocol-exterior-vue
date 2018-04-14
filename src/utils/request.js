@@ -15,7 +15,7 @@ service.interceptors.request.use(config => {
   let to = getToken2()
   if (to) {
     config.headers['Authorization'] = to // 让每个请求携带自定义token 请根据实际情况自行修改
-    config.headers['Accept-Language'] = (navigator.language || navigator.browserLanguage);
+    config.headers['Accept-Language'] = window.sessionStorage.getItem('LanguageType') || (navigator.language || navigator.browserLanguage);
   }
   return config
 }, error => {
