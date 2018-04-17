@@ -67,11 +67,11 @@ export function percentageFilter(v) {
   return Number((v.soldEth / v.ethNumber * 100).toFixed(1));
 }
 export function statusFilter (v) {
-  if (v.retire === 1) {
-    return store.state.Home.languageVal.Cleared;
+  if (v.orderStatus === 9) {
+    return store.state.Home.languageVal.Cancel;
   } else {
-    if (v.orderStatus === 9) {
-      return store.state.Home.languageVal.Cancel;
+    if (v.retire === 1) {
+      return store.state.Home.languageVal.Cleared;
     } else if (v.sendToken === 1) {
       return store.state.Home.languageVal.Issued;
     } else {

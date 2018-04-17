@@ -13,7 +13,7 @@
       <div class="safety-pane">
         <div v-show="listNum == 0" class="safety-pane-item">
           <div class="safety-pane-item-left">
-            <span class="color-btn" v-for="(v, k) in fundsList" :key="k"
+            <span  v-for="(v, k) in fundsList" :key="k"
                   :class="$route.path === v.route ? 'selected-btn' : ''"
                   @click="rechargeHandler(k,v.route)">{{v.name}}</span>
           </div>
@@ -25,7 +25,7 @@
         </div>
         <div v-show="listNum == 1" class="safety-pane-item">
           <div class="safety-pane-item-left">
-            <span class="color-btn" v-for="(v, k) in orderList" :key="k" :class="orderNum === k ? 'selected-btn' : ''"
+            <span  v-for="(v, k) in orderList" :key="k" :class="orderNum === k ? 'selected-btn' : ''"
                   @click="switchOrder(k, v.value)">{{v.name}}</span>
           </div>
           <div class="safety-pane-item-right">
@@ -98,7 +98,7 @@
         </div>
         <div v-show="listNum == 2"  class="safety-pane-item">
           <div class="safety-pane-item-left">
-            <span :class="modifyNum === k ? 'selected-btn' : ''" @click="modifyNum = k" class="color-btn"
+            <span :class="modifyNum === k ? 'selected-btn' : ''" @click="modifyNum = k"
                   v-for="(v, k) in modifyList" :key="k">{{v.name}}</span>
           </div>
           <div class="safety-pane-item-modify">

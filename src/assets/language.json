@@ -31,6 +31,7 @@
     "withdrawalAmountMoreThenMin": "提现金额需大于最少提现额",
     "withdrawalAmountLimit": "提现金额超出上限",
     "SuccessfulWithdrawal": "提现成功",
+    "payNow":"确认是否支付??",
 
 
     "Home": "首页",
@@ -38,6 +39,7 @@
     "Help": "帮助支持",
     "Login": "登录",
     "SignUp": "注册",
+
 
     "MORE":"更多项目",
     "COMINGSOON":"即将开始",
@@ -74,12 +76,14 @@
     "TIMEREMAINING": "剩余时间",
     "ProjectDetails": "项目详情",
     "RATE": "兑换比例",
-    "WhiterPaperDownload": "白皮书下载",
+    "WhiterPaper": "白皮书",
+    "Download": "下载",
     "Website": "项目官网",
     "Participate": "立即参与",
     "Clickfordetails": "点击查看详情",
     "peopleinvolved": "人参与",
-
+    "yep":"是",
+    "noyep":"否",
 
     "Email": "邮箱",
     "Code": "验证码",
@@ -114,7 +118,8 @@
     "Resetsuccessful": "重置成功",
     "regSUCCESS": "注册成功",
     "logSUCCESS": "登录成功",
-
+    "enterPurchase":"请输入购买金额",
+    "cannotBalance":"购买金额不能超过项目余额",
 
 
     "Fund": "资金管理",
@@ -136,6 +141,7 @@
     "Recharge": "充值",
     "Withdrawal": "提现",
     "Witing": "等待",
+    "loginOperate":"请登录后操作",
 
 
 
@@ -156,6 +162,9 @@
     "Cleared": "已清退",
     "Cancel": "已取消",
     "Waiting": "等待",
+    "successfulPurchase":"购买成功",
+    "correctAmount":"请输入正确的金额",
+    "ETHExcess":"项目ETH超额",
 
     "Emailmodification": "邮箱修改",
     "Emailisalreadybound": "已绑定邮箱",
@@ -171,7 +180,7 @@
     "Questions2": "支持哪些币种购买数字货币？",
     "Questions3": "参与成功后，在哪能看到自己的购买订单？",
     "Questions4": "我交易密码忘记了怎么办？",
-    "Questions5": "我参与的项目结束后，为什么余额里对应的数字货币余额还是为 0 ？",
+    "Questions5": "我参与项目结束后，为什么对应数字货币余额还是0?",
     "Answer1": "点击网站顶部的“帮助支持”，页面内可以在线查看参与教程 PDF 文档。",
     "Answer2": "目前暂时只支持 ETH 购买，未来我们会支持更多币种。",
     "Answer3": "账户登录后，右上角账户选项下拉菜单里，订单管理页面可以查看到您所有的购买订单信息，包括订单是否发币的状态。订单发币后，可在资金管理页面查询到对应代币余额。",
@@ -214,12 +223,18 @@
     "withdrawalAmountMoreThenMin": "The withdrawal amount must be greater than the minimum withdrawal amount",
     "withdrawalAmountLimit": "Withdrawal amount exceeds the limit",
     "SuccessfulWithdrawal": "Successful withdrawal",
-
+    "yep":"YES",
+    "noyep":"NO",
+    "cannotBalance":"Purchase amount cannot exceed project balance",
+    "successfulPurchase":"Successful purchase",
+    "correctAmount":"Please enter the correct amount",
+    "ETHExcess":"Project ETH excess",
+    "loginOperate":"Please login to operate",
 
 
     "Home": "Home",
     "Projects": "Projects",
-    "Help": "Help and Support",
+    "Help": "Support",
     "Login": "Login",
     "SignUp": "Sign Up",
 
@@ -257,7 +272,8 @@
     "TIMEREMAINING": "TIME REMAINING",
     "ProjectDetails": "Project Details",
     "RATE": "RATE",
-    "WhiterPaperDownload": "Whiter Paper Download",
+    "WhiterPaper": "Whiter Paper",
+    "Download": "Download",
     "Website": "Website",
     "Participate": "Participate",
     "Clickfordetails": "Click for details",
@@ -310,7 +326,7 @@
     "History": "History",
     "Currency": "Currency",
     "Operation": "Operation",
-
+    "payNow":"Do you pay?",
 
     "Type": "Type",
     "Amount": "Amount",
@@ -332,7 +348,7 @@
     "Number": "Number",
     "ProjectStatus": "Project Status",
     "OrderStatus": "Order Status",
-
+    "enterPurchase":"Please enter the purchase amount",
 
     "Undelivered": "Undelivered",
     "Issued": "Issued",

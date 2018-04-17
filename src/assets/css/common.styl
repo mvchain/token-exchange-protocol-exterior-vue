@@ -8,14 +8,14 @@
   color:#fff !important;
   box-shadow: 0 8px 16px 0 rgba(80,35,54,.15);
 
+  & span
+    color:#fff;
+
 
 .color-btn2
   display :inline-block;
-
-  line-height:48px;
   text-align:center;
   color:#fff;
-  border-radius:30px;
   cursor:pointer;
   background:linear-gradient(to right, #ff9975,#ff7874);
 
@@ -25,19 +25,15 @@
 
 .el-progress-bar__inner
   background: linear-gradient(to right, #b88eff, #5e88ff) !important;
-.el-progress-bar
-  width:93% !important;
+
 .el-progress
   padding-bottom:20px;
   border-bottom:2px solid #aaa;
 
 .project-time-txt
   font-weight:900;
-  margin-top:5px;
 
 div.project-pane
-  display: flex;
-  flex-wrap:wrap;
 
   & .transition-box
     position :absolute;
@@ -48,51 +44,32 @@ div.project-pane
     left:0;
     z-index:999;
 
-  & > div.project-pane-item-d
-    margin-right:48px;
-
-
   & div.project-pane-item
-    height: 320px;
     cursor:pointer;
-    border-radius:20px;
-    padding:20px;
     position :relative;
     background:#fff;
-    flex: 0 0 686px;
-    box-shadow: 0 8px 36px 2px rgba(0,0,0,.1);
     overflow:hidden;
-    margin-bottom:48px;
 
     & .project-selling
-      width:124px;
-      height:48px;
       font-weight:900;
       font-style:normal;
       position:absolute;
       background:#6488ff;
-      border-radius:10px;
       z-index:100;
       text-align :center;
-      line-height 48px;
       color:#fff;
       left:0;
       top:0;
 
     & .project-participate
       position absolute;
-      width:69px;
-      height:69px;
       right:0;
       top:0;
       z-index:100;
 
     & .project-bigImg
-      width:280px;
-      height:280px;
       background:#ddd;
       float:left;
-      border-radius:15px;
       overflow:hidden;
 
       & img
@@ -101,15 +78,11 @@ div.project-pane
 
     & .project-pane-item-info
       float:right;
-      width:345px;
       color:#666;
 
 
       & .project-coin
         color:#666;
-        font-size:24px;
-        margin:4px 0 12px 0;
-        line-height :24px;
 
         & span
           font-weight:900;
@@ -117,13 +90,11 @@ div.project-pane
         & i
           font-style: normal;
           float:right;
-          font-size:16px;
 
 
       & .project-pane-number
         display :flex;
         justify-content :space-between;
-        padding-top:10px;
         color:#999;
 
         & span
@@ -139,27 +110,16 @@ div.project-pane
       & .project-pane-item-day,
       & .project-pane-item-time
         position absolute
-        font-size:16px;
 
       & .project-pane-item-day
-        bottom:70px;
-
         & span
-          font-size:16px;
           color:#666;
           font-weight:900;
 
-      & .project-pane-item-time
-        bottom:20px;
-
       & .project-pane-item-over
         position absolute
-        font-size:24px;
-        bottom:114px;
         font-weight:900;
-        right:10px;
         text-align :center;
-        width:370px;
 
         & span
           font-weight:900;
@@ -172,27 +132,16 @@ div.project-pane
 
 
 .help-con
-  padding-top:90px;
   overflow-x:hidden;
   .help-div
-    margin-left:-200px;
-    padding-top:120px;
     text-align center;
-    line-height:40px;
   .help-circle-con
-    height :710px;
     overflow :hidden;
     & .help-circle
-      height:500px;
-      width:105%;
       background:#8a8bff;
       border-radius:50%;
       position :relative;
-      top:-250px;
-      left:-34px;
-      font-size:30px;
       font-weight:900;
-      line-height :650px;
       text-align center;
       color:#fff;
 
@@ -243,7 +192,6 @@ div.project-pane
 
 .el-progress__text
   float:right;
-  font-size:18px !important;
   font-weight:900;
 .el-collapse-item__content
   color:#999 !important;
@@ -256,3 +204,213 @@ div.project-pane
   & span
     font-weight:900;
     color:#fff;
+
+.el-form-item__error
+  width:425px !important;
+
+@media only screen and (max-width:480px){
+  .color-btn2{
+    border-radius:2rem;
+    line-height:2.5rem;
+  }
+  .more-btn{
+    width:7rem;
+    height:2.5rem;
+    font-size:0.9rem;
+  }
+  div.project-pane{
+    padding:0 1rem;
+  }
+
+  & div.project-pane-item{
+    height: 10rem;
+    border-radius:1rem;
+    padding:1rem;
+    box-shadow: 0 0.5rem 2rem 0.1rem rgba(0,0,0,.1);
+    margin-bottom:2rem;
+  }
+  .project-selling{
+    width:7rem;
+    height:2rem;
+    border-radius:0.7rem;
+    font-size:0.7rem;
+    line-height 2rem;
+  }
+  .project-participate img{
+    width:3rem;
+    height:3rem;
+  }
+  .project-bigImg{
+    width:8rem;
+    height:8rem;
+    border-radius:1rem;
+  }
+  .project-pane-item-info{
+    width:10rem;
+  }
+  .project-coin{
+    font-size:1rem;
+    margin:0.2rem 0 0.4rem 0;
+    line-height :1rem;
+  }
+  .project-coin i{
+    font-size:0.5rem;
+  }
+  .project-pane-number{
+    padding-top:0.5rem;
+    font-size:0.5rem;
+  }
+  .project-pane-item-day,
+  .project-pane-item-time{
+    font-size:0.5rem;
+  }
+  .project-pane-item-day{
+    bottom:2rem;
+  }
+  .project-pane-item-day span{
+    font-size:0.5rem;
+  }
+  .project-pane-item-time{
+    display :none;
+  }
+  .project-time-txt{
+    margin-top:0.2rem;
+  }
+  .el-progress__text{
+    font-size:1rem !important;
+  }
+  .el-progress-bar__outer{
+    height:0.8rem !important;
+  }
+  .project-pane-item-over{
+    font-size:1rem;
+    bottom:2rem;
+    right:1rem;
+    width:10rem;
+  }
+  .help-con{
+    padding-top:3.5rem;
+  }
+  .help-con .help-div{
+    margin-left:0x;
+    padding-top:0;
+    line-height:0;
+  }
+  .help-circle-con{
+    height :48rem;
+  }
+  .help-circle-con .help-circle{
+    height:20rem;
+    width:180%;
+    top:-14rem;
+    left:-9rem;
+    font-size:1.5rem;
+    line-height :34rem;
+  }
+}
+@media (min-width: 481px) and (max-width:1366px){
+
+}
+@media only screen and (min-width:481px){
+  .color-btn2{
+    border-radius:30px;
+    line-height:48px;
+  }
+  .more-btn{
+    width:150px;
+    height:48px;
+  }
+  div.project-pane{
+    display: flex;
+    flex-wrap:wrap;
+  }
+  div.project-pane-item-d{
+    margin-right:48px;
+  }
+
+  div.project-pane-item{
+    height: 320px;
+    border-radius:20px;
+    padding:20px;
+    flex: 0 0 686px;
+    box-shadow: 0 8px 36px 2px rgba(0,0,0,.1);
+    margin-bottom:48px;
+  }
+  .project-selling{
+    width:124px;
+    height:48px;
+    border-radius:10px;
+    line-height 48px;
+  }
+  .project-participate img{
+    width:69px;
+    height:69px;
+  }
+  .project-bigImg{
+    width:280px;
+    height:280px;
+    border-radius:15px;
+  }
+  .project-pane-item-info{
+    width:345px;
+  }
+  .project-coin{
+    font-size:24px;
+    margin:4px 0 12px 0;
+    line-height :24px;
+  }
+  .project-coin i{
+    font-size:16px;
+  }
+  .project-pane-number{
+    padding-top:10px;
+  }
+  .project-pane-item-day,
+  .project-pane-item-time{
+    font-size:16px;
+  }
+  .project-pane-item-day{
+    bottom:70px;
+  }
+  .project-pane-item-day span{
+    font-size:16px;
+  }
+  .project-pane-item-time{
+    bottom:20px;
+  }
+  .project-time-txt{
+    margin-top:5px;
+  }
+  .el-progress__text{
+    font-size:18px !important;
+  }
+  .el-progress-bar{
+    width:93% !important;
+  }
+  .project-pane-item-over{
+    font-size:24px;
+    bottom:114px;
+    right:10px;
+    width:370px;
+  }
+  .help-con{
+    padding-top:90px;
+  }
+  .help-con .help-div{
+    margin-left:-200px;
+    padding-top:120px;
+    line-height:40px;
+  }
+  .help-circle-con{
+    height :710px;
+  }
+  .help-circle-con .help-circle{
+    height:500px;
+    width:105%;
+    top:-250px;
+    left:-34px;
+    font-size:30px;
+    line-height :650px;
+  }
+
+}

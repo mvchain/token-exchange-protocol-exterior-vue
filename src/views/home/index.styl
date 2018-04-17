@@ -1,11 +1,9 @@
 .home-carousel
-  height: 805px;
   position relative
   overflow :hidden;
   width:100%;
 
   .home-carousel-div
-    height:805px;
     width:100%;
     background-position :center center;
     position: absolute;
@@ -17,40 +15,23 @@
 
   .carousel-circle
     position: absolute;
-    top: 80%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     z-index: 800;
 
     & li
       display inline-block;
-      width: 20px;
-      height: 20px;
-      background: rgba(255,255,255,0.5);
-      border-radius: 20px;
-      margin-right: 15px;
       transition width 1s
       cursor: pointer
 
     & li.banner-hover-icon
-      width: 82px;
       background: rgba(255,255,255,0.5);
 
 .project-bottom
   background:url('../../assets/img/back-img-btm.png') no-repeat bottom center;
   background-size:80% ;
-
   .project-list
-    width:1420px;
-    margin:0 auto;
-    padding-bottom:50px;
-
     & > div.project-title
-      margin:80px 0 60px 0;
-
       & > div:first-child
         float:left;
-        font-size:30px;
         font-weight:900;
         color:#666;
       & > div:last-child
@@ -60,47 +41,29 @@
       text-align :center;
       & li
         display inline-block;
-        width: 20px;
-        height: 20px;
         background: linear-gradient(to right, #b98eff, #5e88ff);
-        border-radius: 20px;
-        margin-right: 15px;
         transition width 1s
         cursor: pointer
 
       & li.banner-hover-icon
-        width: 82px;
         background: linear-gradient(to right, #b98eff, #5e88ff);
 
     & > .project-common-problem
-      width:900px;
-      height:680px;
       overflow :auto;
       margin:0 auto;
       background :#fff;
-      box-shadow: 0 8px 36px 2px rgba(0,0,0,.1);
-      border-radius:15px;
-      margin-top:100px;
-      padding:65px;
+
 
       & .project-common-problem-list
-        height:400px;
         overflow-x: hidden;
         overflow-y :auto;
 
-      & .el-collapse-item__header,
-      & .el-collapse-item__content
-        font-size:16px;
-
       & > .project-common-problem-title
         text-align :center;
-        font-size:30px;
         font-weight:900;
         color:#666;
-        margin-bottom:48px;
 
       & > .project-common-problem-more
-        margin-top:22px;
         text-align :center;
 
   .project-contact
@@ -150,9 +113,163 @@
         top:-200px;
         left:-60px;
 
-.el-collapse-item__header
-  height:72px;
-  line-height:102px;
-.el-collapse-item__arrow
+.el-collapse-item__arrow{
   position :relative;
-  top:30px;
+}
+
+@media only screen and (max-width:480px){
+  .home-carousel,
+  .home-carousel-div{
+    height: 17rem;
+  }
+  .home-carousel .home-carousel-div{
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:170% 100%;
+  }
+  .carousel-circle{
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .carousel-circle li{
+    width: 0.7rem;
+    height: 0.7rem;
+    background: rgba(255,255,255,0.5);
+    border-radius: 0.7rem;
+    margin-right: 1rem;
+  }
+  .carousel-circle li.banner-hover-icon{
+    width: 3rem;
+  }
+  .project-bottom{
+    background:none;
+  }
+  .project-bottom .project-list{
+    width:100%;
+    margin:0 auto;
+  }
+  .project-bottom .project-list > div.project-title{
+    margin:2rem 0 ;
+    padding:0 1rem;
+  }
+  .project-bottom .project-list > div.project-title > div:first-child{
+    font-size:1.5rem;
+  }
+  .project-bottom .project-list > .project-common-problem{
+    width:21rem;
+    height:24rem;
+    box-shadow: 0 0.5rem 2rem 0.1rem rgba(0,0,0,.1);
+    border-radius:0.5rem;
+    margin-top:2rem;
+    padding:1rem;
+  }
+  .project-pane-icon li{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+  }
+  .project-pane-icon li.banner-hover-icon{
+    width: 4rem;
+  }
+  .project-common-problem-list{
+    height:15.5rem;
+  }
+  .project-common-problem-list .el-collapse-item__header,
+  .project-common-problem-list .el-collapse-item__content{
+    font-size:0.5rem;
+  }
+  .el-collapse-item__header{
+    height:2rem;
+    line-height:2rem;
+  }
+  .el-collapse-item__arrow{
+    top:-0.3rem;
+  }
+  .el-collapse{
+    border-bottom:none;
+  }
+  .project-common-problem-title{
+    font-size:1.5rem;
+    margin-bottom:1.2rem;
+  }
+  .project-common-problem-more{
+    margin-top:0.5rem;
+  }
+}
+@media (min-width: 481px) and (max-width:1366px){
+
+}
+@media only screen and (min-width:481px){
+  .home-carousel,
+  .home-carousel-div{
+    height: 805px;
+  }
+  .carousel-circle{
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .carousel-circle li{
+    width: 20px;
+    height: 20px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 20px;
+    margin-right: 15px;
+  }
+  .carousel-circle li.banner-hover-icon{
+    width: 82px;
+  }
+  .project-bottom .project-list{
+    width:1420px;
+    margin:0 auto;
+    padding-bottom:50px;
+  }
+  .project-bottom .project-list > div.project-title{
+    margin:80px 0 60px 0;
+  }
+  .project-bottom .project-list > div.project-title > div:first-child{
+    font-size:30px;
+  }
+  .project-common-problem{
+    width:900px;
+    height:680px;
+    box-shadow: 0 8px 36px 2px rgba(0,0,0,.1);
+    border-radius:15px;
+    margin-top:100px;
+    padding:65px;
+  }
+
+  .project-pane-icon li{
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    margin-right: 15px;
+  }
+  .project-pane-icon li.banner-hover-icon{
+    width: 82px;
+  }
+  .project-common-problem-list{
+    height:400px;
+  }
+  .project-common-problem-list .el-collapse-item__header,
+  .project-common-problem-list .el-collapse-item__content{
+    font-size:16px;
+  }
+  .el-collapse-item__header{
+    height:72px;
+    line-height:102px;
+  }
+  .el-collapse-item__arrow{
+    top:30px;
+  }
+  .project-common-problem-title{
+    font-size:30px;
+    margin-bottom:48px;
+  }
+  .project-common-problem-more{
+    margin-top:22px;
+  }
+
+}

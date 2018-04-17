@@ -1,129 +1,230 @@
+.m-home-right
+  display none;
 .home-nav
-  z-index:999
+  z-index: 1000
   position: fixed;
-  width:100%;
-  box-shadow: 0 8px 16px 5px rgba(80,35,54,.15);
+  width: 100%;
   #languageAuto
-    color:#fff;
+    color: #fff;
   & > div:last-child a
-    color:#fff;
-    cursor:pointer;
+    color: #fff;
+    cursor: pointer;
 
 .isLogin
-  padding-bottom:40px;
-  position :relative;
+  padding-bottom: 40px;
+  position: relative;
   & img
-    display :inline-block;
-    width:30px;
-    height:30px;
-    border-radius :50%;
-    position :relative;
-    top:10px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: relative;
+    top: 10px;
   & span
-    color:#fff;
+    color: #fff;
 
 .transition-box
-  width:122px;
-  height:192px;
-  background:#fff;
-  position :absolute;
-  right:0;
+  width: 122px;
+  height: 192px;
+  background: #fff;
+  position: absolute;
+  right: 0;
   border-radius: 0 0 15px 15px;
-  overflow :hidden;
-  line-height:48px;
-  text-align :center;
-  box-shadow: 0 8px 16px 5px rgba(80,35,54,.15);
+  overflow: hidden;
+  line-height: 48px;
+  text-align: center;
+  box-shadow: 0 8px 16px 5px rgba(80, 35, 54, .15);
 
   & li a
-    margin:0 !important;
-    padding:10px 20px;
-    color:#000 !important;
+    margin: 0 !important;
+    padding: 10px 20px;
+    color: #000 !important;
   & li:hover
-    background:linear-gradient(to right, #fb825d,#ff5955);
+    background: linear-gradient(to right, #fb825d, #ff5955);
 
     & a
-      margin:0 !important;
-      color:#fff !important;
+      margin: 0 !important;
+      color: #fff !important;
 
 .nav-container-bottom
-  height: 90px;
 
   & > div:first-child
-    width: 373px;
-    height: 90px;
-    float:left;
+    float: left;
     display: flex;
     align-items center;
-    justify-content :flex-end;
+    justify-content: flex-end;
 
   & .navBar-logo
-    width: 100px;
-    height: 50px;
 
     & img
-      width:100%;
-      height:100%;
+      width: 100%;
+      height: 100%;
 
   & > div:last-child
-    height: 90px;
-    line-height: 90px;
-    margin-right:245px;
-    float:right;
+    float: right;
 
     & a
-      margin-left:40px;
+      margin-left: 40px;
 
     & a:hover
-      font-weight:900;
+      font-weight: 900;
     .login-btn
-      width:120px;
-      height:48px;
-      display:inline-block;
-      text-align:center;
-      line-height :48px;
-      border-radius:30px;
-      border:1px solid #ddd;
+      width: 120px;
+      height: 48px;
+      display: inline-block;
+      text-align: center;
+      line-height: 48px;
+      border-radius: 30px;
+      border: 1px solid #ddd;
     .login-btn2
-      color:#fff;
-      border:0;
+      color: #fff;
+      border: 0;
 
-    .login-btn:hover{
-      border:1px solid transparent;
+    .login-btn:hover {
+      border: 1px solid transparent;
     }
 
 
-.home-nav-other
-  z-index:1999
-  background:#fff;
-  box-shadow: 0 8px 16px 5px rgba(80,35,54,.15);
-  #languageAuto
-    color:#333;
-  .isLogin
-    & span
-      color:#333;
-  .login-btn1
-    border:1px solid #ff7874 !important;
-    color:#ff7874 !important;
-  .login-btn1:hover
-    border:1px solid transparent !important;
-    color:#fff !important;
-  & > div:last-child a
-    color:#000;
-    cursor:pointer;
 
-  & > div:first-child
-    & .navBar-logo
-      width: 100px;
-      height: 50px;
+@media only screen and (max-width: 480px) {
+  .nav-container-bottom > div:first-child {
+    width: 5rem;
+    height: 3rem;
+  }
+  .m-home-right-select{
+    position :absolute;
+    top: 0.2rem;
+    right:4rem;
+    width:4rem;
+  }
+  #m-home-right-avator{
+    position :absolute;
+    top: 0.5rem;
+    right:6rem;
+    width:5rem;
+  }
+  #m-home-right-avator img{
+    width:2rem;
+    height:2rem;
+  }
+  #languageAuto1{
+    background:transparent;
+    border:0;
+  }
+  .nav-container-bottom .navBar-logo {
+    width: 4.2rem;
+    height: 2.1rem;
+  }
 
-      & img
-        width:100%;
-        height:100%;
-    & a:hover
-      font-weight:900;
+  .nav-container-bottom > div:last-child {
+    display :none;
+  }
+  .m-home-right{
+    display :block;
+    float:right;
+    height:1.5rem;
+    width:2rem;
+    margin:0.75rem 1rem 0 0 ;
+  }
+  .m-home-right img{
+    width:100%;
+    height:100%;
+  }
+  .home-nav-other{
+    background:#fff;
+  }
+  .m-home-dialog{
+    margin-top:3rem;
+    position :fixed;
+    width:100%;
+    height:100%;
+    background:#fff;
+    z-index:1000;
+    text-align:center;
+    padding-top:5rem;
+    line-height :5rem;
+    font-size:1.5rem;
+  }
+  .m-home-dialog .m-login-btn a{
+    display :inline-block;
+    width:7rem;
+    height:2.5rem;
+    line-height :2.5rem;
+    font-size:1rem;
+    border-radius:1.5rem;
+  }
+  .m-home-dialog .m-login-btn a.login-btn1{
+    border:1px solid  #ff7874;
+  }
+}
 
+@media (min-width: 481px) and (max-width: 1366px) {
 
-#languageAuto
-  width:100px;
-  background-color:transparent;
-  border:none;
+}
+
+@media only screen and (min-width: 481px) {
+  .nav-container-bottom > div:first-child {
+    width: 373px;
+    height: 90px;
+  }
+
+  .nav-container-bottom .navBar-logo {
+    width: 100px;
+    height: 50px;
+  }
+
+  .nav-container-bottom > div:last-child {
+    height: 90px;
+    line-height: 90px;
+    margin-right: 245px;
+  }
+
+  .home-nav-other {
+    z-index: 1999
+    background: #fff;
+    box-shadow: 0 8px 16px 5px rgba(80, 35, 54, .15);
+  }
+
+  .home-nav-other #languageAuto {
+    color: #333;
+  }
+
+  .home-nav-other .isLogin span {
+    color: #333;
+  }
+
+  .home-nav-other .login-btn1 {
+    border: 1px solid #ff7874 !important;
+    color: #ff7874 !important;
+  }
+
+  .home-nav-other .login-btn1:hover {
+    border: 1px solid transparent !important;
+    color: #fff !important;
+  }
+
+  .home-nav-other > div:last-child a {
+    color: #000;
+    cursor: pointer;
+  }
+
+  .home-nav-other > div:first-child .navBar-logo {
+    width: 100px;
+    height: 50px;
+  }
+
+  .home-nav-other > div:first-child .navBar-logo img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .home-nav-other > div:first-child a {
+    font-weight: 900;
+  }
+
+  #languageAuto{
+    width: 100px;
+    background-color: transparent;
+    border: none;
+  }
+}

@@ -1,6 +1,4 @@
 .login-con
-  height: 800px;
-  padding-top: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,45 +7,27 @@
 
   .login-container,
   .registered-container
-    width:660px;
-    height:540px;
     background:#fff;
-    border-radius:30px;
     box-shadow: 0 8px 36px 2px rgba(0,0,0,.1);
-    padding:50px;
 
     .login-container-title,
     .registered-container-title
       text-align :center;
       color:#666;
       font-weight :900;
-      font-size:30px;
 
     .login-container-form,
     .registered-container-form
-      width:410px;
-      margin:0 auto;
-      margin-top:40px;
 
       & input
         border:1px solid #91aeff;
-        width:412px;
-        height:60px;
-        border-radius:5px;
-        padding-left:20px;
 
       & .login-container-form-validate,
       & .registered-container-form-validate
-        & input
-          width:200px;
-          margin-right:10px;
 
         & b
           display :inline-block;
-          width:195px;
-          height:60px;
           text-align:center;
-          line-height :60px;
           overflow :hidden;
 
           & img
@@ -75,3 +55,77 @@
   color:#6488ff;
   & span
     color:#6488ff;
+@media only screen and (max-width: 480px) {
+  .login-con{
+    height: 800px;
+    padding-top: 100px;
+  }
+  .login-container,
+  .registered-container{
+    width:90%;
+    height:35rem;
+    margin-top:-3rem;
+    border-radius:1.5rem;
+    padding:2rem;
+  }
+  .login-container-title,
+  .registered-container-title{
+    font-size:1.8rem;
+  }
+  .login-container-form,
+  .registered-container-form{
+    width:100%;
+    margin-top:2rem !important;
+  }
+  .login-container-form-validate b,
+  .registered-container-form-validate b{
+    width:6rem;
+    height:2.5rem;
+    line-height :2.5rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 1366px) {
+}
+
+@media only screen and (min-width: 481px) {
+  .login-con{
+    height: 800px;
+    padding-top: 100px;
+  }
+  .login-container,
+  .registered-container{
+    width:660px;
+    height:540px;
+    border-radius:30px;
+    padding:50px;
+  }
+  .login-container-title,
+  .registered-container-title{
+    font-size:30px;
+  }
+  .login-container-form,
+  .registered-container-form{
+    width:410px;
+    margin-top:40px;
+  }
+  .login-container-form input,
+  .registered-container-form input{
+    border:1px solid #91aeff;
+    width:412px;
+    height:60px;
+    border-radius:5px;
+    padding-left:20px;
+  }
+  .login-container-form-validate input,
+  .registered-container-form-validate input{
+    width:200px;
+    margin-right:10px;
+  }
+  .login-container-form-validate b,
+  .registered-container-form-validate b{
+    width:195px;
+    height:60px;
+    line-height :60px;
+  }
+}

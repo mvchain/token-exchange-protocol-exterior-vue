@@ -68,7 +68,8 @@
             <ul>
               <li><span>{{languageVal.RATE}}</span></li>
               <li><span style="font-weight:900;font-size:18px;">1ETH={{projectInfo.ratio}}{{projectInfo.tokenName}}</span></li>
-              <li><a target="_blank" class="color-btn color-btn2" :href="projectInfo.whitePaperAddress">{{languageVal.WhiterPaperDownload}}</a></li>
+              <li>{{languageVal.WhiterPaper}}</li>
+              <li><a target="_blank" class="color-btn color-btn2" :href="projectInfo.whitePaperAddress">{{languageVal.Download}}</a></li>
               <li><span>{{languageVal.Website}}</span></li>
               <li><a target="_blank" :href="projectInfo.homepage">{{projectInfo.homepage&&projectInfo.homepage.replace(/(https:\/\/www.)|(http:\/\/www.)/ig, '')}}</a></li>
             </ul>
@@ -85,12 +86,12 @@
       :close-on-click-modal="false"
       center
       :visible.sync="dialogTableVisible">
-      <div class="dialog-title">参与购买</div>
+      <div class="dialog-title">{{languageVal.ParticipateBuy}}</div>
       <div class="dialog-label">
         <ul>
           <li>ETH{{languageVal.Balance}}：</li>
           <li>{{languageVal.buyAmount}}：</li>
-          <li>获得代币数量：</li>
+          <li>{{languageVal.Gettokenamount}}：</li>
         </ul>
       </div>
       <div class="dialog-context">
@@ -99,13 +100,13 @@
           <li style="position: relative">
             <input @change="fundsHandler" v-model="purchaseVal" type="text">
             <span>ETH</span>
-            <span class="info-prompt">最小购买金额为0.1ETH</span>
+            <span class="info-prompt">{{languageVal.theminimum}}0.1ETH</span>
           </li>
           <li>{{purchaseVal * transactionProObj.ratio}}</li>
         </ul>
       </div>
       <div class="dialog-submit">
-        <span class="color-btn2 color-btn" @click="configPurchase">确认购买</span>
+        <span class="color-btn2 color-btn" @click="configPurchase">{{languageVal.ConfirmPayment}}</span>
       </div>
     </el-dialog>
     <el-dialog
@@ -116,15 +117,15 @@
       custom-class="dialog-confirm"
       center
     >
-      <p class="dialog-confirm-title">确认是否支付{{purchaseVal}}ETH</p>
+      <p class="dialog-confirm-title">{{languageVal.payNow}}{{purchaseVal}}ETH</p>
       <el-input placeholder="请输入内容" type="password" v-model="txPassword">
         <template slot="prepend">{{languageVal.Entertransactionpassword}}：</template>
       </el-input>
       <span slot="footer" class="dialog-footer">
+        <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn" :disabled="!dialogVisible"
+                   @click="confirmPay(purchaseVal)">{{languageVal.yep}}</el-button>
         <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn"
-                   @click="confirmPay(purchaseVal)">是</el-button>
-        <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn"
-                   @click="dialogVisible = false">否</el-button>
+                   @click="dialogVisible = false">{{languageVal.noyep}}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -180,22 +181,22 @@
         let _val = payInfo.ethNumber.replace(/\s/ig, '');
         let _pwd = payInfo.transactionPassword;
         if (!_pwd) {
-          this.$message.error('请输入交易密码');
+          this.$message.error(this.languageVal.Pleaseenterthetransactionpassword);
           return;
         }
         if (!_val) {
-          this.$message.error('请输入购买金额');
+          this.$message.error(this.languageVal.enterPurchase);
           return;
         } else if (Number(_val) > this.transactionProObj.ethBalance) {
-          this.$message.error('购买金额不能超过项目余额');
+          this.$message.error(this.languageVal.cannotBalance);
           return;
         }
+        this.dialogVisible = false;
         this.$store.dispatch('getTransaction', payInfo).then(() => {
-          this.dialogVisible = false;
           this.dialogTableVisible = false;
           this.purchaseVal = '';
           this.txPassword = '';
-          this.$message.success('购买成功');
+          this.$message.success(this.languageVal.successfulPurchase);
         }).catch((err) => {
           this.$message.error(err);
         });
@@ -204,14 +205,14 @@
         if (parseFloat(this.purchaseVal) <= (this.projectInfo.ethNumber - this.projectInfo.soldEth).toFixed(1)) {
           this.dialogVisible = true;
         } else if (isNaN(this.purchaseVal)) {
-          this.$message.error('请输入正确金额');
+          this.$message.error(this.languageVal.correctAmount);
         } else {
-          this.$message.error('项目ETH超额');
+          this.$message.error(this.languageVal.ETHExcess);
         }
       },
       participateHandler(bool) {
         if (!getToken2()) {
-          this.$message.error('请登录后操作');
+          this.$message.error(this.languageVal.loginOperate);
           return;
         }
         if (!bool) return;

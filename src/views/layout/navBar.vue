@@ -2,12 +2,29 @@
   <header class="nav-container">
     <nav class="home-banner">
       <div
-        :style="scrollNum&&$route.path==='/home'?'box-shadow: none;':'box-shadow: 0 8px 16px 5px rgba(80,35,54,.15);'"
         :class="scrollNum?'home-nav':'home-nav-other'" class="nav-container-bottom home-nav">
         <div class="main-size">
           <div class="navBar-logo">
             <img :src="scrollNum?loginI1:loginI2" alt="">
           </div>
+        </div>
+        <div class="m-home-right">
+          <div class="m-home-right-select">
+            <el-select @change="changeFun" id="languageAuto1" v-model="langVal" placeholder="请选择">
+              <el-option
+                v-for="item in langList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </div>
+          <div v-show="uTxt" id="m-home-right-avator" class="m-home-right-avator">
+            <img :src="loginI6" alt="" @click="$router.replace('/safety?type=0')">
+          </div>
+          <img :src="scrollNum && !dialogFlag ? loginI3:
+                     !scrollNum && !dialogFlag ? loginI4:
+                     scrollNum && dialogFlag ? loginI5:loginI5"  alt="" @click="dialogFlag = !dialogFlag">
         </div>
         <div>
           <router-link class="nav-container-link" to="/home">{{languageVal.Home}}</router-link>
@@ -47,6 +64,22 @@
         </div>
       </div>
     </nav>
+    <div class="m-home-dialog" v-show="dialogFlag">
+      <ul>
+        <li><router-link class="nav-container-link" to="/home">{{languageVal.Home}}</router-link></li>
+        <li><router-link class="nav-container-link" to="/proList">{{languageVal.Projects}}</router-link></li>
+        <li><router-link class="nav-container-link" to="/help">{{languageVal.Help }}</router-link></li>
+        <li class="m-login-btn">
+          <a v-show="!uTxt" class="nav-container-link login-btn login-btn1 color-btn" @click="loginHandler('login')">{{languageVal.Login}}</a>
+          <a v-show="!uTxt" class="nav-container-link login-btn login-btn2 color-btn color-btn2"
+             @click="loginHandler('registered')">{{languageVal.SignUp}}</a>
+        </li>
+        <li  class="m-login-btn">
+          <a v-show="uTxt" class="nav-container-link login-btn login-btn3 color-btn color-btn2"
+             @click="logout">{{languageVal.Logout}}</a>
+        </li>
+      </ul>
+    </div>
   </header>
 </template>
 
@@ -54,21 +87,31 @@
   import {mapGetters} from 'vuex';
   import loginImg1 from '@/assets/img/login-w.png';
   import loginImg2 from '@/assets/img/logo-c.png';
+  import loginImg4 from '@/assets/img/m-hamburger-b.png';
+  import loginImg3 from '@/assets/img/m-hamburger.png';
+  import loginImg5 from '@/assets/img/m-hamburger-c.png';
+  import loginImg6 from '@/assets/img/avatar-m.png';
   import { getToken3 } from '@/utils/auth';
   export default {
     watch: {
-      '$route.path': 'fetchdata'
+      '$route.path': 'fetchdata',
+      '$route.query': 'fetchquery'
     },
     data() {
       return {
         scrollNum: true,
         listFlag: false,
         uTxt: '',
+        dialogFlag: false,
         loginI1: loginImg1,
         loginI2: loginImg2,
+        loginI3: loginImg3,
+        loginI4: loginImg4,
+        loginI5: loginImg5,
+        loginI6: loginImg6,
         langList: [
           {
-            label: '中文',
+            label: '中',
             value: 1
           },
           {
@@ -98,7 +141,7 @@
       window.onscroll = function () {
         let t = document.documentElement.scrollTop || document.body.scrollTop;
         if (that.$route.path === '/home') {
-          if (t > 300) {
+          if (t > 100) {
             that.scrollNum = false;
           } else {
             that.scrollNum = true;
@@ -119,8 +162,12 @@
         window.sessionStorage.setItem('LanguageType', v);
         this.$store.dispatch('getLanguage', v);
       },
+      fetchquery() {
+        this.dialogFlag = false;
+      },
       fetchdata(v) {
         this.uTxt = getToken3();
+        this.dialogFlag = false;
         let t = document.documentElement.scrollTop || document.body.scrollTop;
         if (v === '/home' && t < 300) {
           this.scrollNum = true;

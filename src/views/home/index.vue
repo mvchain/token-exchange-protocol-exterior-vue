@@ -3,6 +3,7 @@
     <div class="home-carousel">
       <div v-for="v in banner" :key="v.k" :style="{backgroundImage:'url(' + v.v + ')'}" :class="carouselNum === v.k ? 'banner-img-hover' : ''" class="home-carousel-div">
       </div>
+
       <div class="carousel-circle">
         <ul>
           <li :class="carouselNum==k?'banner-hover-icon':''" v-for="(v, k) in 3" @mouseenter="bannerHandler(k)"
@@ -15,8 +16,8 @@
         <div class="project-title" style="line-height: 48px;">
           <div>{{languageVal.Projects}}</div>
           <div>
-            <span @click="changeHelp('/proList')" style=" width:150px;height:48px;"
-                  class="color-btn color-btn2">{{languageVal.MORE}}</span>
+            <span @click="changeHelp('/proList')"
+                  class="more-btn color-btn color-btn2">{{languageVal.MORE}}</span>
           </div>
         </div>
 
@@ -131,8 +132,8 @@
             </el-collapse>
           </div>
           <div class="project-common-problem-more">
-            <span @click="changeHelp('/help')" class="color-btn color-btn2"
-                  style=" width:150px;height:48px;">{{languageVal.LearnMore}}</span>
+            <span @click="changeHelp('/help')" class="color-btn color-btn2 more-btn"
+                  >{{languageVal.LearnMore}}</span>
           </div>
         </div>
       </div>
