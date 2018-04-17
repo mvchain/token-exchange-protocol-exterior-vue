@@ -1,68 +1,43 @@
 .info-con
-  padding-top:90px;
 
   & .info-container
     overflow-x:hidden;
     background:url(../../assets/img/info-back.png) no-repeat top center;
 
   & .info-container-body
-    width:1420px;
-    min-height:300px;
     margin:0 auto;
-    margin-top:64px;
-    padding-bottom:20px;
 
     & .info-container-title
       display flex;
       justify-content :space-between;
 
-      & div
-        flex:1;
-
       & div:first-child
         & span
           cursor:pointer;
-          width:200px;
-          height:48px;
-
-
       & div:last-child
         text-align right;
 
         & span
           display :inline-block;
-          width:141px;
-          height:48px;
-          line-height :48px;
           background:#fff;
           text-align center;
-          border-radius 30px;
-          margin-left:20px;
           cursor:pointer;
 
     & .info-container-middle
-      margin-top:60px;
       & > div
         background:#fff;
-        height:496px;
         box-shadow: 0 8px 36px 2px rgba(0,0,0,.1);
-        border-radius:20px;
 
       & > div:first-child
-        width:1034px;
         float:left;
         position:relative;
         overflow: hidden;
-        padding:30px;
 
         & .info-working
-          width:124px;
-          height:48px;
           font-weight:900;
           background:#6488ff;
           display :inline-block;
           text-align center;
-          line-height:48px;
           position :absolute;
           top:0;
           left:-5px;
@@ -71,12 +46,9 @@
           color:#fff;
 
         & .info-big-img
-          width:437px;
-          height:437px;
           float:left;
           background:#ddd;
           overflow:hidden;
-          border-radius :15px;
 
           & img
             width:100%;
@@ -86,52 +58,34 @@
           position :absolute;
           right:0;
           top:0;
-          width:69px;
-          height:69px;
 
         & .info-right
           float:right;
-          width:510px;
+          height:100%;
 
           & > div:first-child
-            margin-bottom:20px;
+            width:100%;
             & span:first-child
-              font-size:24px;
               font-weight:900;
-              padding-right:20px;
 
           & > ul
-            margin-top:30px;
             text-align :center;
-            line-height:35px;
 
             & span
-              font-size:24px;
               font-weight:900;
 
           & .info-now
             position :absolute;
-            bottom:40px;
-            right:30px;
 
             & span
               display:inline-block;
-              width:150px;
-              height:48px;
 
 
       & > div:last-child
-        width:338px;
         float:right;
-        padding:0 36px;
-        line-height:20px;
         overflow-y:auto;
 
         & > div:first-child
-          width:160px;
-          height:160px;
-          margin:0 auto;
-          margin-top:48px;
           overflow :hidden;
           border-radius:50%;
 
@@ -147,27 +101,18 @@
           color:#666;
 
     & .info-container-bottom
-      margin-top:50px;
-
       & > div
         background:#fff;
         box-shadow: 0 8px 36px 2px rgba(0,0,0,.1);
         border-radius:20px;
       & > div:first-child
-        width:1034px;
         float:left;
-        padding:30px;
-        min-height:496px;
 
         & .info-container-bottom-title
-          font-size:30px;
           font-weight:900;
 
       & > div:last-child
-        width:338px;
         float:right;
-        height:359px;
-        padding:40px;
         text-align center;
 
         & > ul
@@ -195,10 +140,7 @@
 
 
     & .info-container-bottom-des
-      margin-top:20px;
-      min-height:383px;
       width:100%;
-      border-radius :15px;
       overflow:hidden;
       & img
         width:100%;
@@ -261,3 +203,233 @@
   font-weight:900;
 .btn-opcity
   opacity :0;
+@media only screen and (max-width:480px){
+  .info-con{
+    padding-top:1rem;
+  }
+  .info-con .info-container-body{
+    width:100%;
+    min-height:20rem;
+    margin:0 auto;
+    margin-top:2rem;
+    padding-bottom:1rem;
+  }
+  .info-container-title{
+    margin-top:1rem;
+  }
+  .info-container-title div:first-child span{
+    width:8rem;
+    height:2.5rem;
+    line-height :2.5rem;
+  }
+  .info-container-title div:last-child span{
+    width:5rem;
+    height:2.5rem;
+    line-height :2.5rem;
+    border-radius 1.5rem;
+    margin-left:1rem;
+  }
+  .info-container-middle{
+    margin-top:2rem;
+    padding:1rem;
+  }
+  .info-container-middle > div{
+
+    border-radius:1rem;
+  }
+  .info-container-middle > div:first-child{
+    width:100%;
+    margin:0 auto;
+    padding:1rem;
+    height:13rem;
+  }
+  .info-container-middle .info-working{
+    width:7rem;
+    height:2rem;
+    line-height:2rem;
+    font-size:0.7rem;
+    top:0;
+    left:0;
+    border-radius:0.7rem;
+  }
+  .info-container-middle .info-big-img{
+    width:11rem;
+    height:11rem;
+    border-radius :0.7rem;
+  }
+  .info-container-middle .info-participate img{
+    width:3rem;
+    height:3rem;
+  }
+  .info-container-middle .info-right{
+    width:8rem;
+    font-size:0.7rem;
+  }
+  .info-container-middle .info-right > div:first-child{
+    margin-bottom:0.5rem;
+  }
+  .info-con .info-container-body .info-container-middle > div:first-child .info-right > ul{
+    margin-top:1rem;
+  }
+  .info-con .info-container-body .info-container-middle > div:first-child .info-right > ul span{
+    font-size:0.7rem;
+  }
+  .info-container-middle > div:last-child{
+    width:100%;
+    padding:0 1rem;
+    margin-top:1rem;
+    line-height:1rem;
+  }
+  .info-now{
+    bottom:1rem;
+    right:1rem;
+  }
+  .info-now span{
+    width:5rem;
+    height:1.5rem;
+    line-height:1.5rem;
+    font-size:0.7rem;
+  }
+  .info-container-middle > div:last-child > div:first-child{
+    width:10rem;
+    height:10rem;
+    margin:0 auto;
+    margin-top:48px;
+  }
+  .info-container-bottom{
+    padding:1rem;
+  }
+  .info-container-bottom > div:first-child{
+    width:100%;
+    padding:1rem;
+  }
+  .info-container-bottom > div:last-child{
+    width:100%;
+    margin-top:1rem;
+    height:20rem;
+    padding:2rem;
+  }
+  .info-container-bottom > div:first-child .info-container-bottom-title{
+    font-size:1rem;
+  }
+  .info-container-bottom-des{
+    margin-top:1rem;
+    border-radius:0.7rem;
+  }
+}
+@media (min-width: 481px) and (max-width:1366px){
+}
+@media only screen and (min-width:481px){
+  .info-con{
+    padding-top:90px;
+  }
+  .info-con .info-container-body{
+    width:1420px;
+    min-height:300px;
+    margin:0 auto;
+    margin-top:64px;
+    padding-bottom:20px;
+  }
+  .info-container-title div{
+    flex:1;
+  }
+  .info-container-title div:first-child span{
+    width:200px;
+    height:48px;
+  }
+  .info-container-title div:last-child span{
+    width:141px;
+    height:48px;
+    line-height :48px;
+    border-radius 30px;
+    margin-left:20px;
+  }
+  .info-container-middle{
+    margin-top:60px;
+  }
+  .info-container-middle > div{
+    border-radius:20px;
+  }
+  .info-container-middle div:first-child{
+    width:1034px;
+    padding:30px;
+  }
+  .info-container-middle .info-working{
+    width:124px;
+    height:48px;
+    line-height:48px;
+    top:0;
+    left:-5px;
+    border-radius:15px;
+  }
+  .info-container-middle .info-big-img{
+    width:437px;
+    height:437px;
+    border-radius :15px;
+  }
+  .info-container-middle .info-participate{
+    width:69px;
+    height:69px;
+  }
+  .info-container-middle .info-right{
+    width:510px;
+  }
+  .info-container-middle .info-right > div:first-child{
+    margin-bottom:20px;
+  }
+  .info-container-middle .info-right > div:first-child span:first-child{
+    font-size:24px;
+    padding-right:20px;
+  }
+
+  .info-con .info-container-body .info-container-middle > div:first-child .info-right > ul{
+    margin-top:30px;
+    line-height:35px;
+  }
+  .info-con .info-container-body .info-container-middle > div:first-child .info-right > ul span{
+    font-size:24px;
+  }
+
+  .info-container-middle > div:last-child{
+    width:338px;
+    padding:0 36px;
+    line-height:41px;
+  }
+  .info-container-middle > div:last-child > div:first-child{
+    width:160px;
+    height:160px;
+    margin:0 auto;
+    margin-top:48px;
+  }
+
+  .info-now{
+    bottom:40px;
+    right:30px;
+  }
+  .info-now span{
+    width:150px;
+    height:48px;
+  }
+  .info-container-bottom{
+    margin-top:50px;
+  }
+  .info-container-bottom > div:first-child{
+    width:1034px;
+    padding:30px;
+    min-height:496px;
+  }
+  .info-container-bottom > div:last-child{
+    width:338px;
+    height:359px;
+    padding:40px;
+  }
+
+  .info-container-bottom > div:first-child .info-container-bottom-title{
+    font-size:30px;
+  }
+  .info-container-bottom-des{
+    margin-top:20px;
+    min-height:383px;
+    border-radius :15px;
+  }
+}

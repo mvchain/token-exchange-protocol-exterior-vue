@@ -71,15 +71,37 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  .download-btn
-    background:#6488ff;
-    display:inline-block;
-    width:120px;
-    height:40px;
-    text-align :center;
-    line-height :40px;
-    border-radius:10px;
-    font-weight:900;
-    color:#fff;
 
+
+  @media only screen and (max-width:480px){
+    .download-btn{
+      background:#6488ff;
+      display:inline-block;
+      width:10rem;
+      height:2rem;
+      text-align :center;
+      line-height :2rem;
+      border-radius:10px;
+      font-weight:900;
+      color:#fff;
+      margin-top:5rem;
+    }
+  }
+  @media (min-width: 481px) and (max-width:1366px){
+
+  }
+  @media only screen and (min-width:481px){
+    .download-btn{
+      background:#6488ff;
+      display:inline-block;
+      width:120px;
+      height:40px;
+      text-align :center;
+      line-height :40px;
+      border-radius:10px;
+      font-weight:900;
+      color:#fff;
+    }
+
+  }
 </style>
