@@ -77,8 +77,7 @@
       left: -110px;
       margin-top: 10px;
 
-    .recharge-info
-      padding-left: 210px;
+
 
     .recharge-type
       font-weight: 900;
@@ -100,4 +99,16 @@
     .recharge-info-txt
       margin-bottom: 10px;
       font-weight: 900;
+
+  @media only screen and (max-width:480px){
+
+  }
+  @media (min-width: 481px) and (max-width:1366px){
+
+  }
+  @media only screen and (min-width:481px){
+    .recharge-info{
+      padding-left: 210px;
+    }
+  }
 </style>

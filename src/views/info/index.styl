@@ -149,43 +149,27 @@
   & .info-dialog
     & .dialog-title
       text-align :center;
-      font-size:30px;
       color:#333;
     & .dialog-label
       float:left;
-      line-height:80px;
       text-align:right;
-      width:200px;
-      margin-right:10px;
 
     & .dialog-context
       float:left;
-      line-height:80px;
-      width:280px;
 
       & .info-prompt
         position :absolute;
-        top:65px;
         left:0;
-        line-height :20px;
         color:#9b9b9b;
-        font-size:14px;
-        height:20px;
 
       & input
         border:1px solid orange;
         outline :none;
-        border-radius:5px;
-        padding:10px;
-        margin-right:10px;
-
-
     & .dialog-submit
       text-align :center;
       &  span
         display :inline-block;
-        width:150px;
-        height:48px;
+
 
 .dialog-confirm
   & .dialog-confirm-title
@@ -316,10 +300,52 @@
     margin-top:1rem;
     border-radius:0.7rem;
   }
+  .info-con .el-dialog{
+    width:20rem;
+    height:418px;
+    top:10vh;
+  }
+  .dialog-title{
+    font-size:1.8rem;
+    margin-bottom:1rem;
+  }
+  .dialog-label{
+    font-size:0.7rem;
+    line-height:3rem;
+    width:35%;
+    margin-right:0.7rem;
+  }
+  .dialog-context{
+    line-height:3rem;
+    width:60%;
+    font-size:0.7rem;
+  }
+  .info-prompt{
+    top:5rem;
+    line-height :3rem;
+    height:2rem;
+  }
+  .dialog-context input {
+    width:8rem;
+    border-radius:5px;
+    padding:10px;
+  }
+  .dialog-submit span{
+    width:8rem;
+    height:3rem;
+    line-height :3rem;
+    margin-top:3rem;
+  }
+
 }
 @media (min-width: 481px) and (max-width:1366px){
 }
 @media only screen and (min-width:481px){
+  .info-con .info-dialog{
+    width:543px;
+    height:418px;
+    top:15vh;
+  }
   .info-con{
     padding-top:90px;
   }
@@ -350,7 +376,7 @@
   .info-container-middle > div{
     border-radius:20px;
   }
-  .info-container-middle div:first-child{
+  .info-container-middle>div:first-child{
     width:1034px;
     padding:30px;
   }
@@ -393,7 +419,7 @@
   .info-container-middle > div:last-child{
     width:338px;
     padding:0 36px;
-    line-height:41px;
+    line-height:20px;
   }
   .info-container-middle > div:last-child > div:first-child{
     width:160px;
@@ -431,5 +457,36 @@
     margin-top:20px;
     min-height:383px;
     border-radius :15px;
+  }
+  .dialog-title{
+    font-size:30px;
+  }
+  .dialog-label{
+    line-height:80px;
+    width:200px;
+    margin-right:10px;
+  }
+  .dialog-context{
+    line-height:80px;
+    width:280px;
+  }
+  .info-prompt{
+    top:65px;
+    line-height :20px;
+    font-size:14px;
+    height:20px;
+  }
+  .dialog-context input {
+    border-radius:5px;
+    padding:10px;
+    margin-right:10px;
+  }
+  .dialog-submit span{
+    width:150px;
+    height:48px;
+  }
+  .dialog-confirm{
+    width:543px;
+    top:25vh;
   }
 }

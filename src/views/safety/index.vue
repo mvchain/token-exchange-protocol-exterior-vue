@@ -119,6 +119,12 @@
                   </span>
                   </div>
                 </li>
+                <li class="m-funds-table-li">
+                  <div>{{languageVal.OrderStatus}}:</div>
+                  <div>
+                    <span>{{v | statusFilter}}</span>
+                  </div>
+                </li>
               </ul>
             </div>
             <div style="text-align: center;margin-top:30px;">

@@ -79,9 +79,6 @@
     </div>
     <foot-view></foot-view>
     <el-dialog
-      width="543px"
-      height="418px"
-      top="25vh"
       custom-class="info-dialog"
       :close-on-click-modal="false"
       center
@@ -111,9 +108,7 @@
     </el-dialog>
     <el-dialog
       :visible.sync="dialogVisible"
-      width="543px"
       :show-close="false"
-      top="35vh"
       custom-class="dialog-confirm"
       center
     >
@@ -261,6 +256,6 @@
   };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
   @import "./index.styl";
 </style>

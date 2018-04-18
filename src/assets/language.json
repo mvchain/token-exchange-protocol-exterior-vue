@@ -31,7 +31,7 @@
     "withdrawalAmountMoreThenMin": "提现金额需大于最少提现额",
     "withdrawalAmountLimit": "提现金额超出上限",
     "SuccessfulWithdrawal": "提现成功",
-    "payNow":"确认是否支付??",
+    "payNow":"确认是否支付",
 
 
     "Home": "首页",
@@ -326,7 +326,7 @@
     "History": "History",
     "Currency": "Currency",
     "Operation": "Operation",
-    "payNow":"Do you pay?",
+    "payNow":"Do you pay",
 
     "Type": "Type",
     "Amount": "Amount",
