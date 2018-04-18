@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-table
+      id="historyTable"
       :data="historyList.list"
       v-loading="historyLoading"
       height="430"
@@ -55,6 +56,35 @@
         </template>
       </el-table-column>
     </el-table>
+    <div id="m-historyTable" v-loading="historyLoading">
+      <ul class="m-funds-table-ul" v-for="(v,k) in historyList.list">
+        <li class="m-funds-table-li">
+          <div>{{languageVal.Order}}:</div>
+          <div>{{v.orderId}}</div>
+        </li>
+        <li class="m-funds-table-li">
+          <div>{{languageVal.Time}}:</div>
+          <div>{{v.createdAt}}</div>
+        </li>
+        <li class="m-funds-table-li">
+          <div>{{languageVal.Type}}:</div>
+          <div><span>{{v.type === 0 ? languageVal.Recharge : languageVal.Withdrawal}}</span></div>
+        </li>
+        <li class="m-funds-table-li">
+          <div>{{languageVal.Amount}}:</div>
+          <div>{{v.number}}</div>
+        </li>
+        <li class="m-funds-table-li">
+          <div>{{languageVal.Adress}}:</div>
+          <div><p><a target="_blank" :href="`https://etherscan.io/address/${v.type === 0 ? v.fromAddress :v.toAddress}`">{{v.type === 0 ? v.fromAddress : v.toAddress}}</a></p>
+            <p><a target="_blank" :href="`https://etherscan.io/tx/${v.hash}`">{{v.hash}}</a></p></div>
+        </li>
+        <li class="m-funds-table-li">
+          <div>{{languageVal.Status}}:</div>
+          <div> <span>{{v.status === 0 ? languageVal.Witing : v.status === 1 ? languageVal.InProgress : v.status === 2 ? languageVal.Done : languageVal.Faild}}</span></div>
+        </li>
+      </ul>
+    </div>
     <div style="text-align: center;margin-top:20px;">
       <el-pagination
         @current-change="handleCurrentChange"
@@ -103,6 +133,6 @@
   };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
 
 </style>

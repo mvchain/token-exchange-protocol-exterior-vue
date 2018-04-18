@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-table
+      id="fundsTable"
       :data="balance"
       style="width: 100%">
       <el-table-column
@@ -26,6 +27,27 @@
         </template>
       </el-table-column>
     </el-table>
+    <div id="fundsTableMobil">
+      <ul class="m-funds-table-ul" v-for="(v,k) in balance">
+        <li class="m-funds-table-li">
+          <div>{{languageVal.Currency}}:</div>
+          <div>{{v.tokenName}}</div>
+        </li>
+        <li class="m-funds-table-li">
+          <div>{{languageVal.Balance}}:</div>
+          <div>{{v.balance}}</div>
+        </li>
+        <li class="m-funds-table-li-handler">
+          <div>
+             <span class="color-btn handler-btn" v-show="v.rechargeStatus"
+                   @click="rechargeHandler(k, 'recharge', v.tokenName)">{{languageVal.Recharge}}</span>
+            <span class="color-btn handler-btn" v-show="v.withdrawStatus"
+                  @click="rechargeHandler(k, 'withdraw', v.tokenName)">{{languageVal.Withdrawal}}</span>
+            <span class="color-btn handler-btn" @click="rechargeHandler(k, 'ctHistory',v.tokenId)">{{languageVal.History}}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -66,17 +88,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-  .handler-btn
-    display: inline-block;
-    width: 95px;
-    height: 36px;
-    text-align: center;
-    line-height 36px;
-    border-radius: 25px;
-    border: 1px solid #ff7974;
-    margin-right: 10px;
-    color: #ff7974;
-    cursor: pointer;
-  .handler-btn:hover
-    box-shadow :none;
+
 </style>

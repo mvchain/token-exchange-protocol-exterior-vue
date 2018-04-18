@@ -194,7 +194,7 @@ div.project-pane
 .el-collapse
   border-top-color:transparent;
 .el-progress
-  padding-bottom:12px;
+  padding-bottom:3px;
 .registedBtn
   font-size:16px;
   & span
@@ -310,6 +310,53 @@ div.project-pane
     border-radius:20px;
     padding:2rem;
   }
+
+// 表格
+  #fundsTable{
+    display:none;
+  }
+  #fundsTableMobil{
+    display:block;
+  }
+  .m-funds-table-ul{
+    line-height:2rem;
+    border-bottom:1px solid #ddd;
+    padding-bottom:0.5rem;
+  }
+  .m-funds-table-li{
+    font-size:0.7rem;
+    display :flex;
+  }
+  .m-funds-table-li div:first-child{
+    flex:2;
+  }
+  .m-funds-table-li div:last-child{
+    width:70%;
+  }
+  .m-funds-table-li-handler > div:first-child{
+    display :flex;
+  }
+  .handler-btn{
+    width: 30%;
+    height: 2rem;
+    text-align: center;
+    line-height 2rem;
+    border-radius: 3rem;
+    border: 1px solid #ff7974;
+    background:linear-gradient(to right, #ff9975,#ff7874) !important;
+    margin-right: 0.5rem;
+    color: #fff;
+    cursor: pointer;
+    font-size:0.7rem;
+  }
+
+  #historyTable, #orderTable{
+    display :none;
+  }
+
+  #m-historyTable,#m-orderTable{
+    display :block;
+  }
 }
 @media (min-width: 481px) and (max-width:1366px){
 
@@ -423,5 +470,36 @@ div.project-pane
     border-radius:20px;
     padding:60px;
     font-size:16px;
+  }
+
+  // 表格
+  #fundsTable{
+    display:block;
+  }
+  #fundsTableMobil{
+    display:none;
+  }
+  .handler-btn{
+    display: inline-block;
+    width: 95px;
+    height: 36px;
+    text-align: center;
+    line-height 36px;
+    border-radius: 25px;
+    border: 1px solid #ff7974;
+    margin-right: 10px;
+    color: #ff7974;
+    cursor: pointer;
+  }
+
+  .handler-btn:hover{
+    box-shadow :none;
+  }
+
+  #historyTable,#orderTable{
+    display :block;
+  }
+  #m-historyTable, #m-orderTable{
+    display :none;
   }
 }

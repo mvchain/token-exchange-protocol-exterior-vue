@@ -30,6 +30,7 @@
           </div>
           <div class="safety-pane-item-right">
             <el-table
+              id="orderTable"
               :data="orderLists.list"
               v-loading="orderLoading"
               height="430"
@@ -86,6 +87,40 @@
                 </template>
               </el-table-column>
             </el-table>
+            <div id="m-orderTable" v-loading="orderLoading">
+              <ul class="m-funds-table-ul" v-for="(v,k) in orderLists.list">
+                <li class="m-funds-table-li">
+                  <div>{{languageVal.Order}}:</div>
+                  <div>{{v.orderId}}</div>
+                </li>
+                <li class="m-funds-table-li">
+                  <div>{{languageVal.Time}}:</div>
+                  <div>{{v.createdAt}}</div>
+                </li>
+                <li class="m-funds-table-li">
+                  <div>{{languageVal.Project}}:</div>
+                  <div>{{v.projectName}}</div>
+                </li>
+                <li class="m-funds-table-li">
+                  <div>{{languageVal.buyAmount}}:</div>
+                  <div>{{v.ethNumber}}</div>
+                </li>
+                <li class="m-funds-table-li">
+                  <div>{{languageVal.Number}}:</div>
+                  <div>{{v.tokenNumber}}</div>
+                </li>
+                <li class="m-funds-table-li">
+                  <div>{{languageVal.ProjectStatus}}:</div>
+                  <div>
+                    <span v-show="v.status === 1">{{languageVal.InProgress}}</span>
+                    <span v-show="v.status === 9">{{languageVal.FAILED}}</span>
+                    <span v-show="v.status === 2">
+                    {{v.ethNumber >= v.projectEthNumber ? languageVal.DONE : languageVal.FAILED}}
+                  </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div style="text-align: center;margin-top:30px;">
               <el-pagination
                 @current-change="handleCurrentChange"
