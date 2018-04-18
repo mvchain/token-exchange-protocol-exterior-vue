@@ -114,7 +114,7 @@
     >
       <p class="dialog-confirm-title">{{languageVal.payNow}}{{purchaseVal}}ETH</p>
       <el-input placeholder="请输入内容" type="password" v-model="txPassword">
-        <template slot="prepend">{{languageVal.Entertransactionpassword}}：</template>
+        <template slot="prepend">{{languageVal.Entertransactionpassword}}</template>
       </el-input>
       <span slot="footer" class="dialog-footer">
         <el-button style="padding:10px 50px;border-radius:10px;" class="color-btn" :disabled="!dialogVisible"
