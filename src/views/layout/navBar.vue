@@ -4,7 +4,7 @@
       <div
         :class="scrollNum?'home-nav':'home-nav-other'" class="nav-container-bottom home-nav">
         <div class="main-size">
-          <div class="navBar-logo">
+          <div class="navBar-logo" @click="$router.replace('/home')">
             <img :src="scrollNum?loginI1:loginI2" alt="">
           </div>
         </div>

@@ -40,7 +40,7 @@
             <el-col :span="12">
               <el-input :placeholder="languageVal.Code" v-model="registeredData.emailCode" type="text"></el-input>
             </el-col>
-            <el-col :span="12" style="text-align: center;line-height: 60px;">
+            <el-col :span="12" class="regist-line" >
               <el-button  :disabled="validateCodeInterval" type="text"  @click="sendEmail('registeredData')">
                 {{validateCodeTxt}}
               </el-button>
