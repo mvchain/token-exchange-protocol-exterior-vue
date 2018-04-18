@@ -117,19 +117,10 @@
 
         & > ul
           & > li:nth-child(1) span
-            font-size:18px;
             color:#666;
-
-          & > li:nth-child(2)
-            margin: 25px 0 25px 0;
-
-          & > li:nth-child(3)
-            margin: 25px 0 25px 0;
 
           & > li:nth-child(4) a
             display :inline-block;
-            width:150px;
-            height:48px;
 
           & > li:nth-child(5)
             margin: 25px 0 12px 0;
@@ -292,6 +283,21 @@
     height:20rem;
     padding:2rem;
   }
+  .info-container-bottom > div:last-child > ul > li:nth-child(1) span{
+    font-size:1.2rem;
+  }
+  .info-container-bottom > div:last-child > ul > li:nth-child(2),
+  .info-container-bottom > div:last-child > ul > li:nth-child(3){
+    margin: 1.3rem 0 1.3rem 0;
+  }
+  .info-container-bottom > div:last-child > ul > li:nth-child(4) a{
+    width:8rem;
+    height:3rem;
+    line-height:3rem;
+  }
+  .info-container-bottom > div:last-child > ul > li:nth-child(1) span{
+    font-size:1.2rem;
+  }
   .info-container-bottom > div:first-child .info-container-bottom-title{
     font-size:1rem;
   }
@@ -340,6 +346,17 @@
 @media (min-width: 481px) and (max-width:1366px){
 }
 @media only screen and (min-width:481px){
+  .info-container-bottom > div:last-child > ul > li:nth-child(1) span{
+    font-size:18px;
+  }
+  .info-container-bottom > div:last-child > ul > li:nth-child(4) a{
+    width:150px;
+    height:48px;
+  }
+  .info-container-bottom > div:last-child > ul > li:nth-child(2),
+  .info-container-bottom > div:last-child > ul > li:nth-child(3){
+    margin: 25px 0 25px 0;
+  }
   .info-con .info-dialog{
     width:543px;
     height:418px;
