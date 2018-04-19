@@ -192,6 +192,7 @@
           this.purchaseVal = '';
           this.txPassword = '';
           this.$message.success(this.languageVal.successfulPurchase);
+          this.getProjectInfo(this.$route.query.id);
         }).catch((err) => {
           this.$message.error(err);
         });

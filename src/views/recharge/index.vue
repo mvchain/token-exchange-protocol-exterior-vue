@@ -2,12 +2,12 @@
   <div class="recharge-con">
     <h1 class="recharge-title">{{languageVal.Recharge}}</h1>
     <div class="recharge-info">
-      <div class="recharge-type">ETH{{languageVal.Recharge}}{{languageVal.Adress}}</div>
+      <div class="recharge-type">{{languageVal.Recharge}}{{languageVal.Adress}}</div>
       <div class="recharge-addr">
         <input style="width:450px;" id="codeID" readonly v-model="tokenAddr">
         <span @click="copyHandler">{{languageVal.copy}}</span>
       </div>
-      <div class="recharge-info-txt">ETH{{languageVal.QRcode}}</div>
+      <div class="recharge-info-txt">{{languageVal.QRcode}}</div>
       <div class="recharge-code">
         <img :src="codeImg" alt="">
       </div>

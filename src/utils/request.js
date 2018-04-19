@@ -61,6 +61,7 @@ service.interceptors.response.use((response) => {
       store.dispatch('getReferToken').then(() => {
         window.location.reload();
       }).catch();
+      return Promise.reject();
     } else if(error.response.data.status === 50015) {
       store.dispatch('FedLogOut').then(() => {
         location.reload()// 为了重新实例化vue-router对象 避免bug
@@ -70,6 +71,7 @@ service.interceptors.response.use((response) => {
           duration: 5 * 1000
         });
       })
+      return Promise.reject();
     }
     return Promise.reject(error.response.data.message)
   }
