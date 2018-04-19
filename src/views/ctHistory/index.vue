@@ -30,11 +30,13 @@
         </template>
       </el-table-column>
       <el-table-column
-        prop="number"
         :label="languageVal.Amount"
         align="center"
         width="100"
       >
+        <template slot-scope="scope">
+          <span>{{scope.row.number}}{{scope.row.tokenName}}</span>
+        </template>
       </el-table-column>
       <el-table-column
         prop="hash"
@@ -72,7 +74,7 @@
         </li>
         <li class="m-funds-table-li">
           <div>{{languageVal.Amount}}:</div>
-          <div>{{v.number}}</div>
+          <div>{{v.number}}{{v.tokenName}}</div>
         </li>
         <li class="m-funds-table-li">
           <div>{{languageVal.Adress}}:</div>

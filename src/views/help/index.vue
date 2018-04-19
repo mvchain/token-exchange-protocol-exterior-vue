@@ -10,9 +10,9 @@
       </div>
       <div></div>
       <div>
-        <div class="help-div" v-show="listNum === 0">
+        <div class="help-div help-div1" v-show="listNum === 0">
           <h4><span>{{languageVal.Online}}</span></h4>
-          <h4><span class="download-btn">{{languageVal.watch}}</span></h4>
+          <h4><a target="_blank" href="http://chuantu.biz/t6/289/1524124304x-1404793083.png" class="download-btn">{{languageVal.watch}}</a></h4>
         </div>
       </div>
     </div>
@@ -85,6 +85,9 @@
       font-weight:900;
       color:#fff;
       margin-top:5rem;
+    }
+    .help-div1{
+      line-height:1rem;
     }
   }
   @media (min-width: 481px) and (max-width:1366px){
