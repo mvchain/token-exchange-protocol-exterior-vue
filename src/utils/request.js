@@ -18,7 +18,7 @@ service.interceptors.request.use(config => {
     config.headers['Authorization'] = to // 让每个请求携带自定义token 请根据实际情况自行修改
 
   }
-  let language = (navigator.language || navigator.browserLanguage).toLowerCase();
+  let language = (navigator.language || navigator.browserLanguage);
   let l = parseInt(window.sessionStorage.getItem('LanguageType'));
   let a = '';
   if (l === 1) {
