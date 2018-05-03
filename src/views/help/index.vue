@@ -14,6 +14,18 @@
           <h4><span>{{languageVal.Online}}</span></h4>
           <h4><a target="_blank" href="http://chuantu.biz/t6/289/1524124304x-1404793083.png" class="download-btn">{{languageVal.watch}}</a></h4>
         </div>
+        <div  id="cjwt" v-show="listNum === 1">
+          <h2>{{languageVal.Questions1}}</h2>
+          <div>{{languageVal.Answer1}}</div>
+          <h2>{{languageVal.Questions2}}</h2>
+          <div>{{languageVal.Answer2}}</div>
+          <h2>{{languageVal.Questions3}}</h2>
+          <div>{{languageVal.Answer3}}</div>
+          <h2>{{languageVal.Questions4}}</h2>
+          <div>{{languageVal.Answer4}}</div>
+          <h2>{{languageVal.Questions5}}</h2>
+          <div>{{languageVal.Answer5}}</div>
+        </div>
       </div>
     </div>
     <footer-com></footer-com>
@@ -89,6 +101,18 @@
     .help-div1{
       line-height:1rem;
     }
+    #cjwt{
+      line-height 1.5rem;
+    }
+    #cjwt h2 {
+      margin: 24px 0 12px 0;
+      color:#333;
+    }
+    #cjwt div{
+      color:#999;
+      font-size:14px
+    }
+
   }
   @media (min-width: 481px) and (max-width:1366px){
 
@@ -105,6 +129,13 @@
       font-weight:900;
       color:#fff;
     }
-
+    #cjwt h2 {
+      margin: 24px 0 12px 0;
+      color:#333;
+    }
+    #cjwt div{
+      color:#999;
+      font-size:14px
+    }
   }
 </style>
