@@ -115,3 +115,6 @@ div:after,div:before{
 .box-set:after {
   clear: both;
 }
+a[title='站长统计'] {
+  display: none;
+}
