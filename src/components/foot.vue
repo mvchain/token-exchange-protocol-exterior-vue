@@ -15,10 +15,10 @@
         </ul>
         <div>
           <p>{{languageVal.ContectUs}}：</p>
-          <p>869142248@qq.com</p>
+          <p>contact@icolist.com</p>
         </div>
       </div>
-      <div class="footer-bottom">Crugo, All rights reserved © 2018</div>
+      <div class="footer-bottom">ICONLIST, All rights reserved © 2018</div>
     </div>
   </footer>
 </template>
