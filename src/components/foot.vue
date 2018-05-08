@@ -12,6 +12,9 @@
           <li  class="foot-container-link">
             <router-link to="/help">{{languageVal.Help}}</router-link>
           </li>
+          <li class="foot-container-link">
+            <a target="_blank" href="https://erc20.oss-cn-hangzhou.aliyuncs.com/f/ICOlist%20Website%20Terms%20and%20Conditions.pdf">{{languageVal.TermsandCondition}}</a>
+          </li>
         </ul>
         <div>
           <p>{{languageVal.ContectUs}}：</p>

@@ -99,6 +99,7 @@
     "Entertransactionpasswordagain": "再次输入交易密码",
     "Pleaseentertransactionpasswordagain": "请再次输入交易密码",
     "AgreedtotheUserAgreement": "同意用户协议《用户协议》",
+    "TermsandCondition":"网站条款",
     "Forgotyourpassword": "忘记密码",
     "Newuser": "还没有账户？",
     "Pleasecompletetheforminformation": "请完善表单信息",
@@ -230,7 +231,7 @@
     "correctAmount":"Please enter the correct amount",
     "ETHExcess":"Project ETH excess",
     "loginOperate":"Please login to operate",
-
+    "TermsandCondition":"Terms and Condition",
 
     "Home": "Home",
     "Projects": "Projects",
