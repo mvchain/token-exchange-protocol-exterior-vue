@@ -21,7 +21,7 @@
           <p>contact@icolist.com</p>
         </div>
       </div>
-      <div class="footer-bottom">ICONLIST, All rights reserved © 2018</div>
+      <div class="footer-bottom">ICOLIST, All rights reserved © 2018</div>
     </div>
   </footer>
 </template>
