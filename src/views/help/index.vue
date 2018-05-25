@@ -12,7 +12,7 @@
       <div>
         <div class="help-div help-div1" v-show="listNum === 0">
           <h4><span>{{languageVal.Online}}</span></h4>
-          <h4><a target="_blank" href="http://chuantu.biz/t6/289/1524124304x-1404793083.png" class="download-btn">{{languageVal.watch}}</a></h4>
+          <h4><a target="_blank" href="https://erc20.oss-cn-hangzhou.aliyuncs.com/f/ICOlist-project-instruction.pdf" class="download-btn">{{languageVal.watch}}</a></h4>
         </div>
         <div  id="cjwt" v-show="listNum === 1">
           <h2>{{languageVal.Questions1}}</h2>
