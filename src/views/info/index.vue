@@ -15,7 +15,7 @@
           <div>
             <i class="info-working">{{projectInfo.status === 0 ? (languageVal.COMINGSOON) : projectInfo.status === 1 ? (languageVal.INPROGRESS) : (languageVal.over)}}</i>
             <b class="info-participate" v-show="projectInfo.partake">
-              <img src="../../assets/img/participate.png">
+              <img :src="languageVal.copy == 'Copy'?join:joinC" alt="">
             </b>
             <div class="info-big-img">
               <img :src="projectInfo.projectCoverAddress">
@@ -130,6 +130,8 @@
   import { cryptoFun } from '../../utils/index';
   import foot from '../../components/foot';
   import {mapGetters} from 'vuex';
+  import joinC from '@/assets/img/participate.png';
+  import join from '@/assets/img/JOINED.png';
   import { getToken2 } from '@/utils/auth';
   export default {
     name: 'info',
@@ -138,6 +140,8 @@
     },
     data() {
       return {
+        join: join,
+        joinC: joinC,
         purchaseVal: '',
         txPassword: '',
         infoLoading: false,

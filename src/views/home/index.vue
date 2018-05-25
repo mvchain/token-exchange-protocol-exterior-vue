@@ -31,7 +31,7 @@
             </transition>
             <i class="project-selling">{{v.status === 0 ? languageVal.COMINGSOON : v.status === 1? languageVal.INPROGRESS : languageVal.over}}</i>
             <b class="project-participate" v-show="v.partake">
-              <img src="../../assets/img/participate.png" alt="">
+              <img :src="languageVal.copy == 'Copy'?join:joinC" alt="">
             </b>
             <div class="project-bigImg">
               <img :src="v.projectCoverAddress" :alt="v.tokenName">
@@ -74,7 +74,7 @@
             </transition>
             <i class="project-selling">{{v.status === 0 ? (languageVal.COMINGSOON) : v.status === 1?(languageVal.INPROGRESS):(languageVal.over)}}</i>
             <b class="project-participate">
-              <img src="../../assets/img/participate.png" alt="">
+              <img :src="languageVal.copy == 'Copy'?join:joinC" alt="">
             </b>
             <div class="project-bigImg">
               <img :src="v.projectCoverAddress" :alt="v.tokenName">
@@ -145,11 +145,15 @@
   import b1 from '@/assets/img/Big-background1.png';
   import footer from '@/components/foot.vue';
   import BackToTop from '@/components/toTop.vue';
+  import joinC from '@/assets/img/participate.png';
+  import join from '@/assets/img/JOINED.png';
   import {mapGetters} from 'vuex';
 
   export default {
     data() {
       return {
+        join: join,
+        joinC: joinC,
         listLoading: false,
         maskLayer: false,
         ewmFlag: false,

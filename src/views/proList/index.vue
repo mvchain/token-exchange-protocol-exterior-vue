@@ -18,7 +18,7 @@
             </transition>
             <i class="project-selling">{{v.status === 0 ? languageVal.COMINGSOON : v.status === 1 ? languageVal.INPROGRESS : languageVal.over}}</i>
             <b class="project-participate" v-show="v.partake">
-              <img src="../../assets/img/participate.png">
+              <img :src="languageVal.copy == 'Copy'?join:joinC" alt="">
             </b>
             <div class="project-bigImg">
               <img :src="v.projectCoverAddress" :alt="v.tokenName">
@@ -70,6 +70,8 @@
 <script>
   import foot from '../../components/foot';
   import {mapGetters} from 'vuex';
+  import joinC from '@/assets/img/participate.png';
+  import join from '@/assets/img/JOINED.png';
   export default {
     name: 'proList',
     watch: {
@@ -77,6 +79,8 @@
     },
     data() {
       return {
+        join: join,
+        joinC: joinC,
         maskLayer: false,
         listLoading: false,
         layerNum: 0,
