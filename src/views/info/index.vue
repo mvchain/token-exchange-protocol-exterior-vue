@@ -66,12 +66,12 @@
           </div>
           <div>
             <ul>
-              <li><span>{{languageVal.RATE}}</span></li>
+              <li><span style="color:#999;">{{languageVal.RATE}}</span></li>
               <li v-if="isLogin"><span style="font-weight:900;font-size:18px;">1ETH={{projectInfo.ratio}}{{projectInfo.tokenName}}</span></li>
               <li v-else>{{languageVal.proportion}}</li>
-              <li>{{languageVal.WhiterPaper}}</li>
+              <li><span style="color:#999; font-weight: 900">{{languageVal.WhiterPaper}}</span></li>
               <li><a target="_blank" class="color-btn color-btn2" :href="projectInfo.whitePaperAddress">{{languageVal.Download}}</a></li>
-              <li><span>{{languageVal.Website}}</span></li>
+              <li><span style="color:#999;">{{languageVal.Website}}</span></li>
               <li><a target="_blank" :href="projectInfo.homepage">{{projectInfo.homepage&&projectInfo.homepage.replace(/(https:\/\/www.)|(http:\/\/www.)/ig, '')}}</a></li>
             </ul>
           </div>
