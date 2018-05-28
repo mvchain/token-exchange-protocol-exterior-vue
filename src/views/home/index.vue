@@ -39,12 +39,12 @@
             <div class="project-pane-item-info">
               <p class="project-coin">
                 <span>{{v.title}}</span>
-                <i v-show="v.status===0">{{languageVal.Target}}：{{v.ethNumber}}ETH</i>
               </p>
               <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
+              <div class="modify528"><i v-show="v.status===0">{{languageVal.Target}}：{{v.ethNumber}}ETH</i></div>
               <div class="project-pane-number" v-show="v.status === 1">
-                <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
+                <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
               </div>
               <p v-show="v.status===2" class="project-pane-item-over">
                 <span v-if="v.soldEth >= v.ethNumber">{{languageVal.DONE}}</span>
@@ -59,7 +59,7 @@
                 changeTimeStamp}}</p></div>
               <div v-show="v.status === 1" class="project-pane-item-time">{{languageVal.Timetable}}：
                 <p class="project-time-txt">
-                  {{v.startTime | timeDown}}--{{v.stopTime | timeDown}}
+                  {{v.stopTime | timeDown}}
                 </p>
               </div>
             </div>
@@ -84,9 +84,10 @@
                 <span>{{v.title}}</span>
               </p>
               <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
+              <div class="modify528"><i v-show="v.status===0">{{languageVal.Target}}：{{v.ethNumber}}ETH</i></div>
               <div class="project-pane-number" v-show="v.status === 1">
-                <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
+                <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
               </div>
               <p v-show="v.status===2" class="project-pane-item-over">{{v.soldEth >=
                 v.ethNumber? (languageVal.DONE):(languageVal.FAILED)}}</p>
