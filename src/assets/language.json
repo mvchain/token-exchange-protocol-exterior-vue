@@ -176,7 +176,7 @@
 
     "TransactionPasswordModification": "交易密码修改",
     "Confirmrevision": "确认修改",
-
+    "proportion": "请登录",
     "Questions1": "我不知道如何参与购买数字货币怎么办？",
     "Questions2": "支持哪些币种购买数字货币？",
     "Questions3": "参与成功后，在哪能看到自己的购买订单？",
@@ -193,6 +193,7 @@
   },
   "en": {
 
+    "proportion": "Please login",
     "TradingPassword": "Trading password at least 6 symbols",
     "ContectUs": "Contect Us",
     "copy": "Copy",
