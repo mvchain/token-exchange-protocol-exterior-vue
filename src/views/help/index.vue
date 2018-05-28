@@ -6,7 +6,9 @@
     <div class="help-rectangle">
       <div>
         <p @click="titleHandler(k)" v-for="(v,k) in listTxt" :key="k" :class="listNum==k?'help-title':''">
-          {{v.title}}</p>
+          <span>
+            {{v.title}}
+          </span></p>
       </div>
       <div></div>
       <div>

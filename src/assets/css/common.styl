@@ -11,7 +11,6 @@
   & span
     color:#fff;
 
-
 .color-btn2
   display :inline-block;
   text-align:center;
@@ -32,6 +31,8 @@
 
 .project-time-txt
   font-weight:900;
+  color:#ef5346;
+  font-size: 18px
 
 div.project-pane
 
@@ -80,6 +81,15 @@ div.project-pane
       float:right;
       color:#666;
 
+      & .modify528
+        position relative
+        top:10px
+
+        & i
+          font-style: normal;
+          font-weight:900;
+          color: #333
+
 
       & .project-coin
         color:#666;
@@ -92,6 +102,8 @@ div.project-pane
           float:right;
 
 
+
+
       & .project-pane-number
         display :flex;
         justify-content :space-between;
@@ -99,6 +111,7 @@ div.project-pane
 
         & span
           flex:1;
+          font-weight 900
 
         & span:last-child
           text-align :right;
@@ -110,19 +123,24 @@ div.project-pane
       & .project-pane-item-day,
       & .project-pane-item-time
         position absolute
+        font-weight 900
+        color #999
 
       & .project-pane-item-day
         & span
-          color:#666;
+          color:#ef5346;
           font-weight:900;
+          font-size:18px
 
       & .project-pane-item-over
         position absolute
         font-weight:900;
         text-align :center;
+        color:#ef5346
 
         & span
           font-weight:900;
+          color:#999;
 
       & .project-pane-item-aims
         font-size:16px;
@@ -165,7 +183,7 @@ div.project-pane
       & > p
         margin-bottom:20px;
         cursor:pointer;
-      & > p.help-title
+      & > p.help-title span
         color:red;
 
     & > div:nth-child(2)
@@ -388,7 +406,7 @@ div.project-pane
     margin-bottom:48px;
   }
   .project-selling{
-    width:124px;
+    width:150px;
     height:48px;
     border-radius:10px;
     line-height 48px;
@@ -449,7 +467,7 @@ div.project-pane
   }
   .help-con .help-div{
     margin-left:-200px;
-    padding-top:120px;
+    margin-top:120px;
     line-height:40px;
   }
   .help-circle-con{

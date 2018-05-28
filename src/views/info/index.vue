@@ -23,16 +23,16 @@
             <div class="info-right">
               <div>
                 <span>{{projectInfo.title}}</span>
-                <span>{{languageVal.StartTime}}：{{projectInfo.startTime}}</span>
               </div>
               <el-progress :percentage="projectInfo | percentageFilter"
                            :stroke-width="20"></el-progress>
+              <div style="margin-top:10px;"> <span style="font-weight: 900;color:#999;">{{languageVal.StartTime}}：{{projectInfo.startTime}}</span></div>
               <ul>
-                <li style="color:#999;">{{languageVal.Target}}</li>
+                <li style="color:#999;font-weight:900;">{{languageVal.Target}}</li>
                 <li><span>{{projectInfo.soldEth}}/{{projectInfo.ethNumber}}ETH</span></li>
-                <li style="color:#999;">{{languageVal.PARTICIPANTS}}</li>
+                <li style="color:#999;font-weight:900;">{{languageVal.PARTICIPANTS}}</li>
                 <li><span>{{projectInfo.buyerNum}}</span></li>
-                <li style="color:#999;" >{{languageVal.TIMEREMAINING}}</li>
+                <li style="color:#999;font-weight:900;" >{{languageVal.TIMEREMAINING}}</li>
                 <li>
                   <span v-show="projectInfo.status === 1">{{Date.parse(projectInfo.stopTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}</span>
