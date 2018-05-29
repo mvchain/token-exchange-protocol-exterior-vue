@@ -51,7 +51,7 @@
                 <span v-else>{{languageVal.FAILED}}</span>
               </p>
               <p v-show="v.status===0" class="project-pane-item-over" style="text-align: center;">
-                <span style="font-size:16px;position: relative;">{{languageVal.Countdown}}</span><br/>
+                <span>{{languageVal.Countdown}}</span><br/>
                 {{Date.parse(v.startTime)-Date.parse(timeTxt) | changeTimeStamp}}
               </p>
 

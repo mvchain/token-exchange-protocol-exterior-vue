@@ -34,11 +34,11 @@
                 <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
               </div>
               <p v-show="v.status===2" class="project-pane-item-over">
-                <span v-if="v.soldEth >= v.ethNumber">{{languageVal.DONE}}</span>
-                <span v-else>{{languageVal.FAILED}}</span>
+                <span class="modify529" v-if="v.soldEth >= v.ethNumber">{{languageVal.DONE}}</span>
+                <span class="modify529" v-else>{{languageVal.FAILED}}</span>
               </p>
               <p v-show="v.status===0" class="project-pane-item-over">
-                <span style="font-size:16px;">{{languageVal.Countdown}}</span><br/>
+                <span>{{languageVal.Countdown}}</span><br/>
                 {{Date.parse(v.startTime)-Date.parse(timeTxt) |
                 changeTimeStamp}}
               </p>
