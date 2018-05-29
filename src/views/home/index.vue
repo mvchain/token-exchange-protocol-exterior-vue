@@ -46,16 +46,16 @@
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
                 <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
               </div>
-              <p v-show="v.status===2" class="project-pane-item-over">
+              <p v-show="v.status===2" class="project-pane-item-over modify529">
                 <span v-if="v.soldEth >= v.ethNumber">{{languageVal.DONE}}</span>
                 <span v-else>{{languageVal.FAILED}}</span>
               </p>
               <p v-show="v.status===0" class="project-pane-item-over" style="text-align: center;">
                 <span>{{languageVal.Countdown}}</span><br/>
-                {{Date.parse(v.startTime)-Date.parse(timeTxt) | changeTimeStamp}}
+                {{Date.parse(v.startTime.replace(/\-/g, "/"))-Date.parse(timeTxt.replace(/\-/g, "/")) | changeTimeStamp}}
               </p>
 
-              <div v-show="v.status === 1" class="project-pane-item-day">{{languageVal.TimeRemaining}}：<p class="project-time-txt">{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
+              <div v-show="v.status === 1" class="project-pane-item-day">{{languageVal.TimeRemaining}}：<p class="project-time-txt">{{Date.parse(v.stopTime.replace(/\-/g, "/"))-Date.parse(timeTxt.replace(/\-/g, "/")) |
                 changeTimeStamp}}</p></div>
               <div v-show="v.status === 1" class="project-pane-item-time">{{languageVal.Timetable}}：
                 <p class="project-time-txt">
@@ -89,14 +89,14 @@
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
                 <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
               </div>
-              <p style="color:#999;" v-show="v.status===2" class="project-pane-item-over">{{v.soldEth >=
+              <p style="color:#999;" v-show="v.status===2" class="project-pane-item-over modify529">{{v.soldEth >=
                 v.ethNumber? (languageVal.DONE):(languageVal.FAILED)}}</p>
-              <p v-show="v.status===0" class="project-pane-item-over">{{Date.parse(v.startTime)-Date.parse(timeTxt) | changeTimeStamp}}</p>
+              <p v-show="v.status===0" class="project-pane-item-over">{{Date.parse(v.startTime.replace(/\-/g, "/"))-Date.parse(timeTxt.replace(/\-/g, "/")) | changeTimeStamp}}</p>
               <p class="project-pane-item-aims" v-show="v.status===0">
                 <span>{{languageVal.Target}}：</span>
                 <span>{{v.ethNumber}}ETH</span>
               </p>
-              <p v-show="v.status === 1" class="project-pane-item-day" style="line-height: 22px;">{{languageVal.TimeRemaining}}：<br/><span>{{Date.parse(v.stopTime)-Date.parse(timeTxt) |
+              <p v-show="v.status === 1" class="project-pane-item-day" style="line-height: 22px;">{{languageVal.TimeRemaining}}：<br/><span>{{Date.parse(v.stopTime.replace(/\-/g, "/"))-Date.parse(timeTxt.replace(/\-/g, "/")) |
                 changeTimeStamp}}</span> </p>
               <div v-show="v.status === 1" class="project-pane-item-time">{{languageVal.Timetable}}：
                 <p class="project-time-txt">

@@ -34,6 +34,7 @@ export function timeFilter(time, cFormat) {
 }
 
 export function changeTimeStamp(timeStamp) {
+  console.log(timeStamp);
   if (!isNaN(timeStamp)) {
     if (timeStamp < 0) {
       return store.state.Home.languageVal.over;
