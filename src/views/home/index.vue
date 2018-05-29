@@ -89,7 +89,7 @@
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
                 <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
               </div>
-              <p v-show="v.status===2" class="project-pane-item-over">{{v.soldEth >=
+              <p style="color:#999;" v-show="v.status===2" class="project-pane-item-over">{{v.soldEth >=
                 v.ethNumber? (languageVal.DONE):(languageVal.FAILED)}}</p>
               <p v-show="v.status===0" class="project-pane-item-over">{{Date.parse(v.startTime)-Date.parse(timeTxt) | changeTimeStamp}}</p>
               <p class="project-pane-item-aims" v-show="v.status===0">
