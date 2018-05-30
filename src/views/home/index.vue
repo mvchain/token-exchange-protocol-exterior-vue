@@ -46,9 +46,8 @@
                 <span>{{v.soldEth}}/{{v.ethNumber}}ETH</span>
                 <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
               </div>
-              <p v-show="v.status===2" class="project-pane-item-over modify529">
-                <span v-if="v.soldEth >= v.ethNumber">{{languageVal.DONE}}</span>
-                <span v-else>{{languageVal.FAILED}}</span>
+              <p style="color:#999;" v-show="v.status===2" class="project-pane-item-over modify529">
+                {{v.soldEth >= v.ethNumber? (languageVal.DONE):(languageVal.FAILED)}}
               </p>
               <p v-show="v.status===0" class="project-pane-item-over" style="text-align: center;">
                 <span>{{languageVal.Countdown}}</span><br/>
