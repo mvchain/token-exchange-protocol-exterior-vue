@@ -220,9 +220,18 @@ div.project-pane
   width:425px !important;
 
 @media only screen and (max-width:480px){
+  .help-style{
+    display none !important
+  }
+  .help-style1{
+    display block
+  }
   .color-btn2{
     border-radius:2rem;
     line-height:2.5rem;
+  }
+  .mobile-style{
+    display: block;
   }
   .more-btn{
     width:7rem;
@@ -230,10 +239,10 @@ div.project-pane
     font-size:0.9rem;
   }
   .modify528{
-    top:0.3rem;
+    top:0.2rem;
   }
   .modify528 i{
-    font-size:0.8rem;
+    font-size:0.6rem;
   }
   div.project-pane{
     padding:0 1rem;
@@ -275,7 +284,7 @@ div.project-pane
   }
   .project-pane-number{
     padding-top:0.5rem;
-    font-size:0.5rem;
+    font-size:0.6rem;
   }
   .project-pane-item-day,
   .project-pane-item-time{
@@ -331,6 +340,31 @@ div.project-pane
     top:12rem;
     border-radius:20px;
     padding:2rem;
+  }
+  .help-rectangle1{
+    width:90%;
+    height:35rem;
+    top:12rem;
+    border-radius:20px;
+    padding:2rem;
+    background:#fff;
+    box-shadow: 0 8px 36px 2px rgba(0,0,0,.1);
+    margin:0 auto;
+    position absolute;
+    left:0;
+    right:0;
+    bottom:0
+    overflow:auto;
+  }
+  .help-active{
+    color:#ff7974
+    border-bottom:1px solid #ff7974;
+    padding-bottom:0.2rem;
+  }
+  .help-rectangle1-title span{
+    font-weight 900
+    display inline-block
+    margin-right:1.5rem;
   }
 
 // 表格
@@ -391,9 +425,18 @@ div.project-pane
 
 }
 @media only screen and (min-width:481px){
+  .help-style{
+    display flex !important
+  }
+  .help-style1{
+    display none !important
+  }
   .color-btn2{
     border-radius:30px ;
     line-height:48px;
+  }
+  .mobile-style{
+    display: none;
   }
   .more-btn{
     width:150px;

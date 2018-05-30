@@ -3,7 +3,7 @@
     <div class="help-circle-con">
       <div class="help-circle">{{languageVal.Help}}</div>
     </div>
-    <div class="help-rectangle">
+    <div class="help-rectangle help-style">
       <div>
         <p @click="titleHandler(k)" v-for="(v,k) in listTxt" :key="k" :class="listNum==k?'help-title':''">
           <span>
@@ -28,6 +28,39 @@
           <h2>{{languageVal.Questions5}}</h2>
           <div>{{languageVal.Answer5}}</div>
         </div>
+      </div>
+    </div>
+    <div class="help-rectangle1 help-style1">
+      <div class="help-rectangle1-title">
+          <span  @click="titleHandler(k)" v-for="(v,k) in listTxt" :key="k" :class="listNum==k?'help-active':''">
+            {{v.title}}
+          </span>
+      </div>
+      <div v-show="listNum===0" class="project-common-problem-1-main">
+        <div class="project-common-problem-1-main-item">
+          <h2 class="project-common-problem-1-main-item-title">{{languageVal.Questions1}}</h2>
+          <div class="project-common-problem-1-main-item-content">{{languageVal.Answer1}}</div>
+        </div>
+        <div class="project-common-problem-1-main-item">
+          <h2 class="project-common-problem-1-main-item-title">{{languageVal.Questions2}}</h2>
+          <div class="project-common-problem-1-main-item-content">{{languageVal.Answer2}}</div>
+        </div>
+        <div class="project-common-problem-1-main-item">
+          <h2 class="project-common-problem-1-main-item-title">{{languageVal.Questions3}}</h2>
+          <div class="project-common-problem-1-main-item-content">{{languageVal.Answer3}}</div>
+        </div>
+        <div class="project-common-problem-1-main-item">
+          <h2 class="project-common-problem-1-main-item-title">{{languageVal.Questions4}}</h2>
+          <div class="project-common-problem-1-main-item-content">{{languageVal.Answer4}}</div>
+        </div>
+        <div class="project-common-problem-1-main-item">
+          <h2 class="project-common-problem-1-main-item-title">{{languageVal.Questions5}}</h2>
+          <div class="project-common-problem-1-main-item-content">{{languageVal.Answer5}}</div>
+        </div>
+      </div>
+      <div v-show="listNum===1" class="project-common-problem-1-main">
+        <h4  class="download-btn2"><span>{{languageVal.Online}}</span></h4>
+        <h4 class="download-btn1"><a target="_blank" href="https://erc20.oss-cn-hangzhou.aliyuncs.com/f/ICOlist-project-instruction.pdf" >{{languageVal.watch}}</a></h4>
       </div>
     </div>
     <footer-com></footer-com>
@@ -114,6 +147,23 @@
       color:#999;
       font-size:14px
     }
+    .download-btn1,.download-btn2{
+      text-align center
+      margin-top:3rem;
+
+    }
+    .download-btn1 a{
+      text-align center
+      background:#6488ff;
+      display:inline-block;
+      width:120px;
+      height:40px;
+      line-height :40px;
+      border-radius:10px;
+      font-weight:900;
+      color:#fff;
+
+    }
 
   }
   @media (min-width: 481px) and (max-width:1366px){
@@ -139,5 +189,6 @@
       color:#999;
       font-size:14px
     }
+
   }
 </style>

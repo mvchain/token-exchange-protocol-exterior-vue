@@ -137,6 +137,35 @@
                   >{{languageVal.LearnMore}}</span>
           </div>
         </div>
+        <div class="project-common-problem-1 mobile-style">
+          <div class="project-common-problem-1-title">{{languageVal.FrequentlyAskedQuestions}}</div>
+          <div class="project-common-problem-1-main">
+            <div class="project-common-problem-1-main-item">
+              <h2 class="project-common-problem-1-main-item-title">{{languageVal.Questions1}}</h2>
+              <div class="project-common-problem-1-main-item-content">{{languageVal.Answer1}}</div>
+            </div>
+            <div class="project-common-problem-1-main-item">
+              <h2 class="project-common-problem-1-main-item-title">{{languageVal.Questions2}}</h2>
+              <div class="project-common-problem-1-main-item-content">{{languageVal.Answer2}}</div>
+            </div>
+            <div class="project-common-problem-1-main-item">
+              <h2 class="project-common-problem-1-main-item-title">{{languageVal.Questions3}}</h2>
+              <div class="project-common-problem-1-main-item-content">{{languageVal.Answer3}}</div>
+            </div>
+            <div class="project-common-problem-1-main-item">
+              <h2 class="project-common-problem-1-main-item-title">{{languageVal.Questions4}}</h2>
+              <div class="project-common-problem-1-main-item-content">{{languageVal.Answer4}}</div>
+            </div>
+            <div class="project-common-problem-1-main-item">
+              <h2 class="project-common-problem-1-main-item-title">{{languageVal.Questions5}}</h2>
+              <div class="project-common-problem-1-main-item-content">{{languageVal.Answer5}}</div>
+            </div>
+          </div>
+          <div class="project-common-problem-1-footer">
+            <span @click="changeHelp('/help')" class="color-btn color-btn2 more-btn"
+            >{{languageVal.LearnMore}}</span>
+          </div>
+        </div>
       </div>
       <artisan-footer></artisan-footer>
     </div>
