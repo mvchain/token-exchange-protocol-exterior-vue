@@ -36,7 +36,7 @@
             {{v.title}}
           </span>
       </div>
-      <div v-show="listNum===0" class="project-common-problem-1-main">
+      <div v-show="listNum===1" class="project-common-problem-1-main">
         <div class="project-common-problem-1-main-item">
           <h2 class="project-common-problem-1-main-item-title">{{languageVal.Questions1}}</h2>
           <div class="project-common-problem-1-main-item-content">{{languageVal.Answer1}}</div>
@@ -58,7 +58,7 @@
           <div class="project-common-problem-1-main-item-content">{{languageVal.Answer5}}</div>
         </div>
       </div>
-      <div v-show="listNum===1" class="project-common-problem-1-main">
+      <div v-show="listNum===0" class="project-common-problem-1-main">
         <h4  class="download-btn2"><span>{{languageVal.Online}}</span></h4>
         <h4 class="download-btn1"><a target="_blank" href="https://erc20.oss-cn-hangzhou.aliyuncs.com/f/ICOlist-project-instruction.pdf" >{{languageVal.watch}}</a></h4>
       </div>
@@ -117,78 +117,5 @@
   };
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-
-
-  @media only screen and (max-width:480px){
-    .download-btn{
-      background:#6488ff;
-      display:inline-block;
-      width:10rem;
-      height:2rem;
-      text-align :center;
-      line-height :2rem;
-      border-radius:10px;
-      font-weight:900;
-      color:#fff;
-      margin-top:5rem;
-    }
-    .help-div1{
-      line-height:1rem;
-    }
-    #cjwt{
-      line-height 1.5rem;
-    }
-    #cjwt h2 {
-      margin: 24px 0 12px 0;
-      color:#333;
-    }
-    #cjwt div{
-      color:#999;
-      font-size:14px
-    }
-    .download-btn1,.download-btn2{
-      text-align center
-      margin-top:3rem;
-
-    }
-    .download-btn1 a{
-      text-align center
-      background:#6488ff;
-      display:inline-block;
-      width:120px;
-      height:40px;
-      line-height :40px;
-      border-radius:10px;
-      font-weight:900;
-      color:#fff;
-
-    }
-
-  }
-  @media (min-width: 481px) and (max-width:1366px){
-
-  }
-  @media only screen and (min-width:481px){
-    .download-btn{
-      background:#6488ff;
-      display:inline-block;
-      width:120px;
-      height:40px;
-      text-align :center;
-      line-height :40px;
-      border-radius:10px;
-      font-weight:900;
-      color:#fff;
-    }
-    #cjwt h2 {
-      margin: 24px 0 12px 0;
-      color:#333;
-    }
-    #cjwt div{
-      color:#999;
-      font-size:14px
-    }
-
-  }
+<style lang="stylus" rel="stylesheet/stylus">
 </style>
