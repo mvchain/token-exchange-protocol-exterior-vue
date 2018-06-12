@@ -171,7 +171,7 @@
   </div>
 </template>
 <script type='text/ecmascript-6'>
-  import b1 from '@/assets/img/Big-background1.png';
+  import b1 from '@/assets/img/Big-background1.jpg';
   import footer from '@/components/foot.vue';
   import BackToTop from '@/components/toTop.vue';
   import joinC from '@/assets/img/participate.png';
