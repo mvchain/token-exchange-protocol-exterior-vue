@@ -1,7 +1,7 @@
 <template>
   <div class="home-container pubBack">
     <div class="home-carousel">
-      <div v-for="v in banner" :key="v.k" :style="{backgroundImage:'url(' + v.v + ')'}" :class="carouselNum === v.k ? 'banner-img-hover' : ''" class="home-carousel-div">
+      <div @click="changeProject(v.target)" v-for="v in banner" :key="v.k" :style="{backgroundImage:'url(' + v.v + ')'}" :class="carouselNum === v.k ? 'banner-img-hover' : ''" class="home-carousel-div">
       </div>
 
       <div class="carousel-circle">
@@ -200,15 +200,18 @@
         banner: [
           {
             k: 0,
-            v: b1
+            v: b1,
+            target: 'https://www.icolist.com/#/info?id=13&idx=0'
           },
           {
             k: 1,
-            v: b2
+            v: b2,
+            target: ''
           },
           {
             k: 2,
-            v: b2
+            v: b2,
+            target: ''
           }
         ],
         carouselNum: 0,
@@ -244,6 +247,11 @@
       bannerHandler(k) {
         this.carouselNum = k;
         this.enterFlag = false;
+      },
+      changeProject(t) {
+        if (t) {
+          window.open(t);
+        }
       },
       paneHandler(k) {
         this.paneNum = k;
