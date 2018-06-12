@@ -227,7 +227,7 @@
             this.carouselNum = 0;
           }
         }
-      }, 3000);
+      }, 4000);
     },
     components: {
       'artisan-footer': footer,
