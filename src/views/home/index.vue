@@ -172,6 +172,7 @@
 </template>
 <script type='text/ecmascript-6'>
   import b1 from '@/assets/img/Big-background1.jpg';
+  import b2 from '@/assets/img/Big-background1.png';
   import footer from '@/components/foot.vue';
   import BackToTop from '@/components/toTop.vue';
   import joinC from '@/assets/img/participate.png';
@@ -203,11 +204,11 @@
           },
           {
             k: 1,
-            v: b1
+            v: b2
           },
           {
             k: 2,
-            v: b1
+            v: b2
           }
         ],
         carouselNum: 0,
