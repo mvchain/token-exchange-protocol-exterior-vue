@@ -66,7 +66,7 @@
         }
       };
       const addressVali = (rule, value, callback) => {
-        if (!value || value.length !== 42) {
+        if (!value) {
           callback(new Error(this.languageVal.addressLength));
         } else {
           callback();
