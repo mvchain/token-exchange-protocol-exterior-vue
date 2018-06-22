@@ -26,10 +26,21 @@
               </div>
               <el-progress :percentage="projectInfo | percentageFilter"
                            :stroke-width="20"></el-progress>
-              <div style="margin-top:10px;"> <span style="font-weight: 900;color:#999;">{{languageVal.StartTime}}：{{projectInfo.startTime}}</span></div>
+              <div style="margin-top:10px;"> <span style="font-weight: 900;color:#999;">{{languageVal.StartTime}}：{{projectInfo.startTime||'—'}}</span></div>
               <template v-if="!projectInfo.startTime">
-                <div class="determined">
-                  {{languageVal.determined}}
+                <ul>
+                  <li style="color:#999;font-weight:900;">{{languageVal.Target}}</li>
+                  <li><span>— {{projectInfo.coin}}</span></li>
+                  <li style="color:#999;font-weight:900;">{{languageVal.PARTICIPANTS}}</li>
+                  <li><span>{{projectInfo.buyerNum}}</span></li>
+                  <li style="color:#999;font-weight:900;" >{{languageVal.TIMEREMAINING}}</li>
+                  <li>
+                 <span>—</span>
+                  </li>
+                </ul>
+                <div class="info-now">
+                <span v-show="projectInfo.status === 1" disabled class="color-btn color-btn2"
+                      @click="participateHandler(projectInfo.status === 1)">{{languageVal.Participate}}</span>
                 </div>
               </template>
               <template v-else>

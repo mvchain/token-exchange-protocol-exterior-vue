@@ -33,7 +33,7 @@
     "SuccessfulWithdrawal": "提现成功",
     "payNow":"确认是否支付",
     "determined": "待定",
-
+    "determined1": "—",
     "Home": "首页",
     "Projects": "项目列表",
     "Help": "帮助支持",
@@ -234,6 +234,7 @@
     "loginOperate":"Please login to operate",
     "TermsandCondition":"Terms and Condition",
     "determined": "To be determined",
+    "determined1": "—",
     "Home": "Home",
     "Projects": "Projects",
     "Help": "Support",

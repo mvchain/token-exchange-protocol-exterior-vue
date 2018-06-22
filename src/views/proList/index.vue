@@ -28,15 +28,16 @@
                 <span>{{v.title}}</span>
               </p>
               <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
-              <div class="modify528"><i v-show="v.status===0">{{languageVal.Target}}：{{v.ethNumber}} {{v.coin}}</i></div>
+              <div class="modify528"><i v-show="v.status===0">{{languageVal.Target}}：{{v.ethNumber ? v.ethNumber : '— '}} {{v.coin}}</i></div>
               <div class="project-pane-number" v-show="v.status === 1">
                 <span>{{v.soldEth}}/{{v.ethNumber}} {{v.coin}}</span>
                 <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
               </div>
               <template v-if="!v.startTime">
-                <div class="determined">
-                  {{languageVal.determined}}
-                </div>
+                <p v-show="v.status===0" class="project-pane-item-over" style="text-align: center;">
+                  <span>{{languageVal.Countdown}}</span><br/>
+                  {{languageVal.determined1}}
+                </p>
               </template>
               <template v-else>
                 <p style="color:#999;" v-show="v.status===2" class="project-pane-item-over modify529">
