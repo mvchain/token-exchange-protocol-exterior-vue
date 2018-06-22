@@ -32,7 +32,7 @@
     "withdrawalAmountLimit": "提现金额超出上限",
     "SuccessfulWithdrawal": "提现成功",
     "payNow":"确认是否支付",
-
+    "determined": "待定",
 
     "Home": "首页",
     "Projects": "项目列表",
@@ -233,7 +233,7 @@
     "ETHExcess":"Project ETH excess",
     "loginOperate":"Please login to operate",
     "TermsandCondition":"Terms and Condition",
-
+    "determined": "To be determined",
     "Home": "Home",
     "Projects": "Projects",
     "Help": "Support",

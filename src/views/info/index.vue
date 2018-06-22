@@ -27,25 +27,33 @@
               <el-progress :percentage="projectInfo | percentageFilter"
                            :stroke-width="20"></el-progress>
               <div style="margin-top:10px;"> <span style="font-weight: 900;color:#999;">{{languageVal.StartTime}}：{{projectInfo.startTime}}</span></div>
-              <ul>
-                <li style="color:#999;font-weight:900;">{{languageVal.Target}}</li>
-                <li><span>{{projectInfo.soldEth}}/{{projectInfo.ethNumber}} {{projectInfo.coin}}</span></li>
-                <li style="color:#999;font-weight:900;">{{languageVal.PARTICIPANTS}}</li>
-                <li><span>{{projectInfo.buyerNum}}</span></li>
-                <li style="color:#999;font-weight:900;" >{{languageVal.TIMEREMAINING}}</li>
-                <li>
+              <template v-if="!projectInfo.startTime">
+                <div class="determined">
+                  {{languageVal.determined}}
+                </div>
+              </template>
+              <template v-else>
+                <ul>
+                  <li style="color:#999;font-weight:900;">{{languageVal.Target}}</li>
+                  <li><span>{{projectInfo.soldEth}}/{{projectInfo.ethNumber}} {{projectInfo.coin}}</span></li>
+                  <li style="color:#999;font-weight:900;">{{languageVal.PARTICIPANTS}}</li>
+                  <li><span>{{projectInfo.buyerNum}}</span></li>
+                  <li style="color:#999;font-weight:900;" >{{languageVal.TIMEREMAINING}}</li>
+                  <li>
                   <span v-show="projectInfo.status === 1">{{projectInfo.stopTime && Date.parse(projectInfo.stopTime.replace(/\-/g, "/"))-Date.parse(timeTxt.replace(/\-/g, "/")) |
                 changeTimeStamp}}</span>
-                  <span v-show="projectInfo.status === 0">{{projectInfo.stopTime && Date.parse(projectInfo.startTime.replace(/\-/g, "/"))-Date.parse(timeTxt.replace(/\-/g, "/")) |
+                    <span v-show="projectInfo.status === 0">{{projectInfo.stopTime && Date.parse(projectInfo.startTime.replace(/\-/g, "/"))-Date.parse(timeTxt.replace(/\-/g, "/")) |
                 changeTimeStamp}}</span>
-                  <span v-show="projectInfo.status === 2 && projectInfo.soldEth === projectInfo.ethNumber">{{languageVal.DONE}}！</span>
-                  <span v-show="projectInfo.status === 2 && projectInfo.soldEth !== projectInfo.ethNumber">{{languageVal.FAILED}}!</span>
-                </li>
-              </ul>
-              <div class="info-now">
+                    <span v-show="projectInfo.status === 2 && projectInfo.soldEth === projectInfo.ethNumber">{{languageVal.DONE}}！</span>
+                    <span v-show="projectInfo.status === 2 && projectInfo.soldEth !== projectInfo.ethNumber">{{languageVal.FAILED}}!</span>
+                  </li>
+                </ul>
+                <div class="info-now">
                 <span v-show="projectInfo.status === 1" disabled class="color-btn color-btn2"
                       @click="participateHandler(projectInfo.status === 1)">{{languageVal.Participate}}</span>
-              </div>
+                </div>
+              </template>
+
             </div>
           </div>
           <div>
