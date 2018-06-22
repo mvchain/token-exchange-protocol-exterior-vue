@@ -28,9 +28,9 @@
                 <span>{{v.title}}</span>
               </p>
               <el-progress :percentage="v | percentageFilter" :stroke-width="20"></el-progress>
-              <div class="modify528"><i v-show="v.status===0">{{languageVal.Target}}：{{v.ethNumber}}{{v.coin}}</i></div>
+              <div class="modify528"><i v-show="v.status===0">{{languageVal.Target}}：{{v.ethNumber}} {{v.coin}}</i></div>
               <div class="project-pane-number" v-show="v.status === 1">
-                <span>{{v.soldEth}}/{{v.ethNumber}}{{v.coin}}</span>
+                <span>{{v.soldEth}}/{{v.ethNumber}} {{v.coin}}</span>
                 <span>{{v.buyerNum}}{{languageVal.peopleinvolved}}</span>
               </div>
               <p style="color:#999;" v-show="v.status===2" class="project-pane-item-over modify529">

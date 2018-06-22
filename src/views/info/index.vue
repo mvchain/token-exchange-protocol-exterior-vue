@@ -1,6 +1,6 @@
 <template>
   <div class="info-con">
-    <div class="info-container" v-loading="infoLoading">
+    <div class="info-container">
       <div class="info-container-body">
         <div class="info-container-title">
           <div>
@@ -29,7 +29,7 @@
               <div style="margin-top:10px;"> <span style="font-weight: 900;color:#999;">{{languageVal.StartTime}}：{{projectInfo.startTime}}</span></div>
               <ul>
                 <li style="color:#999;font-weight:900;">{{languageVal.Target}}</li>
-                <li><span>{{projectInfo.soldEth}}/{{projectInfo.ethNumber}}{{projectInfo.coin}}</span></li>
+                <li><span>{{projectInfo.soldEth}}/{{projectInfo.ethNumber}} {{projectInfo.coin}}</span></li>
                 <li style="color:#999;font-weight:900;">{{languageVal.PARTICIPANTS}}</li>
                 <li><span>{{projectInfo.buyerNum}}</span></li>
                 <li style="color:#999;font-weight:900;" >{{languageVal.TIMEREMAINING}}</li>
@@ -67,7 +67,7 @@
           <div>
             <ul>
               <li><span style="color:#999;">{{languageVal.RATE}}</span></li>
-              <li v-if="isLogin"><span style="font-weight:900;font-size:18px;">{{projectInfo.coin}}={{projectInfo.ratio}}{{projectInfo.tokenName}}</span></li>
+              <li v-if="isLogin"><span style="font-weight:900;font-size:18px;">1 {{projectInfo.coin}}={{projectInfo.ratio}} {{projectInfo.tokenName}}</span></li>
               <li v-else>{{languageVal.proportion}}</li>
               <li><span style="color:#999; font-weight: 900">{{languageVal.WhiterPaper}}</span></li>
               <li><a target="_blank" class="color-btn color-btn2" :href="projectInfo.whitePaperAddress">{{languageVal.Download}}</a></li>
@@ -94,11 +94,11 @@
       </div>
       <div class="dialog-context">
         <ul>
-          <li>{{transactionProObj.ethBalance||'0'}}{{projectInfo.coin}}</li>
+          <li>{{transactionProObj.ethBalance||'0'}} {{projectInfo.coin}}</li>
           <li style="position: relative">
             <input @change="fundsHandler" v-model="purchaseVal" type="text">
             <span>{{projectInfo.coin}}</span>
-            <span class="info-prompt">{{languageVal.theminimum}}0.01{{projectInfo.coin}}</span>
+            <span class="info-prompt">{{languageVal.theminimum}}0.01 {{projectInfo.coin}}</span>
           </li>
           <li>{{purchaseVal * transactionProObj.ratio}}</li>
         </ul>
