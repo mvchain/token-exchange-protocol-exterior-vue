@@ -115,9 +115,9 @@
         <ul>
           <li>{{transactionProObj.ethBalance||'0'}} {{projectInfo.coin}}</li>
           <li style="position: relative">
-            <input @change="fundsHandler" v-model="purchaseVal" type="text">
+            <input v-model="purchaseVal" type="text">
             <span>{{projectInfo.coin}}</span>
-            <span class="info-prompt">{{languageVal.theminimum}}0.01 {{projectInfo.coin}}</span>
+            <span class="info-prompt">{{languageVal.theminimum}}0.1 {{projectInfo.coin}}</span>
           </li>
           <li>{{purchaseVal * transactionProObj.ratio}}</li>
         </ul>
