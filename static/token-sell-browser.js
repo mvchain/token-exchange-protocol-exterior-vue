@@ -1,4 +1,4 @@
 const urlData = {
-  url: 'http://192.168.15.31:8079'
+  url: 'http://52.194.252.63/api/exterior'
 }
 window.urlData = urlData;
