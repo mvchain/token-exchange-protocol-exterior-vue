@@ -44,6 +44,7 @@
     "MORE":"更多项目",
     "COMINGSOON":"即将开始",
     "INPROGRESS": "正在进行",
+    "refuse":"拒绝",
     "over":"已结束",
     "Timetable": "截止日期",
     "Target": "目标",
@@ -192,7 +193,7 @@
 
   },
   "en": {
-
+    "refuse":"refuse",
     "proportion": "Please login",
     "TradingPassword": "Trading password at least 6 symbols",
     "ContectUs": "Contect Us",

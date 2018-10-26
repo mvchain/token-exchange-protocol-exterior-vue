@@ -54,7 +54,7 @@
         align="center"
       >
         <template slot-scope="scope">
-          <span>{{scope.row.status === 0 ? languageVal.Witing : scope.row.status === 1 ? languageVal.InProgress : scope.row.status === 2 ? languageVal.Done : languageVal.Faild}}</span>
+          <span>{{scope.row.status === 0 ? languageVal.Witing : scope.row.status === 1 ? languageVal.InProgress : scope.row.status === 2 ?  languageVal.Done : scope.row.status === 4?languageVal.refuse:languageVal.Faild}}</span>
         </template>
       </el-table-column>
     </el-table>
@@ -83,7 +83,7 @@
         </li>
         <li class="m-funds-table-li">
           <div>{{languageVal.Status}}:</div>
-          <div> <span>{{v.status === 0 ? languageVal.Witing : v.status === 1 ? languageVal.InProgress : v.status === 2 ? languageVal.Done : languageVal.Faild}}</span></div>
+          <div> <span>{{v.status === 0 ? languageVal.Witing : v.status === 1 ? languageVal.InProgress : v.status === 2 ? languageVal.Done : v.status === 4?languageVal.refuse:languageVal.Faild}}</span></div>
         </li>
       </ul>
     </div>
