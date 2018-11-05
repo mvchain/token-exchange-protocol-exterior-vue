@@ -18,7 +18,7 @@
         </ul>
         <div>
           <p>{{languageVal.ContectUs}}：</p>
-          <p>contact@icolist.com</p>
+          <p>contact@icolist.pro</p>
         </div>
       </div>
       <div class="footer-bottom">ICOLIST, All rights reserved © 2018</div>
